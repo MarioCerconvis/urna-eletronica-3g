@@ -1,0 +1,24 @@
+{
+  "formato": 1,
+  "nome": "Eleição de demonstração - LAOB/UFABC",
+  "data": "2026-11-13",
+  "secoes": ["001", "002"],
+  "cargos": [
+    {"id": "presidente", "nome": "Presidente", "votos_por_eleitor": 1},
+    {"id": "senador", "nome": "Senador", "votos_por_eleitor": 1},
+    {"id": "deputado", "nome": "Deputado", "votos_por_eleitor": 1}
+  ],
+  "partidos": [
+    {"numero": 92, "nome": "Turma da Mônica", "sigla": "TM", "presidente": "Mauricio de Souza", "foto": "fotos/turma-monica92.png"},
+    {"numero": 94, "nome": "Disneylândia", "sigla": "DY", "presidente": "Walt Disney", "foto": "fotos/Walt-Disney-Logo94.jpg"}
+  ],
+  "candidatos": [
+    {"numero": 99, "nome": "Cascão", "cargo": "presidente", "partido": 92, "titulo": "6856576", "foto": "fotos/cascao99.jpg"},
+    {"numero": 67, "nome": "Minnie", "cargo": "presidente", "partido": 94, "titulo": "56463469", "foto": "fotos/minnie67.jpeg"},
+    {"numero": 96, "nome": "Cebolinha", "cargo": "senador", "partido": 92, "titulo": "454345", "foto": "fotos/cebolinha96.JPG"},
+    {"numero": 78, "nome": "Donald", "cargo": "senador", "partido": 94, "titulo": "32432432", "foto": "fotos/donald78.jpeg"},
+    {"numero": 66, "nome": "Mickey", "cargo": "senador", "partido": 94, "titulo": "11223344", "foto": "fotos/mickey66.png"},
+    {"numero": 80, "nome": "Franjinha", "cargo": "deputado", "partido": 92, "titulo": "656455456", "foto": "fotos/franjinha80.jpg"},
+    {"numero": 82, "nome": "Pateta", "cargo": "deputado", "partido": 94, "titulo": "64365754", "foto": "fotos/pateta82.png"}
+  ]
+}

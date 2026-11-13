@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+
+# Dados sensíveis / gerados em operação (NUNCA versionar chaves privadas)
+*.key
+chaves/
+dados/
+saida/
+*.db
+*.db-wal
+*.db-shm
+
+# IDEs
+.idea/
+.vscode/
