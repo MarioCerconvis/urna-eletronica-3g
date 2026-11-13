@@ -1,0 +1,137 @@
+# ansible-playbook -i inventory.ini playbook.yml
+# Provisiona terminais (urnas, verificadores, apuradores, reserva) e o servidor do mural.
+---
+- name: Terminais urna3g
+  hosts: urnas_001:urnas_002:verificadores:apuradores:reserva
+  vars:
+    repo: "https://github.com/MarioCerconvis/urna-eletronica-3g.git"
+    conf: /etc/urna3g
+  tasks:
+    - name: Copiar scripts de instalação
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: "/tmp/{{ item | basename }}"
+        mode: "0755"
+      loop:
+        - ../terminal/instalar.sh
+        - ../terminal/urna3g-kiosk.sh
+        - ../terminal/urna3g-kiosk.desktop
+
+    - name: Instalar urna3g e configurar quiosque
+      ansible.builtin.command: >
+        /tmp/instalar.sh {{ papel }} {{ secao }} {{ impressora | default('') }}
+      environment:
+        URNA3G_ORIGEM: "git+{{ repo }}"
+      args:
+        creates: /opt/urna3g/bin/urna3g
+
+    - name: Pacote da eleição (manifesto assinado + fotos)
+      ansible.builtin.copy:
+        src: "{{ pacote_local }}/eleicao/"
+        dest: "{{ conf }}/eleicao/"
+        owner: urna
+        group: urna
+        mode: "0640"
+        directory_mode: "0750"
+
+    - name: Chave pública da autoridade (todos os papéis)
+      ansible.builtin.copy:
+        src: "{{ pacote_local }}/chaves/autoridade.pub"
+        dest: "{{ conf }}/chaves/autoridade.pub"
+        owner: urna
+        group: urna
+        mode: "0640"
+
+    - name: Chave PRIVADA da seção — somente urnas
+      ansible.builtin.copy:
+        src: "{{ pacote_local }}/chaves/secao-{{ secao }}.key"
+        dest: "{{ conf }}/chaves/secao-{{ secao }}.key"
+        owner: urna
+        group: urna
+        mode: "0600"
+      when: papel == 'votar'
+
+    - name: Chave pública da seção — verificação e apuração
+      ansible.builtin.copy:
+        src: "{{ pacote_local }}/chaves/secao-{{ secao }}.pub"
+        dest: "{{ conf }}/chaves/secao-{{ secao }}.pub"
+        owner: urna
+        group: urna
+        mode: "0640"
+      when: papel in ['verificar', 'apurar']
+
+    - name: Chave PRIVADA de apuração — somente apuradores
+      ansible.builtin.copy:
+        src: "{{ pacote_local }}/chaves/apuracao-{{ secao }}.key"
+        dest: "{{ conf }}/chaves/apuracao-{{ secao }}.key"
+        owner: urna
+        group: urna
+        mode: "0600"
+      when: papel == 'apurar'
+
+    - name: Garantir que nenhuma chave de outro papel ficou na máquina
+      ansible.builtin.find:
+        paths: "{{ conf }}/chaves"
+        patterns: "*.key"
+      register: chaves_privadas
+
+    - name: Remover chaves privadas indevidas
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ chaves_privadas.files }}"
+      when: >
+        (papel == 'votar' and item.path | basename != 'secao-' ~ secao ~ '.key') or
+        (papel == 'apurar' and item.path | basename != 'apuracao-' ~ secao ~ '.key') or
+        (papel == 'verificar')
+
+    - name: Validar manifesto e assinatura no terminal
+      ansible.builtin.command: >
+        /opt/urna3g/bin/urna3g eleicao verificar {{ conf }}/eleicao/eleicao.json --pub {{ conf }}/chaves/autoridade.pub
+      changed_when: false
+
+- name: Servidor do mural
+  hosts: servidor
+  vars:
+    dados: /srv/urna3g/dados
+  tasks:
+    - name: Docker instalado
+      ansible.builtin.apt:
+        name: [docker.io, docker-compose-v2]
+        state: present
+        update_cache: true
+
+    - name: Diretórios de dados
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: "0755"
+      loop: ["{{ dados }}", "{{ dados }}/chaves", /srv/urna3g/compose]
+
+    - name: Manifesto, assinatura e fotos
+      ansible.builtin.copy:
+        src: "{{ pacote_local }}/eleicao/"
+        dest: "{{ dados }}/"
+        mode: "0644"
+
+    - name: Somente chaves PÚBLICAS no servidor
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: "{{ dados }}/chaves/"
+        mode: "0644"
+      with_fileglob:
+        - "{{ pacote_local }}/chaves/*.pub"
+
+    - name: Código-fonte para build da imagem
+      ansible.builtin.git:
+        repo: "https://github.com/MarioCerconvis/urna-eletronica-3g.git"
+        dest: /srv/urna3g/src
+        version: main
+
+    - name: Subir o mural
+      ansible.builtin.command:
+        cmd: docker compose -f /srv/urna3g/src/deploy/servidor/docker-compose.yml up -d --build
+        chdir: /srv/urna3g/src/deploy/servidor
+      environment:
+        COMPOSE_PROJECT_NAME: urna3g
+      changed_when: true

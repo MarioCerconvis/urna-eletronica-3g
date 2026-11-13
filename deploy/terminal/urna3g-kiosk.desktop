@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=urna3g (quiosque)
+Exec=/usr/local/bin/urna3g-kiosk
+X-GNOME-Autostart-enabled=true
+NoDisplay=true
