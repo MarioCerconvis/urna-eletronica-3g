@@ -46,13 +46,34 @@ Problemas encontrados e corrigidos na simulação: o contrato compilado com o pa
 instrução `PUSH0`, que a rede (regras *London*) rejeita; o `ancorar.py` fixava `gasPrice` 0 (só funcionava na
 Besu); endereços de bootnode com nome de host em vez de IP, que o Besu não aceita sem configuração extra.
 
+## Resultados no cluster do LAOB (2026-11-14)
+
+12 máquinas Ubuntu 26.04, 3,4 GB de RAM cada, Besu 26.11.0 em Docker, um validador por máquina
+(`implantar-cluster.sh`). Uma 13ª máquina ficou de fora por falta de acesso SSH.
+
+| Cenário | Resultado |
+|---|---|
+| 4 validadores (.101–.104) | produzindo; ancoragem, recusa de apurador e consulta em outro nó OK |
+| 12 validadores, todos no ar | 15 blocos por 30 s (1 a cada 2 s), ~290 MB de RAM por nó |
+| Subida escalonada dos 12 | ~30 s até as rodadas se alinharem e o primeiro bloco sair |
+| 3 fora (9 de 12) | continua: 23 blocos em 121 s |
+| 4 fora (8 de 12, limite) | continua aos solavancos: 16 blocos em 182 s, com pausas de 30 a 45 s |
+| 5 fora (7 de 12) | **para** (sem quórum de 8) |
+| Religar 1 após a parada | voltou a produzir em 131 s |
+| Ancoragem na rede de 12 | boletim gravado via .101 e conferido via .113 |
+
+No limite de tolerância a rede segue viva, mas lenta: quando validadores desligados caem seguidos na vez de
+propor, a espera dobra a cada rodada (4, 8, 16, 32 s). Para ancorar algumas dezenas de boletins isso basta. Se
+quiser pausas menores, gere a rede com `requesttimeoutseconds` 2 em `qbftConfigFile.json` (exige rede nova).
+
 ## No laboratório
 
 0. Confira as máquinas: `besu/verificar-cluster.sh <usuário> <IP1> <IP2> ...` lista RAM, disco, Docker,
    imagem do Besu, relógio, internet, porta 30303 e firewall de cada uma, com o comando que resolve cada pendência.
 1. Na máquina da comissão: `besu/gerar-rede.sh 13` (ou 4). Copie `rede/genesis.json` e `rede/node1/key.pub` para
    **todas** as máquinas, e `rede/nodeK/key` **só** para a máquina K.
-2. Em cada máquina: `besu/no-lab.sh K <IP desta máquina> <IP da máquina do node1>`. Libere a porta 30303 (TCP e
+2. Da máquina de controle: `besu/implantar-cluster.sh subir rede/ <usuário> IP1 ... IPN` (ou, máquina a máquina,
+   `besu/no-lab.sh K <IP desta máquina> <IP do node1>`). Libere a porta 30303 (TCP e
    UDP) entre as máquinas.
 3. Confira de qualquer máquina: `python status_rede.py --rpc http://IP1:8545 http://IP2:8545 ...` (suba os nós com
    `RPC_PUBLICO=1` para o RPC ser acessível na LAN — só na rede do laboratório).

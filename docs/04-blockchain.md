@@ -68,7 +68,8 @@ o gerenciador da rede local (`rede-local.sh`) e o script de nó para cada máqui
 > Estado (2026-11-14): **simulado com sucesso** numa rede Besu QBFT de 4 validadores em Docker nesta máquina
 > (`deploy/blockchain/simular.sh`). Ancoragem, recusas do contrato, consulta em outro nó, queda de 1 nó (a rede
 > continua), queda de 2 (a rede para) e recuperação foram medidos; números em `deploy/blockchain/README.md`. O
-> contrato e o `ancorar.py` têm testes automáticos em EVM local. Falta rodar nas máquinas do laboratório.
+> contrato e o `ancorar.py` têm testes automáticos em EVM local. Em seguida rodou no cluster do LAOB com 12
+> validadores em máquinas reais (resultados em `deploy/blockchain/README.md`).
 
 ## 4.5 O que fica explicitamente fora
 
