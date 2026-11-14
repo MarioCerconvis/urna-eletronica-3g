@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel ao vivo · urna3g</title>
+<link rel="stylesheet" href="/static/painel.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='4' y='6' width='24' height='20' rx='4' fill='%233987e5'/%3E%3Cpath d='M10 16l4 4 8-8' stroke='white' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<div class="app">
+
+  <header class="topo">
+    <div class="marca">
+      <svg class="marca-icone" viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="6" width="24" height="20" rx="5"/><path d="M10 16l4 4 8-8"/></svg>
+      <div>
+        <h1>Painel ao vivo</h1>
+        <p class="sub"><span id="nome-modo">—</span> · <span id="ponte">—</span></p>
+      </div>
+    </div>
+    <div class="topo-acoes">
+      <span class="conexao" id="conexao" role="status"><span class="ponto"></span><span class="txt">Conectando…</span></span>
+      <span class="relogio" id="relogio">--:--:--</span>
+      <button class="btn btn-primario" id="btn-ensaio" type="button">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4l10 6-10 6z"/></svg><span>Iniciar ensaio</span>
+      </button>
+      <button class="btn btn-icone" id="btn-tema" type="button" aria-label="Alternar tema claro/escuro" title="Alternar tema">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3a7 7 0 1 0 7 7 5.5 5.5 0 0 1-7-7z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <section class="kpis" aria-label="Indicadores">
+    <article class="kpi">
+      <h2>Altura da cadeia</h2>
+      <div class="kpi-valor" id="k-altura">—</div>
+      <p class="kpi-nota" id="k-altura-nota">aguardando dados</p>
+    </article>
+    <article class="kpi">
+      <h2>Ritmo</h2>
+      <div class="kpi-linha"><div class="kpi-valor" id="k-ritmo">—</div><span class="kpi-unid">blocos/min</span></div>
+      <svg class="spark" id="k-spark" viewBox="0 0 200 40" preserveAspectRatio="none" role="img" aria-label="Ritmo de blocos nos últimos minutos"></svg>
+      <p class="kpi-nota" id="k-ritmo-nota">esperado —</p>
+    </article>
+    <article class="kpi">
+      <h2>Consenso</h2>
+      <div class="kpi-linha"><div class="kpi-valor" id="k-vivos">—</div><span class="kpi-unid" id="k-vivos-unid"></span></div>
+      <div class="medidor" id="k-medidor" aria-hidden="true"></div>
+      <p class="kpi-nota" id="k-quorum">quórum —</p>
+    </article>
+    <article class="kpi">
+      <h2>Estado da rede</h2>
+      <div class="status-pill" id="k-situacao"><span class="ic"></span><span class="txt">—</span></div>
+      <p class="kpi-nota" id="k-situacao-nota"></p>
+    </article>
+    <article class="kpi">
+      <h2>Eleição</h2>
+      <div class="kpi-valor kpi-valor-texto" id="k-eleicao">Sem eleição</div>
+      <div class="barra" aria-hidden="true"><span id="k-eleicao-barra"></span></div>
+      <p class="kpi-nota" id="k-eleicao-nota">inicie um ensaio para acompanhar</p>
+    </article>
+    <article class="kpi">
+      <h2>Cédulas</h2>
+      <div class="kpi-valor" id="k-cedulas">0</div>
+      <p class="kpi-nota" id="k-cedulas-nota">emitidas no ensaio</p>
+    </article>
+  </section>
+
+  <main class="grade">
+    <section class="card card-grafo" aria-labelledby="t-grafo">
+      <header class="card-topo">
+        <div>
+          <h2 id="t-grafo">Rede do cluster</h2>
+          <p class="card-sub">Cada ponto é uma máquina. As linhas são conexões reais entre os nós; os pulsos mostram cada bloco saindo de quem o propôs.</p>
+        </div>
+        <ul class="legenda" aria-label="Legenda">
+          <li><span class="lg-no lg-ok"></span>No ar</li>
+          <li><span class="lg-no lg-sync"></span>Sincronizando</li>
+          <li><span class="lg-no lg-fora"></span>Fora</li>
+          <li><span class="lg-pulso"></span>Propôs bloco</li>
+        </ul>
+      </header>
+      <div class="grafo-wrap">
+        <svg id="grafo" viewBox="0 0 900 640" role="img" aria-label="Grafo das máquinas do cluster">
+          <defs>
+            <radialGradient id="g-halo"><stop offset="0" stop-color="var(--acento)" stop-opacity=".35"/><stop offset="1" stop-color="var(--acento)" stop-opacity="0"/></radialGradient>
+          </defs>
+          <g id="camada-arestas"></g>
+          <g id="camada-particulas"></g>
+          <g id="camada-centro"></g>
+          <g id="camada-nos"></g>
+        </svg>
+        <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+      </div>
+      <div class="cadeia" aria-label="Últimos blocos">
+        <span class="cadeia-rotulo">Últimos blocos</span>
+        <div class="cadeia-blocos" id="cadeia"></div>
+      </div>
+    </section>
+
+    <section class="card card-feed" aria-labelledby="t-feed">
+      <header class="card-topo">
+        <div>
+          <h2 id="t-feed">Linha do tempo</h2>
+          <p class="card-sub">Tudo o que acontece na rede, nas máquinas e na eleição.</p>
+        </div>
+        <button class="btn btn-sutil" id="btn-pausar" type="button" aria-pressed="false">Pausar</button>
+      </header>
+      <div class="filtros" role="group" aria-label="Filtrar eventos">
+        <button class="chip ativo" data-cat="todos" type="button">Todos <b id="c-todos">0</b></button>
+        <button class="chip" data-cat="eleicao" type="button">Eleição <b id="c-eleicao">0</b></button>
+        <button class="chip" data-cat="blockchain" type="button">Blockchain <b id="c-blockchain">0</b></button>
+        <button class="chip" data-cat="rede" type="button">Rede <b id="c-rede">0</b></button>
+        <button class="chip" data-cat="maquina" type="button">Máquinas <b id="c-maquina">0</b></button>
+        <button class="chip" data-cat="sistema" type="button">Sistema <b id="c-sistema">0</b></button>
+      </div>
+      <ol class="feed" id="feed" aria-live="polite"></ol>
+    </section>
+
+    <section class="card card-secoes" aria-labelledby="t-secoes">
+      <header class="card-topo">
+        <div>
+          <h2 id="t-secoes">Seções</h2>
+          <p class="card-sub">A seção K é apurada e ancorada pela máquina K.</p>
+        </div>
+        <span class="selo-ensaio" id="selo-ensaio" hidden title="Os eleitores são simulados neste computador; assinaturas, apuração e blockchain são reais.">Ensaio · eleitores simulados</span>
+      </header>
+      <div class="secoes-cab" aria-hidden="true">
+        <span>Seção</span><span>Máquina</span><span>Andamento</span><span class="dir">Cédulas</span><span class="dir">Bloco</span>
+      </div>
+      <ul class="secoes" id="secoes"><li class="vazio">Nenhuma eleição em andamento.</li></ul>
+    </section>
+
+    <section class="card card-resultados" aria-labelledby="t-res">
+      <header class="card-topo">
+        <div>
+          <h2 id="t-res">Resultado parcial</h2>
+          <p class="card-sub" id="res-sub">Soma dos boletins assinados.</p>
+        </div>
+      </header>
+      <div id="resultados" class="resultados"><p class="vazio">Os resultados aparecem conforme as seções emitem boletins.</p></div>
+    </section>
+  </main>
+</div>
+
+<aside class="gaveta" id="gaveta" aria-labelledby="g-titulo" hidden>
+  <header class="gaveta-topo">
+    <div><p class="sobretitulo">Máquina</p><h2 id="g-titulo">—</h2></div>
+    <button class="btn btn-icone" id="g-fechar" type="button" aria-label="Fechar">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg>
+    </button>
+  </header>
+  <div class="gaveta-corpo" id="g-corpo"></div>
+  <footer class="gaveta-rodape">
+    <button class="btn btn-perigo" id="g-derrubar" type="button">Desligar nó</button>
+    <button class="btn btn-ok" id="g-religar" type="button">Religar nó</button>
+  </footer>
+</aside>
+
+<dialog class="modal" id="modal-ensaio" aria-labelledby="m-titulo">
+  <form method="dialog" id="form-ensaio">
+    <h2 id="m-titulo">Iniciar ensaio de eleição</h2>
+    <p class="modal-texto">Cada máquina do cluster vira a apuração de uma seção. O ensaio abre a votação, emite cédulas assinadas,
+      apura, assina o boletim e o grava na blockchain <b>pela máquina da seção</b>.</p>
+    <label class="campo">Eleitores por seção <output id="o-eleitores">25</output>
+      <input type="range" id="i-eleitores" min="5" max="120" step="5" value="25"></label>
+    <label class="campo">Duração da votação <output id="o-duracao">60 s</output>
+      <input type="range" id="i-duracao" min="20" max="300" step="10" value="60"></label>
+    <div class="nota-info">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8"/><path d="M10 9v5M10 6.5v.5"/></svg>
+      <p><b>O que é real:</b> assinaturas das cédulas e do boletim, apuração com rejeição de cédulas repetidas ou forjadas,
+        e as transações na blockchain. <b>O que é simulado:</b> os eleitores. Numa eleição oficial as urnas ficam offline
+        e nenhum contador de votos é transmitido.</p>
+    </div>
+    <p class="modal-dica">Experimente desligar máquinas durante o ensaio e veja as seções aguardando o quórum voltar.</p>
+    <menu>
+      <button class="btn btn-sutil" value="cancelar" type="submit">Cancelar</button>
+      <button class="btn btn-primario" value="iniciar" type="submit" id="m-iniciar">Iniciar</button>
+    </menu>
+  </form>
+</dialog>
+
+<dialog class="modal" id="modal-confirmar" aria-labelledby="c-titulo">
+  <form method="dialog">
+    <h2 id="c-titulo">—</h2>
+    <p class="modal-texto" id="c-texto"></p>
+    <menu>
+      <button class="btn btn-sutil" value="cancelar" type="submit">Cancelar</button>
+      <button class="btn btn-perigo" value="ok" type="submit" id="c-ok">Confirmar</button>
+    </menu>
+  </form>
+</dialog>
+
+<div class="toasts" id="toasts" aria-live="assertive"></div>
+<script src="/static/painel.js" defer></script>
+</body>
+</html>

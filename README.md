@@ -64,6 +64,24 @@ curl -X POST --data-binary @saida/boletim-001.json http://servidor:8000/api/bole
 
 Qualquer fiscal confere com `urna3g boletim verificar`, `urna3g apurar verificar-ledger` e `urna3g cedula ler`.
 
+## Painel ao vivo
+
+Um painel web, aberto **no seu computador** (`127.0.0.1`), que mostra o cluster como um grafo: cada ponto é uma
+máquina, as linhas são as conexões reais entre os nós Besu e cada bloco aparece saindo de quem o propôs. Ao lado,
+a linha do tempo de tudo o que acontece (nós caindo e voltando, quórum, blocos com transações, cada fase de cada
+seção), indicadores de consenso e ritmo, o andamento das seções e o resultado parcial. Clicar numa máquina abre
+os detalhes e os botões para desligá-la ou religá-la; o botão **Iniciar ensaio** roda uma eleição em que a seção K
+é apurada e ancorada pela máquina K.
+
+```bash
+pip install -e ".[painel]"
+urna3g painel --config exemplos/painel-cluster.json --abrir   # cluster, via máquina-ponte (SSH/Tailscale)
+urna3g painel --local --abrir                                 # rede local de deploy/blockchain/besu/rede-local.sh
+```
+
+No ensaio, assinaturas, apuração e transações são reais; só os eleitores são simulados. Numa eleição oficial as
+urnas ficam offline e o painel mostraria apenas as fases por seção.
+
 ## Documentação
 
 | | |

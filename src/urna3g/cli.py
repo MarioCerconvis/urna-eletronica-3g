@@ -263,6 +263,26 @@ def cmd_servidor(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_painel(args: argparse.Namespace) -> int:
+    try:
+        import uvicorn
+
+        from urna3g.painel.app import criar_app
+        from urna3g.painel.config import carregar
+    except ImportError as e:
+        raise ErroCli("o painel requer: pip install 'urna3g[painel]'") from e
+    cfg = carregar(args.config, args.local)
+    url = f"http://127.0.0.1:{args.porta}"
+    print(f"painel: {url}  ({cfg.nome}, {len(cfg.nos)} nós)  — Ctrl+C para sair")
+    if args.abrir:
+        import threading
+        import webbrowser
+
+        threading.Timer(1.5, lambda: webbrowser.open(url)).start()
+    uvicorn.run(criar_app(cfg), host="127.0.0.1", port=args.porta, log_level="warning")
+    return 0
+
+
 def cmd_gui(args: argparse.Namespace) -> int:
     try:
         from urna3g.gui import executar
@@ -452,6 +472,15 @@ def construir_parser() -> argparse.ArgumentParser:
     p.add_argument("--host", default="0.0.0.0")  # noqa: S104 — serviço de LAN por definição
     p.add_argument("--porta", default=8000, type=int)
     p.set_defaults(func=cmd_servidor)
+
+    # painel ao vivo
+    p = sub.add_parser("painel", help="painel web ao vivo do cluster/blockchain (abre em 127.0.0.1)")
+    p.add_argument("--config", type=Path, metavar="painel.json",
+                   help="configuração do cluster (ver exemplos/painel-cluster.json)")
+    p.add_argument("--local", action="store_true", help="usar a rede local de deploy/blockchain/besu/rede-local.sh")
+    p.add_argument("--porta", type=int, default=8787)
+    p.add_argument("--abrir", action="store_true", help="abrir o navegador automaticamente")
+    p.set_defaults(func=cmd_painel)
 
     # gui
     p = sub.add_parser("gui", help="interfaces gráficas (PySide6)")
