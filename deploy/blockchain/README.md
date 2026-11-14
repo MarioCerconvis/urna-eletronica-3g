@@ -48,6 +48,8 @@ Besu); endereços de bootnode com nome de host em vez de IP, que o Besu não ace
 
 ## No laboratório
 
+0. Confira as máquinas: `besu/verificar-cluster.sh <usuário> <IP1> <IP2> ...` lista RAM, disco, Docker,
+   imagem do Besu, relógio, internet, porta 30303 e firewall de cada uma, com o comando que resolve cada pendência.
 1. Na máquina da comissão: `besu/gerar-rede.sh 13` (ou 4). Copie `rede/genesis.json` e `rede/node1/key.pub` para
    **todas** as máquinas, e `rede/nodeK/key` **só** para a máquina K.
 2. Em cada máquina: `besu/no-lab.sh K <IP desta máquina> <IP da máquina do node1>`. Libere a porta 30303 (TCP e
