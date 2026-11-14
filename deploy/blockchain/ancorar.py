@@ -3,6 +3,7 @@
 
     pip install 'urna3g[blockchain]'
     export URNA3G_ETH_KEY=0x...           # chave da conta (autoridade ou apurador) na rede permissionada
+                                          # (ou --chave-arquivo caminho/key, no formato do Besu)
 
     python ancorar.py --rpc http://10.10.0.31:8545 implantar
     python ancorar.py --rpc ... --contrato 0x... criar --eleicao eleicao.json --apuradores 0xA 0xB
@@ -38,11 +39,26 @@ def _web3(rpc: str):
     return w3
 
 
-def _conta(w3):
-    chave = os.environ.get("URNA3G_ETH_KEY")
+def _conta(w3, arquivo: str | None = None):
+    if arquivo:
+        chave = Path(arquivo).read_text().strip()
+    else:
+        chave = os.environ.get("URNA3G_ETH_KEY", "").strip()
     if not chave:
-        sys.exit("erro: defina URNA3G_ETH_KEY com a chave privada da conta (nunca em linha de comando)")
+        sys.exit("erro: defina URNA3G_ETH_KEY ou use --chave-arquivo (nunca passe a chave na linha de comando)")
     return w3.eth.account.from_key(chave)
+
+
+def _motivo(e: Exception) -> str:
+    """Extrai a mensagem do require() do contrato, seja qual for o formato de erro do nó."""
+    import re
+
+    msg = str(e)
+    m = re.search(r"[Ee]xecution reverted[:\s]*\(?([^)'\"]+)", msg)
+    if m and m.group(1).strip():
+        return m.group(1).strip()
+    m = re.search(r"'message': '([^']+)'", msg)
+    return m.group(1) if m else msg
 
 
 def _artefato() -> dict:
@@ -52,11 +68,15 @@ def _artefato() -> dict:
 
 
 def _enviar(w3, conta, fn):
-    tx = fn.build_transaction(
-        {"from": conta.address, "nonce": w3.eth.get_transaction_count(conta.address), "gasPrice": 0,
-         "chainId": w3.eth.chain_id}
-    )
-    tx["gas"] = int(w3.eth.estimate_gas(tx) * 1.2)
+    """Monta, estima, assina e envia. O preço do gás vem da própria rede (0 na Besu do projeto)."""
+    try:
+        tx = fn.build_transaction(
+            {"from": conta.address, "nonce": w3.eth.get_transaction_count(conta.address),
+             "gasPrice": w3.eth.gas_price, "chainId": w3.eth.chain_id}
+        )
+        tx["gas"] = int(w3.eth.estimate_gas(tx) * 1.2)
+    except Exception as e:  # noqa: BLE001 — web3 levanta tipos diferentes conforme o nó
+        sys.exit(f"erro: transação recusada: {_motivo(e)}")
     assinada = conta.sign_transaction(tx)
     h = w3.eth.send_raw_transaction(assinada.raw_transaction)
     rec = w3.eth.wait_for_transaction_receipt(h, timeout=120)
@@ -128,6 +148,7 @@ def main(argv=None) -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--rpc", default="http://127.0.0.1:8545")
     p.add_argument("--contrato", help="endereço do RegistroEleitoral")
+    p.add_argument("--chave-arquivo", help="arquivo com a chave privada hex da conta (ex.: rede/node1/key)")
     sub = p.add_subparsers(dest="cmd", required=True)
     sub.add_parser("implantar").set_defaults(func=cmd_implantar)
     c = sub.add_parser("criar")
@@ -153,7 +174,7 @@ def main(argv=None) -> int:
         return 0
     if args.cmd != "implantar" and not args.contrato:
         sys.exit("erro: informe --contrato")
-    args.func(args, w3, _conta(w3))
+    args.func(args, w3, _conta(w3, args.chave_arquivo))
     return 0
 
 

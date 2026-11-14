@@ -29,9 +29,9 @@ jobs:
       - name: Instalar
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -e ".[gui,camera,servidor,dev]"
+          python -m pip install -e ".[gui,camera,servidor,blockchain,dev]"
       - name: Lint (ruff)
-        run: ruff check src tests
+        run: ruff check src tests deploy/blockchain
       - name: Testes
         run: pytest -q --cov=urna3g --cov-report=term-missing
       - name: Demo ponta a ponta

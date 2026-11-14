@@ -1,37 +1,49 @@
 #!/usr/bin/env bash
-# Gera genesis.json + chaves de 4 validadores QBFT com o Besu (via Docker) e um docker-compose.yml
-# para ensaio em uma única máquina. Para o cluster real, copie cada diretório nodeN/ para uma máquina
-# diferente e troque os hostnames node1..node4 pelos IPs (ver README.md).
+# Gera genesis.json (QBFT) e as chaves de N validadores com o próprio Besu (via Docker).
+#
+#   ./gerar-rede.sh            # 4 validadores (tolera 1 falha)
+#   ./gerar-rede.sh 13         # 13 validadores (tolera 4 falhas) — experimento no cluster
+#
+# Saída em ./rede/:
+#   genesis.json               igual para TODOS os nós (copie para cada máquina)
+#   nodeK/key, nodeK/key.pub   chave do validador K (entregue só a quem opera o nó K)
+#   validadores.txt            nó → endereço (conta) do validador
+# Contas de teste: cada endereço de validador recebe saldo no genesis, para poder ser usado como
+# "autoridade" ou "apurador" nos ensaios (em produção as contas de apuração são outras; ver README).
 set -euo pipefail
 cd "$(dirname "$0")"
-IMG="${BESU_IMAGE:-hyperledger/besu:latest}"
-rm -rf rede && mkdir -p rede
-docker run --rm -u "$(id -u)" -v "$PWD:/data" "$IMG" operator generate-blockchain-config \
-  --config-file=/data/qbftConfigFile.json --to=/data/rede --private-key-file-name=key
-i=1
-for d in rede/keys/*/; do
-  mkdir -p "node$i/data"
-  cp "$d/key" "$d/key.pub" "node$i/"
-  i=$((i+1))
+N="${1:-4}"
+IMG="${BESU_IMAGE:-hyperledger/besu:26.11.0}"
+[ "$N" -ge 1 ] || { echo "N inválido"; exit 1; }
+if [ -d rede ]; then
+  echo "erro: ./rede já existe. Apague (rm -rf rede) se quiser gerar uma rede NOVA — os dados antigos ficam inválidos." >&2
+  exit 1
+fi
+TMP=$(mktemp -d)
+trap 'rm -rf "$TMP"' EXIT
+sed "s/\"count\": [0-9]*/\"count\": $N/" qbftConfigFile.json > "$TMP/config.json"
+docker run --rm -u "$(id -u):$(id -g)" -v "$TMP:/data" "$IMG" operator generate-blockchain-config \
+  --config-file=/data/config.json --to=/data/saida --private-key-file-name=key >/dev/null
+mkdir -p rede
+: > rede/validadores.txt
+k=1
+for d in "$TMP"/saida/keys/*/; do
+  addr=$(basename "$d")
+  mkdir -p "rede/node$k/data"
+  cp "$d/key" "$d/key.pub" "rede/node$k/"
+  chmod 600 "rede/node$k/key"
+  echo "node$k $addr" >> rede/validadores.txt
+  k=$((k+1))
 done
-cp rede/genesis.json genesis.json
-PUB1=$(sed 's/^0x//' node1/key.pub)
-{
-  echo "services:"
-  for n in 1 2 3 4; do
-    cat <<YAML
-  node$n:
-    image: $IMG
-    volumes: ["./genesis.json:/config/genesis.json:ro", "./node$n/key:/config/key:ro", "./node$n/data:/data"]
-    command: >
-      --genesis-file=/config/genesis.json --data-path=/data --node-private-key-file=/config/key
-      --min-gas-price=0 --rpc-http-enabled --rpc-http-host=0.0.0.0 --rpc-http-api=ETH,NET,WEB3,QBFT
-      --host-allowlist=* --rpc-http-cors-origins=all --p2p-port=30303
-      $( [ "$n" -ne 1 ] && echo "--bootnodes=enode://$PUB1@node1:30303" )
-    ports: ["$((8544+n)):8545"]
-YAML
-  done
-} > docker-compose.yml
-echo "pronto: docker compose up -d   (RPC dos nós em http://localhost:8545..8548)"
-echo "contas dos validadores (use uma delas como autoridade/apurador para testes):"
-for n in 1 2 3 4; do echo "  node$n: $(basename "$(dirname "$(ls rede/keys/*/key | sed -n ${n}p)")")"; done
+# saldo de teste para as contas dos validadores (gasPrice é 0 nesta rede, mas carteiras/ferramentas
+# costumam exigir saldo > 0 para estimar transações)
+python3 - "$TMP/saida/genesis.json" rede/genesis.json rede/validadores.txt <<'PY'
+import json, sys
+g = json.load(open(sys.argv[1]))
+for linha in open(sys.argv[3]):
+    _, addr = linha.split()
+    g["alloc"][addr.lower().removeprefix("0x")] = {"balance": "0x56bc75e2d63100000"}  # 100 ETH de teste
+json.dump(g, open(sys.argv[2], "w"), indent=2)
+PY
+echo "rede gerada com $N validador(es) em $(pwd)/rede"
+cat rede/validadores.txt

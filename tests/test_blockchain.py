@@ -66,3 +66,41 @@ def test_ancoragem_de_boletim(cadeia, eleicao, chave_secao, chave_apuracao, tmp_
     assert existe and encerrada and mural == b"\x01" * 32 and n == 1
     eventos = c.events.BoletimRegistrado().get_logs(from_block=0)
     assert len(eventos) == 1 and eventos[0]["args"]["secao"] == "001"
+
+
+def test_script_ancorar_fluxo_completo(eleicao, chave_secao, chave_apuracao, tmp_path, monkeypatch, capsys):
+    """Exercita deploy/blockchain/ancorar.py (implantar → criar → registrar → consultar → encerrar)."""
+    import sys
+
+    from eth_account import Account
+    from web3 import EthereumTesterProvider, Web3
+
+    sys.path.insert(0, str(ARTEFATO.parents[1]))
+    import ancorar
+
+    w3 = Web3(EthereumTesterProvider())
+    conta = Account.create()
+    w3.eth.send_transaction({"from": w3.eth.accounts[0], "to": conta.address, "value": 10**20})
+    monkeypatch.setattr(ancorar, "_web3", lambda rpc: w3)
+    chave = tmp_path / "key"
+    chave.write_text(conta.key.hex())
+    manifesto = eleicao.base_dir / "eleicao.json"
+
+    priv, pub = chave_secao
+    ap = Apuracao.abrir(eleicao, "001", pub, tmp_path / "ap.db")
+    ap.processar(emitir(eleicao, "001", [99, 96, 80], priv).texto())
+    caminho_b = bmod.salvar(ap.gerar_boletim(chave_apuracao[0]), tmp_path / "b.json")
+
+    base = ["--chave-arquivo", str(chave)]
+    assert ancorar.main([*base, "implantar"]) == 0
+    end = capsys.readouterr().out.split("em ")[1].split()[0]
+    base += ["--contrato", end]
+    assert ancorar.main([*base, "criar", "--eleicao", str(manifesto), "--apuradores", conta.address]) == 0
+    assert ancorar.main([*base, "registrar", "--boletim", str(caminho_b)]) == 0
+    with pytest.raises(SystemExit, match="secao ja registrada"):
+        ancorar.main([*base, "registrar", "--boletim", str(caminho_b)])
+    capsys.readouterr()
+    assert ancorar.main(["--contrato", end, "consultar", "--eleicao", str(manifesto), "--boletim", str(caminho_b)]) == 0
+    saida = capsys.readouterr().out
+    assert "confere com" in saida and saida.rstrip().endswith("SIM")
+    assert ancorar.main([*base, "encerrar", "--eleicao", str(manifesto), "--mural-hash", "ab" * 32]) == 0

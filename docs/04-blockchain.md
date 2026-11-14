@@ -62,13 +62,13 @@ Eventos permitem reconstruir tudo a partir dos logs.
 `encerrar --mural-hash …`, `consultar`. O script recalcula o hash do boletim com o próprio `urna3g.boletim`, então
 o que vai para a cadeia é exatamente o que o fiscal verifica localmente.
 
-`deploy/blockchain/besu/` traz a configuração QBFT (`qbftConfigFile.json`) e um `docker-compose.yml` de 4 validadores
-para ensaio em uma única máquina, mais o roteiro para distribuir um nó por máquina do cluster.
+`deploy/blockchain/besu/` traz a configuração QBFT (`qbftConfigFile.json`), o gerador de rede para N validadores,
+o gerenciador da rede local (`rede-local.sh`) e o script de nó para cada máquina do cluster (`no-lab.sh`).
 
-> Estado: o contrato tem um teste em EVM em memória (`tests/test_blockchain.py`, via `web3[tester]`) que só roda
-> depois de `deploy/blockchain/compilar.py` baixar o `solc` — **não foi executado na sessão em que este código foi
-> escrito** (download bloqueado), portanto trate o contrato como *revisado, não testado*. A rede Besu de 4/13 nós
-> é um **modelo de implantação** documentado, não exercitado pela CI.
+> Estado (2026-11-14): **simulado com sucesso** numa rede Besu QBFT de 4 validadores em Docker nesta máquina
+> (`deploy/blockchain/simular.sh`). Ancoragem, recusas do contrato, consulta em outro nó, queda de 1 nó (a rede
+> continua), queda de 2 (a rede para) e recuperação foram medidos; números em `deploy/blockchain/README.md`. O
+> contrato e o `ancorar.py` têm testes automáticos em EVM local. Falta rodar nas máquinas do laboratório.
 
 ## 4.5 O que fica explicitamente fora
 
