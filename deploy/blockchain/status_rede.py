@@ -45,6 +45,8 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--rpc", nargs="*", help="URLs RPC dos nós (padrão: nós locais em 127.0.0.1:8545..)")
     p.add_argument("--dot", action="store_true", help="imprime o grafo em formato Graphviz")
+    p.add_argument("--intervalo", type=float, default=5.0,
+                   help="segundos entre duas leituras da altura, para saber se a rede avança (padrão 5)")
     args = p.parse_args()
     nomes = nomes_locais()
     urls = args.rpc or [f"http://127.0.0.1:{8544 + k}" for k in range(1, len(nomes) + 1)]
@@ -79,18 +81,35 @@ def main() -> int:
         print("}")
         return 0
 
-    print(f"{'nó':<10}{'estado':<9}{'bloco':>7}  pares")
+    larg = max([len("nó"), *(len(str(n["nome"])) for n in nos)]) + 2
+    print(f"{'nó':<{larg}}{'estado':<9}{'bloco':>7}  nº  pares")
     for n in nos:
         estado = "no ar" if n["no_ar"] else "FORA"
         bloco = n["bloco"] if n["bloco"] is not None else "-"
-        print(f"{n['nome']:<10}{estado:<9}{bloco:>7}  {', '.join(sorted(nome_de(i) for i in n['pares'])) or '-'}")
+        pares = ", ".join(sorted(nome_de(i) for i in n["pares"])) or "-"
+        print(f"{n['nome']:<{larg}}{estado:<9}{bloco:>7}  {n['pares'] and len(n['pares'])}  {pares}")
     vivos = sum(n["no_ar"] for n in nos)
     total_val = len(validadores) or len(nos)
     quorum = (2 * total_val + 2) // 3  # ⌈2n/3⌉, regra do QBFT
     blocos = {n["bloco"] for n in nos if n["bloco"] is not None}
+    import time
+
+    time.sleep(args.intervalo)
+    depois = []
+    for n in nos:
+        b = rpc(n["url"], "eth_blockNumber") if n["no_ar"] else None
+        if b:
+            depois.append(int(b, 16))
+    avancou = bool(blocos) and bool(depois) and max(depois) > max(blocos)
     print(f"\nvalidadores no genesis/atual: {total_val}  ·  QBFT precisa de {quorum} para produzir blocos  ·  "
           f"no ar: {vivos}  ·  tolera {total_val - quorum} falha(s)")
-    print("situação:", "PRODUZINDO" if vivos >= quorum else "PARADA (sem quórum)",
+    if avancou:
+        situacao = f"PRODUZINDO (bloco {max(blocos)} → {max(depois)} em {args.intervalo:g} s)"
+    elif vivos >= quorum:
+        situacao = "SEM PROGRESSO com quórum presente (rodadas se alinhando; aguarde e repita)"
+    else:
+        situacao = "PARADA (sem quórum)"
+    print("situação:", situacao,
           "· nós sincronizados" if len(blocos) <= 1 else f"· alturas diferentes {sorted(blocos)} (sincronizando)")
     return 0
 

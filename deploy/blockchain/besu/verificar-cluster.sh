@@ -40,16 +40,18 @@ CHECAGEM="${CHECAGEM//IMAGEM/$IMG}"
 printf "%-16s %-14s %-7s %-10s %-8s %-14s %-8s %-8s %-9s %-10s %s\n" \
   máquina sistema arq "RAM livre" disco docker imagem relógio internet "porta" firewall
 problemas=()
-agora=$(date -u +%s)
 for m in "$@"; do
+  t0=$(date -u +%s)
   if [ "$m" = "local" ]; then saida=$(bash -c "$CHECAGEM" 2>/dev/null)
   else saida=$(ssh -o BatchMode=yes -o ConnectTimeout=5 -o StrictHostKeyChecking=accept-new "$USUARIO@$m" bash -s <<<"$CHECAGEM" 2>/dev/null); fi
   if [ -z "$saida" ]; then
     printf "%-16s %s\n" "$m" "SEM ACESSO SSH (confira IP, usuário e chave: ssh-copy-id $USUARIO@$m)"
     problemas+=("$m: sem acesso SSH"); continue
   fi
+  t1=$(date -u +%s)
   v() { echo "$saida" | sed -n "s/^$1=//p"; }
-  deriva=$(( $(v hora) - agora )); deriva=${deriva#-}
+  # compara com a hora local no meio da conexão SSH (antes comparava com o início do laço: erro crescente)
+  deriva=$(( $(v hora) - (t0 + t1) / 2 )); deriva=${deriva#-}; folga=$(( (t1 - t0) / 2 + 2 ))
   printf "%-16s %-14s %-7s %-10s %-8s %-14s %-8s %-8s %-9s %-10s %s\n" "$m" "$(v so)" "$(v arq)" \
     "$(v ram_livre)/$(v ram_total)G" "$(v disco_livre)G" "$(v docker)" "$(v imagem)" "$(v relogio)" "$(v internet)" \
     "$(v porta30303)" "$(v firewall)"
@@ -62,7 +64,7 @@ for m in "$@"; do
   esac
   [ "$(v imagem)" = "ok" ] || [ "$(v docker)" != "ok" ] || problemas+=("$m: imagem do Besu ausente (passo 3)")
   [ "$(v relogio)" = "yes" ] || problemas+=("$m: relógio não sincronizado → sudo timedatectl set-ntp true (ou instalar chrony)")
-  [ "$deriva" -le 2 ] || problemas+=("$m: relógio difere ${deriva}s deste computador")
+  [ "$deriva" -le "$folga" ] || problemas+=("$m: relógio difere ~${deriva}s deste computador")
   [ "$(v porta30303)" = "livre" ] || problemas+=("$m: porta 30303 já em uso")
   case "$(v firewall)" in
     ufw_ativo) problemas+=("$m: firewall ativo → sudo ufw allow 30303 (TCP e UDP)") ;;

@@ -8,6 +8,7 @@
 # Copie para a máquina: este script, rede/genesis.json, rede/node1/key.pub (para o bootnode) e,
 # se for validador, rede/nodeK/key. Portas: 30303/tcp+udp (P2P, liberar entre as máquinas) e
 # 8545/tcp (RPC; por padrão só localhost — use RPC_PUBLICO=1 para servir aos fiscais na LAN).
+# Memória: BESU_HEAP limita o heap da JVM (padrão 1g; o nó usa ~1,5 GB no total). Máquinas com 4 GB: deixe 1g.
 set -euo pipefail
 cd "$(dirname "$0")"
 IMG="${BESU_IMAGE:-hyperledger/besu:26.11.0}"
@@ -28,6 +29,6 @@ if [ "$K" != "1" ]; then
   ARGS+=(--bootnodes="enode://$(sed 's/^0x//' rede/node1/key.pub)@$IP1:30303")
 fi
 docker rm -f besu >/dev/null 2>&1 || true
-docker run -d --name besu --restart unless-stopped -u "$(id -u):$(id -g)" \
+docker run -d --name besu --restart unless-stopped -u "$(id -u):$(id -g)" -e BESU_OPTS="-Xmx${BESU_HEAP:-1g}" \
   -p 30303:30303/tcp -p 30303:30303/udp -p "${BIND}8545:8545" "${VOLS[@]}" "$IMG" "${ARGS[@]}" >/dev/null
 echo "nó $K no ar em $IP (P2P 30303, RPC ${BIND:-0.0.0.0:}8545)"
