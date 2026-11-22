@@ -66,7 +66,7 @@ class Painel:
         self.historico_ritmo: deque[tuple[float, int]] = deque(maxlen=400)  # (t, altura) a cada ~1 s
         self.validadores: list[str] = [n.endereco for n in cfg.nos]
         self.quorum_ok: bool | None = None
-        self.tunel_ativo = cfg.modo == "local"
+        self.tunel_ativo = cfg.modo == "local" or not cfg.ponte
         self.tunel_msg = ""
         # eleição
         self.contrato: str | None = cfg.contrato.lower() if cfg.contrato else None
@@ -276,17 +276,19 @@ class Painel:
             fonte = self.no_vivo()
             if fonte is None or not self.altura:
                 continue
-            de = self.ultimo_bloco_logs + 1 if self.ultimo_bloco_logs else max(0, self.altura - 5000)
-            if de > self.altura:
+            # fixa o limite ANTES da consulta: a altura avança durante o await e não pode pular blocos
+            ate = self.altura
+            de = self.ultimo_bloco_logs + 1 if self.ultimo_bloco_logs else max(0, ate - 5000)
+            if de > ate:
                 continue
             try:
                 logs = await self.rpc(fonte, "eth_getLogs", [{"address": self.contrato, "fromBlock": hex(de),
-                                                              "toBlock": hex(self.altura)}])
+                                                              "toBlock": hex(ate)}])
             except Exception:  # noqa: BLE001
                 continue
             for lg in logs or []:
                 self._log_contrato(lg)
-            self.ultimo_bloco_logs = self.altura
+            self.ultimo_bloco_logs = ate
 
     def _log_contrato(self, lg: dict[str, Any]) -> None:
         nome = TOPICOS.get(lg["topics"][0])
@@ -303,6 +305,7 @@ class Painel:
             if el.get("id") != eid:
                 el.update({"id": eid, "fase": "votacao", "encerrada": False, "secoes": el.get("secoes") if
                            el.get("id_pendente") == eid else {}, "resultados": el.get("resultados", {})})
+            el["bloco_criacao"] = bloco
             no = self.por_endereco.get(autoridade.lower())
             self.evento("eleicao", f"Eleição registrada na blockchain (bloco #{bloco}) — {n_ap} apuradores autorizados",
                         "good", [no] if no else [], {"bloco": bloco, "eleicao": eid})
@@ -312,12 +315,13 @@ class Painel:
             s = el["secoes"].setdefault(secao, {"secao": secao, "no": no, "fase": "ancorado", "cedulas": total})
             s.update({"fase": "ancorado", "hash": hb.hex(), "ledger": hl.hex(), "bloco": bloco,
                       "cedulas_apuradas": total, "no": s.get("no") or no})
+            s.setdefault("tempos", {})["ancorado"] = time.time()
             rot = self.nos[no].rotulo if no else quem[:10]
             self.evento("eleicao", f"Seção {secao}: boletim ancorado no bloco #{bloco} por {rot} — {total} cédulas",
                         "good", [no] if no else [], {"bloco": bloco, "secao": secao, "hash": hb.hex()})
         elif nome == "EleicaoEncerrada":
             (hm,) = abi_decode(["bytes32"], dados)
-            el.update({"fase": "encerrada", "encerrada": True, "hash_mural": hm.hex()})
+            el.update({"fase": "encerrada", "encerrada": True, "hash_mural": hm.hex(), "bloco_encerramento": bloco})
             self.evento("eleicao", f"Eleição encerrada na blockchain (bloco #{bloco}). Hash do mural {hm.hex()[:16]}…",
                         "good", [], {"bloco": bloco})
 
@@ -332,9 +336,11 @@ class Painel:
 
     async def iniciar(self) -> list[asyncio.Task]:
         tarefas = []
-        if self.cfg.modo == "cluster":
+        if self.cfg.modo == "cluster" and self.cfg.ponte:
             self.tunel = infra.Tunel(self.cfg)
             tarefas.append(asyncio.create_task(self.tunel.manter(self.ao_mudar_tunel)))
+        elif self.cfg.modo == "cluster":
+            self.evento("sistema", "Painel rodando dentro da rede do cluster (acesso direto aos nós)", "good")
         else:
             self.evento("sistema", "Painel conectado à simulação local (contêineres Docker)", "good")
         for laco in (self.laco_alturas, self.laco_pares, self.laco_maquinas, self.laco_contrato):

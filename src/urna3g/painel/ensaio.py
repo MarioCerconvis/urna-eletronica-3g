@@ -67,7 +67,11 @@ class Ensaio:
         return self.p.eleicao["secoes"][sec]
 
     def _fase(self, sec: str, fase: str, **extra: Any) -> None:
-        self._secao(sec).update({"fase": fase, **extra})
+        import time
+
+        s = self._secao(sec)
+        s.update({"fase": fase, **extra})
+        s.setdefault("tempos", {})[fase] = time.time()
 
     async def _thread(self, fn, *a):  # noqa: ANN001
         return await asyncio.to_thread(fn, *a)
@@ -219,11 +223,14 @@ class Ensaio:
                 for t in leituras:
                     time.sleep(random.uniform(0.08, 0.25))
                     r = ap.processar(t)
+                    sd = self._secao(sec)
                     if r.status is Status.DUPLICADA:
+                        sd["duplicadas"] = sd.get("duplicadas", 0) + 1
                         loop.call_soon_threadsafe(p.evento, "eleicao",
                                                   f"Seção {sec}: cédula lida duas vezes — rejeitada (já apurada)",
                                                   "warning", [nid])
                     elif r.status is Status.INVALIDA:
+                        sd["invalidas"] = sd.get("invalidas", 0) + 1
                         loop.call_soon_threadsafe(p.evento, "eleicao",
                                                   f"Seção {sec}: cédula com assinatura inválida — rejeitada",
                                                   "serious", [nid])

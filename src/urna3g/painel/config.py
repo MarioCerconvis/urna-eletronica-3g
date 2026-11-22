@@ -66,8 +66,10 @@ def carregar(caminho: Path | None, local: bool) -> PainelCfg:
     ips = d["ips"]
     if len(ips) != len(vals):
         raise SystemExit(f"{len(ips)} IPs no config, mas a rede tem {len(vals)} validadores")
+    direto = not d.get("ponte")  # sem ponte = este computador está na rede dos nós (ex.: o computador principal)
     nos = [
-        NoCfg(nid, k, ip, f"http://127.0.0.1:{PORTA_TUNEL_BASE + k}", addr.lower(), rede / nid / "key")
+        NoCfg(nid, k, ip, f"http://{ip}:8545" if direto else f"http://127.0.0.1:{PORTA_TUNEL_BASE + k}",
+              addr.lower(), rede / nid / "key")
         for k, ((nid, addr), ip) in enumerate(zip(vals, ips, strict=True), start=1)
     ]
     return PainelCfg(
@@ -75,7 +77,7 @@ def carregar(caminho: Path | None, local: bool) -> PainelCfg:
         nome=d.get("nome", "Cluster"),
         rede_dir=rede,
         nos=nos,
-        ponte=d["ponte"],
+        ponte=d.get("ponte"),
         usuario_nos=d.get("usuario_nos", "laob"),
         ip_ponte=d.get("ip_ponte"),
         contrato=d.get("contrato"),

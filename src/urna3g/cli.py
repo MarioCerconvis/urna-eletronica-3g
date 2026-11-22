@@ -283,6 +283,22 @@ def cmd_painel(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_ensaio_lote(args: argparse.Namespace) -> int:
+    try:
+        import asyncio
+
+        from urna3g.painel.config import carregar
+        from urna3g.painel.lote import rodar_lote
+    except ImportError as e:
+        raise ErroCli("requer: pip install 'urna3g[painel]'") from e
+    cfg = carregar(args.config, args.local)
+    r = asyncio.run(rodar_lote(cfg, args.n, args.eleitores, args.duracao, Path(args.saida), args.pausa))
+    a = r["agregado"]
+    print(f"\nconcluído: {a.get('sucessos', 0)}/{len(r['execucoes'])} execuções com sucesso")
+    print(f"relatório: {Path(args.saida).with_suffix('.md')}  ·  dados: {Path(args.saida).with_suffix('.json')}")
+    return 0 if r["execucoes"] and a.get("sucessos") == len(r["execucoes"]) else 1
+
+
 def cmd_gui(args: argparse.Namespace) -> int:
     try:
         from urna3g.gui import executar
@@ -481,6 +497,17 @@ def construir_parser() -> argparse.ArgumentParser:
     p.add_argument("--porta", type=int, default=8787)
     p.add_argument("--abrir", action="store_true", help="abrir o navegador automaticamente")
     p.set_defaults(func=cmd_painel)
+
+    # lote de ensaios
+    p = sub.add_parser("ensaio-lote", help="roda N ensaios de eleição em sequência e grava relatório (md + json)")
+    p.add_argument("--config", type=Path, metavar="painel.json")
+    p.add_argument("--local", action="store_true")
+    p.add_argument("--n", type=int, default=10, help="número de execuções")
+    p.add_argument("--eleitores", type=int, default=25, help="eleitores por seção (alvo)")
+    p.add_argument("--duracao", type=float, default=30, help="duração da votação em segundos")
+    p.add_argument("--pausa", type=float, default=10, help="segundos entre execuções")
+    p.add_argument("--saida", type=Path, required=True, help="caminho do relatório, sem extensão")
+    p.set_defaults(func=cmd_ensaio_lote)
 
     # gui
     p = sub.add_parser("gui", help="interfaces gráficas (PySide6)")

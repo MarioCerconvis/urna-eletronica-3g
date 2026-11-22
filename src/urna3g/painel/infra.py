@@ -102,7 +102,10 @@ def _parse_stats(linha: str) -> tuple[str, StatsMaquina]:
 async def coletar_stats(cfg: PainelCfg) -> dict[str, StatsMaquina]:
     if cfg.modo == "cluster":
         script = _SCRIPT_STATS.format(ips=" ".join(n.ip for n in cfg.nos), usuario=cfg.usuario_nos)
-        rc, out = await _rodar("ssh", *SSH_OPTS, cfg.ponte or "", script, timeout=40)
+        if cfg.ponte:
+            rc, out = await _rodar("ssh", *SSH_OPTS, cfg.ponte, script, timeout=40)
+        else:
+            rc, out = await _rodar("bash", "-c", script, timeout=40)
         por_ip = dict(_parse_stats(ln) for ln in out.splitlines() if ln.count("|") >= 1)
         return {n.id: por_ip.get(n.ip, StatsMaquina(besu_estado="sem resposta")) for n in cfg.nos}
     # local: os "nós" são contêineres nesta máquina
@@ -126,7 +129,10 @@ async def acao_no(cfg: PainelCfg, no: NoCfg, acao: str) -> tuple[bool, str]:
     docker = "docker stop -t 2 besu" if acao == "derrubar" else "docker start besu"
     if cfg.modo == "cluster":
         remoto = f"ssh -o BatchMode=yes -o ConnectTimeout=5 {cfg.usuario_nos}@{no.ip} {shlex.quote(docker)}"
-        rc, out = await _rodar("ssh", *SSH_OPTS, cfg.ponte or "", remoto, timeout=40)
+        if cfg.ponte:
+            rc, out = await _rodar("ssh", *SSH_OPTS, cfg.ponte, remoto, timeout=40)
+        else:
+            rc, out = await _rodar("bash", "-c", remoto, timeout=40)
     else:
         nome = f"besu-{no.id}"
         rc, out = await _rodar("docker", "stop" if acao == "derrubar" else "start", nome, timeout=40)
