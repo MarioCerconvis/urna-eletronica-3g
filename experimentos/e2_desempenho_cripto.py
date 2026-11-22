@@ -4,14 +4,13 @@ from __future__ import annotations
 
 import time
 
-from comum import gravar, resumo
+from comum import RAIZ, gravar, resumo
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding, rsa
 
 from urna3g import crypto
 from urna3g.ballot import emitir, ler
 from urna3g.manifest import Eleicao
-from comum import RAIZ
 
 N, AQUECE = 10_000, 500
 

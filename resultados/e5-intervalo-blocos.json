@@ -1,0 +1,36 @@
+{
+  "experimento": "e5-intervalo-blocos",
+  "gerado_em": "2026-11-22T16:09:00",
+  "ambiente": {
+    "cpu": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+    "python": "3.12.3",
+    "so": "Linux-7.0.0-43-generic-x86_64-with-glibc2.39",
+    "commit": "f2f7040"
+  },
+  "metodo": "timestamps (resolução 1 s) dos blocos 17815–19315: 12/12 no ar, antes dos testes de falha; uma lacuna de desligamento do cluster (> 60 s) excluída e contada à parte",
+  "resultados": {
+    "blocos": "17815..19315",
+    "intervalos": 1499,
+    "lacunas_acima_60s": 1,
+    "intervalo_s": {
+      "n": 1499,
+      "media": 2,
+      "mediana": 2.0,
+      "desvio": 0.0,
+      "min": 2,
+      "p95": 2.0,
+      "p99": 2.0,
+      "max": 2,
+      "ic95_media": [
+        2.0,
+        2.0
+      ]
+    },
+    "distribuicao_s": {
+      "2": 1499
+    },
+    "fracao_exatamente_2s": 1.0,
+    "periodo_s": 2998,
+    "blocos_por_min": 30.0
+  }
+}

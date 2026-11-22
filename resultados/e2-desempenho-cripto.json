@@ -1,0 +1,134 @@
+{
+  "experimento": "e2-desempenho-cripto",
+  "gerado_em": "2026-11-22T15:54:58",
+  "ambiente": {
+    "cpu": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+    "python": "3.12.3",
+    "so": "Linux-7.0.0-43-generic-x86_64-with-glibc2.39",
+    "commit": "f2f7040"
+  },
+  "metodo": "n=10000 por operação, aquecimento 500, perf_counter_ns, um núcleo",
+  "unidade": "ms",
+  "operacoes": {
+    "ed25519_assinar_106B": {
+      "n": 10000,
+      "media": 0.03493,
+      "mediana": 0.03382,
+      "desvio": 0.0053,
+      "min": 0.03357,
+      "p95": 0.03817,
+      "p99": 0.06199,
+      "max": 0.19129,
+      "ic95_media": [
+        0.03483,
+        0.03504
+      ],
+      "ops_por_s": 28628.7
+    },
+    "ed25519_verificar_106B": {
+      "n": 10000,
+      "media": 0.11071,
+      "mediana": 0.10962,
+      "desvio": 0.00554,
+      "min": 0.10923,
+      "p95": 0.11246,
+      "p99": 0.13928,
+      "max": 0.29353,
+      "ic95_media": [
+        0.1106,
+        0.11081
+      ],
+      "ops_por_s": 9032.6
+    },
+    "emitir_cedula_completa": {
+      "n": 10000,
+      "media": 0.11735,
+      "mediana": 0.11576,
+      "desvio": 0.00666,
+      "min": 0.11414,
+      "p95": 0.12203,
+      "p99": 0.14783,
+      "max": 0.23895,
+      "ic95_media": [
+        0.11722,
+        0.11748
+      ],
+      "ops_por_s": 8521.5
+    },
+    "ler_cedula_decodificar_e_verificar": {
+      "n": 10000,
+      "media": 0.19745,
+      "mediana": 0.19532,
+      "desvio": 0.00816,
+      "min": 0.19332,
+      "p95": 0.20232,
+      "p99": 0.23571,
+      "max": 0.39452,
+      "ic95_media": [
+        0.19729,
+        0.19761
+      ],
+      "ops_por_s": 5064.6
+    },
+    "prototipo_rsa1024_oaep_cifrar": {
+      "n": 10000,
+      "media": 0.02289,
+      "mediana": 0.02266,
+      "desvio": 0.00162,
+      "min": 0.02236,
+      "p95": 0.02342,
+      "p99": 0.02843,
+      "max": 0.07854,
+      "ic95_media": [
+        0.02286,
+        0.02292
+      ],
+      "ops_por_s": 43687.2
+    },
+    "prototipo_rsa1024_oaep_decifrar": {
+      "n": 10000,
+      "media": 0.11843,
+      "mediana": 0.11257,
+      "desvio": 0.02652,
+      "min": 0.1121,
+      "p95": 0.12353,
+      "p99": 0.25917,
+      "max": 0.44342,
+      "ic95_media": [
+        0.11791,
+        0.11895
+      ],
+      "ops_por_s": 8443.8
+    },
+    "referencia_rsa2048_pss_assinar": {
+      "n": 10000,
+      "media": 0.54629,
+      "mediana": 0.52851,
+      "desvio": 0.07639,
+      "min": 0.52519,
+      "p95": 0.59496,
+      "p99": 0.93509,
+      "max": 1.53889,
+      "ic95_media": [
+        0.5448,
+        0.54779
+      ],
+      "ops_por_s": 1830.5
+    },
+    "referencia_rsa2048_pss_verificar": {
+      "n": 10000,
+      "media": 0.04531,
+      "mediana": 0.04463,
+      "desvio": 0.00387,
+      "min": 0.04411,
+      "p95": 0.04837,
+      "p99": 0.05833,
+      "max": 0.21179,
+      "ic95_media": [
+        0.04523,
+        0.04539
+      ],
+      "ops_por_s": 22070.2
+    }
+  }
+}

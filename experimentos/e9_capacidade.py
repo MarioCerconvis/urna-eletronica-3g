@@ -1,9 +1,11 @@
 """E9 — Custo (gás) e capacidade da ancoragem.
 
 (a) Gás de cada operação do contrato (implantar, criar, registrar, encerrar), a partir dos recibos.
-(b) Rajada: cada um dos 12 validadores (como apurador) envia 100 registros de boletim pelo SEU nó, o mais rápido
-    possível — 1 200 transações por repetição, 3 repetições. Mede transações por segundo, blocos usados e latência
-    de inclusão. Uma eleição nova (id aleatório) por repetição.
+(b) Rajada: cada um dos 12 validadores (como apurador) envia 100 registros de boletim pelo SEU nó, sem pausa e com
+    o gás estimado uma vez por conta — 1 200 transações por repetição, 3 repetições. Mede a taxa oferecida, a vazão
+    na cadeia, transações por bloco e a latência de inclusão (timestamp do bloco − instante do envio). Uma eleição
+    nova (id aleatório) por repetição. (Uma primeira versão estimava o gás a cada envio — o que limitava a taxa
+    oferecida — e media a latência só depois de terminar todos os envios; foi descartada.)
 """
 
 from __future__ import annotations
@@ -60,29 +62,35 @@ def main() -> None:
                 rc = w3.eth.wait_for_transaction_receipt(enviar(w3, ac1, c1.functions.criarEleicao(eid, apuradores)), timeout=180)
                 gas["criar"].append(rc.gasUsed)
                 h_ini = C.altura_max()
-                enviados: dict[str, float] = {}
+                envios: dict[str, tuple[int, float]] = {}  # hash -> (conta, instante do envio)
                 erros: Counter = Counter()
                 trava = threading.Lock()
 
                 def rajada(k: int) -> None:
+                    """Envia POR_CONTA registros sem pausa; gás estimado uma única vez por conta."""
                     wk, ack = w3_no(k), conta(k)
                     ck = wk.eth.contract(address=end, abi=ART["abi"])
                     n0 = wk.eth.get_transaction_count(ack.address, "pending")
-                    g = None
+                    preco, cadeia = wk.eth.gas_price, wk.eth.chain_id
+                    gas_fixo = None
                     for i in range(POR_CONTA):
-                        sec = f"k{k:02d}-{i:03d}"
-                        fn = ck.functions.registrarBoletim(eid, sec, os.urandom(32), os.urandom(32), 250)
-                        for tentativa in range(20):
+                        fn = ck.functions.registrarBoletim(eid, f"k{k:02d}-{i:03d}", os.urandom(32), os.urandom(32), 250)
+                        tx = fn.build_transaction({"from": ack.address, "nonce": n0 + i, "gasPrice": preco, "chainId": cadeia,
+                                                   "gas": gas_fixo or 300_000})
+                        if gas_fixo is None:
+                            gas_fixo = int(wk.eth.estimate_gas({k_: v for k_, v in tx.items() if k_ != "gas"}) * 1.3)
+                            tx["gas"] = gas_fixo
+                        bruto = ack.sign_transaction(tx).raw_transaction
+                        for _ in range(30):
                             try:
-                                h = enviar(wk, ack, fn, nonce=n0 + i, gas=g)
+                                h = wk.eth.send_raw_transaction(bruto)
                                 with trava:
-                                    enviados[h.hex()] = time.time()
-                                g = g or None
+                                    envios[h.hex()] = (k, time.time())
                                 break
                             except Exception as e:  # noqa: BLE001
                                 with trava:
                                     erros[str(e)[:60]] += 1
-                                time.sleep(0.5)
+                                time.sleep(0.2)
 
                 t0 = time.time()
                 th = [threading.Thread(target=rajada, args=(k,)) for k in range(1, C.N + 1)]
@@ -91,9 +99,9 @@ def main() -> None:
                 for t in th:
                     t.join()
                 t_envio = time.time() - t0
-                # aguarda inclusão de todas
-                incl: dict[str, tuple[int, float]] = {}
-                pendentes = set(enviados)
+                # inclusão: bloco de cada transação; latência = timestamp do bloco − instante do envio (relógios NTP)
+                incl: dict[str, int] = {}
+                pendentes = set(envios)
                 limite = time.time() + 600
                 while pendentes and time.time() < limite:
                     for hx in list(pendentes):
@@ -102,21 +110,24 @@ def main() -> None:
                         except Exception:  # noqa: BLE001
                             continue
                         if r:
-                            incl[hx] = (r.blockNumber, time.time())
+                            incl[hx] = r.blockNumber
                             gas["registrar"].append(r.gasUsed)
                             pendentes.discard(hx)
                     time.sleep(1)
-                t_fim = max((t for _, t in incl.values()), default=time.time())
-                blocos = Counter(b for b, _ in incl.values())
+                blocos = Counter(incl.values())
                 ts_blocos = {b: int(C.bloco(b)["timestamp"], 16) for b in blocos}
+                lat = [ts_blocos[incl[h]] - envios[h][1] for h in incl]
+                ultimo_ts = max(ts_blocos.values()) if ts_blocos else None
                 dur_cadeia = (max(ts_blocos.values()) - min(ts_blocos.values()) + 2) if ts_blocos else None
-                r = {"rep": rep, "transacoes_enviadas": len(enviados), "incluidas": len(incl), "nao_incluidas": len(pendentes),
-                     "tempo_envio_s": round(t_envio, 1), "tempo_total_ate_ultima_inclusao_s": round(t_fim - t0, 1),
-                     "tx_por_s_fim_a_fim": round(len(incl) / (t_fim - t0), 1),
-                     "blocos_usados": len(blocos), "tx_por_bloco": resumo(list(blocos.values()), 1),
+                vazios = sum(1 for b in range(min(blocos), max(blocos) + 1) if b not in blocos) if blocos else 0
+                r = {"rep": rep, "transacoes_enviadas": len(envios), "incluidas": len(incl), "nao_incluidas": len(pendentes),
+                     "tempo_envio_s": round(t_envio, 1), "taxa_oferecida_tx_s": round(len(envios) / t_envio, 1),
+                     "tempo_ate_ultimo_bloco_s": round(ultimo_ts - t0, 1) if ultimo_ts else None,
+                     "tx_por_s_fim_a_fim": round(len(incl) / (ultimo_ts - t0), 1) if ultimo_ts else None,
+                     "blocos_usados": len(blocos), "blocos_vazios_no_intervalo": vazios,
+                     "tx_por_bloco": resumo(list(blocos.values()), 1),
                      "tx_por_s_na_cadeia": round(len(incl) / dur_cadeia, 1) if dur_cadeia else None,
-                     "latencia_inclusao_s": resumo([incl[h][1] - enviados[h] for h in incl], 2),
-                     "altura_inicio": h_ini, "erros_envio": dict(erros)}
+                     "latencia_inclusao_s": resumo(lat, 2), "altura_inicio": h_ini, "erros_envio": dict(erros)}
                 ok = w3.eth.contract(address=end, abi=ART["abi"]).functions.eleicao(eid).call()
                 r["secoes_registradas_no_contrato"] = ok[4]
                 rr = w3.eth.wait_for_transaction_receipt(enviar(w3, ac1, c1.functions.encerrar(eid, os.urandom(32))), timeout=180)
@@ -129,7 +140,7 @@ def main() -> None:
         am.parar()
     gas_res = {"implantar": gas["implantar"], "criar_eleicao_12_apuradores": resumo(gas["criar"], 0),
                "registrar_boletim": resumo(gas["registrar"], 0), "encerrar": resumo(gas["encerrar"], 0)}
-    print("->", gravar("e9-capacidade", {"metodo": f"12 contas × {POR_CONTA} registros por repetição, cada conta pelo próprio nó; {REPS} repetições; contrato novo implantado no início",
+    print("->", gravar("e9-capacidade", {"metodo": f"12 contas × {POR_CONTA} registros por repetição, cada conta pelo próprio nó, sem pausa, gás estimado uma vez por conta; latência = timestamp do bloco − envio; {REPS} repetições; contrato novo implantado no início",
                                           "contrato": end, "gas": gas_res, "repeticoes": reps}))
 
 

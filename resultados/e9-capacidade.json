@@ -1,0 +1,191 @@
+{
+  "experimento": "e9-capacidade",
+  "gerado_em": "2026-11-22T19:40:56",
+  "ambiente": {
+    "cpu": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
+    "python": "3.12.3",
+    "so": "Linux-6.8.0-149-generic-x86_64-with-glibc2.39",
+    "commit": "f2f7040"
+  },
+  "metodo": "12 contas × 100 registros por repetição, cada conta pelo próprio nó, sem pausa, gás estimado uma vez por conta; latência = timestamp do bloco − envio; 3 repetições; contrato novo implantado no início",
+  "contrato": "0xDBABA93e1F80D4a44d715184eeE8a2c1b7B3eEF9",
+  "gas": {
+    "implantar": 834064,
+    "criar_eleicao_12_apuradores": {
+      "n": 3,
+      "media": 321814,
+      "mediana": 321814.0,
+      "desvio": 0.0,
+      "min": 321814,
+      "p95": 321814.0,
+      "p99": 321814.0,
+      "max": 321814,
+      "ic95_media": [
+        321814.0,
+        321814.0
+      ]
+    },
+    "registrar_boletim": {
+      "n": 3600,
+      "media": 126590.0,
+      "mediana": 126579.0,
+      "desvio": 494.0,
+      "min": 126543,
+      "p95": 126579.0,
+      "p99": 126579.0,
+      "max": 143679,
+      "ic95_media": [
+        126574.0,
+        126606.0
+      ]
+    },
+    "encerrar": {
+      "n": 3,
+      "media": 51445,
+      "mediana": 51445.0,
+      "desvio": 0.0,
+      "min": 51445,
+      "p95": 51445.0,
+      "p99": 51445.0,
+      "max": 51445,
+      "ic95_media": [
+        51445.0,
+        51445.0
+      ]
+    }
+  },
+  "repeticoes": [
+    {
+      "rep": 1,
+      "transacoes_enviadas": 1200,
+      "incluidas": 1200,
+      "nao_incluidas": 0,
+      "tempo_envio_s": 42.6,
+      "taxa_oferecida_tx_s": 28.2,
+      "tempo_ate_ultimo_bloco_s": 43.7,
+      "tx_por_s_fim_a_fim": 27.4,
+      "blocos_usados": 22,
+      "blocos_vazios_no_intervalo": 0,
+      "tx_por_bloco": {
+        "n": 22,
+        "media": 54.5,
+        "mediana": 56.0,
+        "desvio": 8.1,
+        "min": 30,
+        "p95": 62.8,
+        "p99": 68.5,
+        "max": 70,
+        "ic95_media": [
+          51.1,
+          57.9
+        ]
+      },
+      "tx_por_s_na_cadeia": 27.3,
+      "latencia_inclusao_s": {
+        "n": 1200,
+        "media": 0.99,
+        "mediana": 1.0,
+        "desvio": 0.57,
+        "min": -0.08,
+        "p95": 1.88,
+        "p99": 1.97,
+        "max": 2.01,
+        "ic95_media": [
+          0.96,
+          1.03
+        ]
+      },
+      "altura_inicio": 22723,
+      "erros_envio": {},
+      "secoes_registradas_no_contrato": 1200
+    },
+    {
+      "rep": 2,
+      "transacoes_enviadas": 1200,
+      "incluidas": 1200,
+      "nao_incluidas": 0,
+      "tempo_envio_s": 42.3,
+      "taxa_oferecida_tx_s": 28.4,
+      "tempo_ate_ultimo_bloco_s": 43.8,
+      "tx_por_s_fim_a_fim": 27.4,
+      "blocos_usados": 22,
+      "blocos_vazios_no_intervalo": 0,
+      "tx_por_bloco": {
+        "n": 22,
+        "media": 54.5,
+        "mediana": 56.5,
+        "desvio": 10.1,
+        "min": 15,
+        "p95": 62.0,
+        "p99": 65.9,
+        "max": 67,
+        "ic95_media": [
+          50.3,
+          58.8
+        ]
+      },
+      "tx_por_s_na_cadeia": 27.3,
+      "latencia_inclusao_s": {
+        "n": 1200,
+        "media": 0.99,
+        "mediana": 1.0,
+        "desvio": 0.58,
+        "min": -0.03,
+        "p95": 1.88,
+        "p99": 1.96,
+        "max": 2.06,
+        "ic95_media": [
+          0.96,
+          1.02
+        ]
+      },
+      "altura_inicio": 22755,
+      "erros_envio": {},
+      "secoes_registradas_no_contrato": 1200
+    },
+    {
+      "rep": 3,
+      "transacoes_enviadas": 1200,
+      "incluidas": 1200,
+      "nao_incluidas": 0,
+      "tempo_envio_s": 42.2,
+      "taxa_oferecida_tx_s": 28.5,
+      "tempo_ate_ultimo_bloco_s": 43.8,
+      "tx_por_s_fim_a_fim": 27.4,
+      "blocos_usados": 22,
+      "blocos_vazios_no_intervalo": 0,
+      "tx_por_bloco": {
+        "n": 22,
+        "media": 54.5,
+        "mediana": 57.0,
+        "desvio": 10.9,
+        "min": 12,
+        "p95": 62.0,
+        "p99": 63.6,
+        "max": 64,
+        "ic95_media": [
+          50.0,
+          59.1
+        ]
+      },
+      "tx_por_s_na_cadeia": 27.3,
+      "latencia_inclusao_s": {
+        "n": 1200,
+        "media": 0.97,
+        "mediana": 0.96,
+        "desvio": 0.58,
+        "min": -0.14,
+        "p95": 1.9,
+        "p99": 1.97,
+        "max": 1.99,
+        "ic95_media": [
+          0.94,
+          1.01
+        ]
+      },
+      "altura_inicio": 22787,
+      "erros_envio": {},
+      "secoes_registradas_no_contrato": 1200
+    }
+  ]
+}

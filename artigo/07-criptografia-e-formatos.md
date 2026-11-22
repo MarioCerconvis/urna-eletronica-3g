@@ -13,9 +13,11 @@ cabecalho = versão (1 B) || id_curto da eleição (8 B, prefixo do SHA-256 do m
 assinatura = Ed25519(chave da seção, "urna3g/cedula/v1" || cabecalho)   (64 B)
 ```
 
-* Com 3 cargos e seção "001": 106 bytes → **147 caracteres**, **QR versão 8**, correção de erro M (≈15%). [MEDIDO]
-* Comparação: no protótipo, o QR carregava um texto cifrado RSA-1024 em base64 (~172 caracteres).
-* Assinar uma cédula: **≈ 0,17 ms** (média de 200, i7-4770). [MEDIDO]
+* Com 3 cargos e seção "001": 106 bytes → **147 caracteres**, **QR versão 8**, correção de erro M (≈15%). [MEDIDO, E1]
+* Comparação: no protótipo, o QR carregava 128 bytes de RSA-1024 em base64 (175 caracteres) com correção L → também
+  versão 8. Mesmo tamanho físico; a nova cédula ganha correção M e autenticidade. Tamanhos para 1–40 votos em `11`.
+* Emitir (montar + assinar) uma cédula: **0,117 ± 0,007 ms**; ler (decodificar + verificar): **0,197 ± 0,008 ms**
+  (n = 10 000, i7-4770). [MEDIDO, E2]
 * Limites: até 40 votos por cédula; seção de até 16 bytes.
 * Verificação: (1) id curto igual ao da eleição; (2) seção igual à esperada; (3) assinatura válida; (4) nº de votos
   igual ao do manifesto. Número de candidato inexistente conta como nulo e é listado nas observações do boletim.
@@ -60,6 +62,7 @@ assinatura = Ed25519(chave da seção, "urna3g/cedula/v1" || cabecalho)   (64 B)
 | Autenticidade da cédula | nenhuma | sim |
 | Id anti-duplicata | ~30 bits | 128 bits |
 | Colisão (400 cédulas) | ≈ 7,5 × 10⁻⁵ | ≈ 2,3 × 10⁻³⁴ |
+| QR (3 votos) | 175 caracteres, versão 8, correção L | 147 caracteres, versão 8, correção M |
 | Integridade do cadastro | nenhuma | manifesto assinado, hashes de fotos, id em cada cédula |
 | Registro da apuração | memória + CSV | ledger encadeado durável + boletim assinado |
 | Biblioteca | PyCrypto (descontinuada) | `cryptography` (OpenSSL), mantida |

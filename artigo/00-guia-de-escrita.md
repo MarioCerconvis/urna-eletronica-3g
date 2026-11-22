@@ -47,6 +47,8 @@ política. Evitar qualquer referência partidária ou a figuras políticas.
   apurou sua seção".
 * **Os 12 validadores do cluster pertencem a um único operador.** Isso demonstra o mecanismo e a tolerância a
   falhas, não a descentralização entre partes desconfiadas — que é requisito do modelo proposto.
+* **Use a bateria E1–E12 (22/11/2026) como fonte dos números** (`11`, `anexos/dados/`). As medições de 13–14/11
+  são preliminares (uma execução por condição). Relate também os erros de método detectados e refeitos (`11` §11.14).
 * **Hardware antigo, mas não "obsoleto":** as máquinas do cluster são x86-64 com 3,3–3,4 GB de RAM (uma com 5,1 GB)
   rodando Ubuntu 26.04. Não exagerar a precariedade.
 
@@ -60,7 +62,7 @@ política. Evitar qualquer referência partidária ou a figuras políticas.
 | Operação criptográfica do QR | "RSA_Kpub(voto)" — cifra com a chave pública | "chave privada … utilizada para **assinar** o voto" | cifra com a pública (PKCS#1 OAEP), decifra com a privada | o código e o artigo coincidem (cifra); a monografia descreve a intenção correta (assinatura) |
 | Identificador anti-duplicata | "número aleatório de até 10 casas decimais", análise com n = 2³⁰ | "os.urandom, 16 bytes" | `random.SystemRandom().randint(0, 1000000000)` | afirmar ~30 bits **no código** |
 | Endereço do código | github.com/mariogazziro/UrnaEletronica3G | github.com/ferfolima/UrnaEletronica3G | hoje em github.com/mariogazziro/urna_eletronica | citar o repositório vigente |
-| Tamanho do QR na nova versão | — | — | docs/03 dizia ~142 caracteres (versão 7) | **medido: 147 caracteres, QR versão 8** (o prefixo `U3G1:` soma 5) |
+| Tamanho do QR na nova versão | — | — | docs/03 dizia ~142 caracteres (versão 7) e que o QR era menor que o do protótipo | **medido (E1): 147 caracteres, versão 8 — a mesma versão do QR do protótipo (175 caracteres, correção L)**; o ganho é correção M + autenticidade, não tamanho |
 
 ## Estrutura sugerida para um artigo de 8–12 páginas (SBC/IEEE)
 

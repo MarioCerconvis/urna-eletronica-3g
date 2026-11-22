@@ -1,0 +1,1536 @@
+{
+  "experimento": "e10-ensaio-com-falhas",
+  "gerado_em": "2026-11-22T17:37:21",
+  "ambiente": {
+    "cpu": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
+    "python": "3.12.3",
+    "so": "Linux-6.8.0-149-generic-x86_64-with-glibc2.39",
+    "commit": "f2f7040"
+  },
+  "metodo": "5 ensaios (25 eleitores/seção, votação 30 s); ao iniciar a apuração, 3 validadores sorteados param por 60 s (semente 1010)",
+  "sucessos": 5,
+  "ancoragem_secoes_afetadas_s": {
+    "n": 15,
+    "media": 71.6,
+    "mediana": 70.7,
+    "desvio": 3.0,
+    "min": 66.1,
+    "p95": 75.5,
+    "p99": 75.7,
+    "max": 75.8,
+    "ic95_media": [
+      70.1,
+      73.1
+    ]
+  },
+  "ancoragem_secoes_nao_afetadas_s": {
+    "n": 45,
+    "media": 6.3,
+    "mediana": 5.6,
+    "desvio": 4.1,
+    "min": 1.1,
+    "p95": 15.4,
+    "p99": 16.3,
+    "max": 16.4,
+    "ic95_media": [
+      5.1,
+      7.5
+    ]
+  },
+  "duracao_total_s": {
+    "n": 5,
+    "media": 114.1,
+    "mediana": 114.7,
+    "desvio": 2.7,
+    "min": 109.4,
+    "p95": 116.2,
+    "p99": 116.4,
+    "max": 116.4,
+    "ic95_media": [
+      111.7,
+      116.4
+    ]
+  },
+  "execucoes": [
+    {
+      "execucao": 1,
+      "eleicao_id": "f616c4c5bdeeae869d76a6f9c85561be72fe782ede879b1705c38d6a97b1ae8d",
+      "nome": "Ensaio ao vivo — 22/11/2026 17:26:28",
+      "inicio": "2026-11-22T17:26:28",
+      "duracao_total_s": 116.4,
+      "sucesso": true,
+      "nos_no_ar_inicio": 12,
+      "nos_no_ar_fim": 12,
+      "altura_inicio": 21197,
+      "bloco_criacao": 21199,
+      "bloco_encerramento": 21237,
+      "secoes_total": 12,
+      "secoes_ancoradas": 12,
+      "boletins_conferem_na_cadeia": 12,
+      "cedulas_total": 300,
+      "duplicadas_rejeitadas": 7,
+      "invalidas_rejeitadas": 6,
+      "t_primeira_ancoragem_s": 49.4,
+      "t_ultima_ancoragem_s": 113.6,
+      "eventos_rede": {
+        "nos_sairam_do_ar": 3,
+        "quorum_perdido": 0,
+        "pausas_sem_bloco": 2,
+        "ancoragens_reenviadas": 0
+      },
+      "erros": [],
+      "resultados": {
+        "presidente": {
+          "nome": "Presidente",
+          "votos": {
+            "67": 127,
+            "99": 144,
+            "branco": 12,
+            "nulo": 17
+          }
+        },
+        "senador": {
+          "nome": "Senador",
+          "votos": {
+            "66": 97,
+            "78": 91,
+            "96": 89,
+            "branco": 10,
+            "nulo": 13
+          }
+        },
+        "deputado": {
+          "nome": "Deputado",
+          "votos": {
+            "80": 132,
+            "82": 124,
+            "branco": 20,
+            "nulo": 24
+          }
+        }
+      },
+      "legenda": {
+        "presidente": {
+          "67": "Minnie (DY)",
+          "99": "Cascão (TM)"
+        },
+        "senador": {
+          "66": "Mickey (DY)",
+          "78": "Donald (DY)",
+          "96": "Cebolinha (TM)"
+        },
+        "deputado": {
+          "80": "Franjinha (TM)",
+          "82": "Pateta (DY)"
+        }
+      },
+      "conferencia_cadeia": {
+        "lido_no": ".113",
+        "existe": true,
+        "encerrada": true,
+        "secoes_na_cadeia": 12,
+        "hash_mural": "497e44a2b265ef46e97c10781b32be3bc7a6d474918382c3e510c7a942d83dde"
+      },
+      "secoes": [
+        {
+          "secao": "001",
+          "maquina": ".101",
+          "fase": "ancorado",
+          "cedulas_emitidas": 27,
+          "cedulas_no_boletim": 27,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21216,
+          "hash_boletim": "8a1aec53146d73a7fbbbec11023a2e647ebb5eebc8e5179d50657b1c458eedf7",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 31.6,
+          "t_apuracao_s": 5.0,
+          "t_boletim_ate_ancorado_s": 5.6,
+          "t_ancorado_desde_inicio_s": 49.4
+        },
+        {
+          "secao": "002",
+          "maquina": ".102",
+          "fase": "ancorado",
+          "cedulas_emitidas": 22,
+          "cedulas_no_boletim": 22,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21216,
+          "hash_boletim": "ae721d0e3aae2d9b9eb4859d38b5d39a3128ab853f79b2e2bd2d2e7f4bd3f20c",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 32.0,
+          "t_apuracao_s": 4.3,
+          "t_boletim_ate_ancorado_s": 4.8,
+          "t_ancorado_desde_inicio_s": 49.4
+        },
+        {
+          "secao": "003",
+          "maquina": ".103",
+          "fase": "ancorado",
+          "cedulas_emitidas": 27,
+          "cedulas_no_boletim": 27,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21216,
+          "hash_boletim": "015edc9fb150529ea314e418b38e8ede6263dedce3be5efb2ea4ef004cf17d38",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 31.7,
+          "t_apuracao_s": 4.9,
+          "t_boletim_ate_ancorado_s": 5.3,
+          "t_ancorado_desde_inicio_s": 49.4
+        },
+        {
+          "secao": "004",
+          "maquina": ".104",
+          "fase": "ancorado",
+          "cedulas_emitidas": 22,
+          "cedulas_no_boletim": 22,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21235,
+          "hash_boletim": "2cd8d0d1c7411d9ddb446e12c7803fabe14121e1b584a64f75c80a6b3c4742a9",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 30.1,
+          "t_apuracao_s": 3.8,
+          "t_boletim_ate_ancorado_s": 70.6,
+          "t_ancorado_desde_inicio_s": 111.6
+        },
+        {
+          "secao": "005",
+          "maquina": ".105",
+          "fase": "ancorado",
+          "cedulas_emitidas": 22,
+          "cedulas_no_boletim": 22,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21216,
+          "hash_boletim": "4e0324495a9a9447eef1da68c8caeb08b077b051e4c1a9cdf393d79205a48451",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 30.7,
+          "t_apuracao_s": 4.2,
+          "t_boletim_ate_ancorado_s": 6.4,
+          "t_ancorado_desde_inicio_s": 49.4
+        },
+        {
+          "secao": "006",
+          "maquina": ".106",
+          "fase": "ancorado",
+          "cedulas_emitidas": 28,
+          "cedulas_no_boletim": 28,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21216,
+          "hash_boletim": "4c3d7723e09655a822f011f9036e404285f8a682aa6f6a386f5e41312df18a31",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 28.4,
+          "t_apuracao_s": 4.6,
+          "t_boletim_ate_ancorado_s": 8.2,
+          "t_ancorado_desde_inicio_s": 49.4
+        },
+        {
+          "secao": "007",
+          "maquina": ".108",
+          "fase": "ancorado",
+          "cedulas_emitidas": 20,
+          "cedulas_no_boletim": 20,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21216,
+          "hash_boletim": "5ec943fab2a6e340f13c1d9a636d0feb4bd987f3410694488916fb5300dcebbf",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 29.5,
+          "t_apuracao_s": 3.4,
+          "t_boletim_ate_ancorado_s": 10.9,
+          "t_ancorado_desde_inicio_s": 49.4
+        },
+        {
+          "secao": "008",
+          "maquina": ".109",
+          "fase": "ancorado",
+          "cedulas_emitidas": 27,
+          "cedulas_no_boletim": 27,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21216,
+          "hash_boletim": "dd5ca60ab257f1246cac9a607d194836a5af8e724e0045445ec1215bf635bd49",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 32.5,
+          "t_apuracao_s": 4.7,
+          "t_boletim_ate_ancorado_s": 6.6,
+          "t_ancorado_desde_inicio_s": 49.4
+        },
+        {
+          "secao": "009",
+          "maquina": ".110",
+          "fase": "ancorado",
+          "cedulas_emitidas": 25,
+          "cedulas_no_boletim": 25,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21216,
+          "hash_boletim": "8eb99555a268d3e8db694ee3b21bcc2c70505a2566af2b7a6892c712a7e9771a",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 29.4,
+          "t_apuracao_s": 4.5,
+          "t_boletim_ate_ancorado_s": 10.4,
+          "t_ancorado_desde_inicio_s": 49.4
+        },
+        {
+          "secao": "010",
+          "maquina": ".111",
+          "fase": "ancorado",
+          "cedulas_emitidas": 27,
+          "cedulas_no_boletim": 27,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21236,
+          "hash_boletim": "869ba99ed6e45e9e4a4ca2de599c5ceef7ba90a32eaddd6bc021d0cbb3d92573",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 31.4,
+          "t_apuracao_s": 5.0,
+          "t_boletim_ate_ancorado_s": 70.8,
+          "t_ancorado_desde_inicio_s": 113.6
+        },
+        {
+          "secao": "011",
+          "maquina": ".112",
+          "fase": "ancorado",
+          "cedulas_emitidas": 25,
+          "cedulas_no_boletim": 25,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21235,
+          "hash_boletim": "a2d39957d22ecbe150821d8c388aef9e795636d03100efc14a8d0c26b5ad6dfa",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 25.5,
+          "t_apuracao_s": 4.6,
+          "t_boletim_ate_ancorado_s": 75.2,
+          "t_ancorado_desde_inicio_s": 111.6
+        },
+        {
+          "secao": "012",
+          "maquina": ".113",
+          "fase": "ancorado",
+          "cedulas_emitidas": 28,
+          "cedulas_no_boletim": 28,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21216,
+          "hash_boletim": "08f630b570e0fdc0028dad6942a6a386771b79fb8b6dd08e24617e0ec0b1e8a4",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 30.9,
+          "t_apuracao_s": 5.6,
+          "t_boletim_ate_ancorado_s": 5.8,
+          "t_ancorado_desde_inicio_s": 49.4
+        }
+      ],
+      "maquinas_paradas": [
+        ".104",
+        ".111",
+        ".112"
+      ],
+      "queda_s": 60,
+      "ancoragem_afetadas_s": [
+        70.6,
+        70.8,
+        75.2
+      ],
+      "ancoragem_nao_afetadas_s": [
+        5.6,
+        4.8,
+        5.3,
+        6.4,
+        8.2,
+        10.9,
+        6.6,
+        10.4,
+        5.8
+      ]
+    },
+    {
+      "execucao": 2,
+      "eleicao_id": "a9bfeb1f657960f535d601d15eb6648d78af3ec7749ccce028b7274bc71672c4",
+      "nome": "Ensaio ao vivo — 22/11/2026 17:28:41",
+      "inicio": "2026-11-22T17:28:41",
+      "duracao_total_s": 115.5,
+      "sucesso": true,
+      "nos_no_ar_inicio": 12,
+      "nos_no_ar_fim": 12,
+      "altura_inicio": 21245,
+      "bloco_criacao": 21247,
+      "bloco_encerramento": 21288,
+      "secoes_total": 12,
+      "secoes_ancoradas": 12,
+      "boletins_conferem_na_cadeia": 12,
+      "cedulas_total": 265,
+      "duplicadas_rejeitadas": 6,
+      "invalidas_rejeitadas": 4,
+      "t_primeira_ancoragem_s": 39.2,
+      "t_ultima_ancoragem_s": 113.4,
+      "eventos_rede": {
+        "nos_sairam_do_ar": 3,
+        "quorum_perdido": 0,
+        "pausas_sem_bloco": 0,
+        "ancoragens_reenviadas": 0
+      },
+      "erros": [],
+      "resultados": {
+        "presidente": {
+          "nome": "Presidente",
+          "votos": {
+            "67": 107,
+            "99": 127,
+            "branco": 15,
+            "nulo": 16
+          }
+        },
+        "senador": {
+          "nome": "Senador",
+          "votos": {
+            "66": 75,
+            "78": 97,
+            "96": 74,
+            "branco": 10,
+            "nulo": 9
+          }
+        },
+        "deputado": {
+          "nome": "Deputado",
+          "votos": {
+            "80": 118,
+            "82": 113,
+            "branco": 13,
+            "nulo": 21
+          }
+        }
+      },
+      "legenda": {
+        "presidente": {
+          "67": "Minnie (DY)",
+          "99": "Cascão (TM)"
+        },
+        "senador": {
+          "66": "Mickey (DY)",
+          "78": "Donald (DY)",
+          "96": "Cebolinha (TM)"
+        },
+        "deputado": {
+          "80": "Franjinha (TM)",
+          "82": "Pateta (DY)"
+        }
+      },
+      "conferencia_cadeia": {
+        "lido_no": ".113",
+        "existe": true,
+        "encerrada": true,
+        "secoes_na_cadeia": 12,
+        "hash_mural": "b202ccee566e8feb6388d85ba4cd950542058556ce3263c908846c8635f6e918"
+      },
+      "secoes": [
+        {
+          "secao": "001",
+          "maquina": ".101",
+          "fase": "ancorado",
+          "cedulas_emitidas": 19,
+          "cedulas_no_boletim": 19,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21266,
+          "hash_boletim": "0275f954f77f0c40630e65c087c1d4219f2325b14466dacdb2d1278d345a95d3",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 30.9,
+          "t_apuracao_s": 4.1,
+          "t_boletim_ate_ancorado_s": 7.0,
+          "t_ancorado_desde_inicio_s": 45.2
+        },
+        {
+          "secao": "002",
+          "maquina": ".102",
+          "fase": "ancorado",
+          "cedulas_emitidas": 20,
+          "cedulas_no_boletim": 20,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21285,
+          "hash_boletim": "98648341805e6f86fd959d5e220dcfd49d7deeabc7882963de80ab4ed81eb9ba",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 28.8,
+          "t_apuracao_s": 3.6,
+          "t_boletim_ate_ancorado_s": 70.7,
+          "t_ancorado_desde_inicio_s": 109.4
+        },
+        {
+          "secao": "003",
+          "maquina": ".103",
+          "fase": "ancorado",
+          "cedulas_emitidas": 24,
+          "cedulas_no_boletim": 24,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21267,
+          "hash_boletim": "c126c4cb3a76dc1fa75c24a126da171106a9a402615b64c2a2b3733a7a1afa2d",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 34.0,
+          "t_apuracao_s": 4.3,
+          "t_boletim_ate_ancorado_s": 6.1,
+          "t_ancorado_desde_inicio_s": 51.2
+        },
+        {
+          "secao": "004",
+          "maquina": ".104",
+          "fase": "ancorado",
+          "cedulas_emitidas": 19,
+          "cedulas_no_boletim": 19,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21266,
+          "hash_boletim": "ec0233fdfe242b25728a33998c47372b2e20c927d36fe6e2c224ade60aa94d5f",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 29.9,
+          "t_apuracao_s": 4.2,
+          "t_boletim_ate_ancorado_s": 3.7,
+          "t_ancorado_desde_inicio_s": 45.2
+        },
+        {
+          "secao": "005",
+          "maquina": ".105",
+          "fase": "ancorado",
+          "cedulas_emitidas": 26,
+          "cedulas_no_boletim": 26,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21265,
+          "hash_boletim": "fe3269075316c3c2e5e3a070995f8d53bdcb1ee010d4b7bf193ce12b8b804128",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 28.6,
+          "t_apuracao_s": 4.8,
+          "t_boletim_ate_ancorado_s": 3.0,
+          "t_ancorado_desde_inicio_s": 39.2
+        },
+        {
+          "secao": "006",
+          "maquina": ".106",
+          "fase": "ancorado",
+          "cedulas_emitidas": 27,
+          "cedulas_no_boletim": 27,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21266,
+          "hash_boletim": "4a5bfc9b5a1a6bd9e65c4338741ced1e83752bfd6d09589e4ffe6381b38229f9",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 30.5,
+          "t_apuracao_s": 5.0,
+          "t_boletim_ate_ancorado_s": 6.3,
+          "t_ancorado_desde_inicio_s": 45.2
+        },
+        {
+          "secao": "007",
+          "maquina": ".108",
+          "fase": "ancorado",
+          "cedulas_emitidas": 20,
+          "cedulas_no_boletim": 20,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21285,
+          "hash_boletim": "1cd72e6dea55a223c4c0c9829d5ae978a2aad63f6799a7672862d4614e7cf6a3",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 30.2,
+          "t_apuracao_s": 3.6,
+          "t_boletim_ate_ancorado_s": 70.7,
+          "t_ancorado_desde_inicio_s": 109.4
+        },
+        {
+          "secao": "008",
+          "maquina": ".109",
+          "fase": "ancorado",
+          "cedulas_emitidas": 23,
+          "cedulas_no_boletim": 23,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21266,
+          "hash_boletim": "087fff824391713f0ba4462d224f76d99c69f6a10910e2cc5804e6890dfba734",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 28.5,
+          "t_apuracao_s": 4.4,
+          "t_boletim_ate_ancorado_s": 7.3,
+          "t_ancorado_desde_inicio_s": 45.2
+        },
+        {
+          "secao": "009",
+          "maquina": ".110",
+          "fase": "ancorado",
+          "cedulas_emitidas": 19,
+          "cedulas_no_boletim": 19,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21287,
+          "hash_boletim": "95eaef8c10176ccd01f91305b3f5c8a2191fc2d9a0d8ff440c900914329bf6d3",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 29.9,
+          "t_apuracao_s": 3.4,
+          "t_boletim_ate_ancorado_s": 75.4,
+          "t_ancorado_desde_inicio_s": 113.4
+        },
+        {
+          "secao": "010",
+          "maquina": ".111",
+          "fase": "ancorado",
+          "cedulas_emitidas": 22,
+          "cedulas_no_boletim": 22,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21265,
+          "hash_boletim": "2eab765d30342f3d89422a7a60d2983492c84022fd9e9659f3209b3d61409ede",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 28.6,
+          "t_apuracao_s": 4.7,
+          "t_boletim_ate_ancorado_s": 2.4,
+          "t_ancorado_desde_inicio_s": 39.2
+        },
+        {
+          "secao": "011",
+          "maquina": ".112",
+          "fase": "ancorado",
+          "cedulas_emitidas": 22,
+          "cedulas_no_boletim": 22,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21265,
+          "hash_boletim": "1985ce554a3e596fc8d18b78970a81c144edc3a58894d1309b8f9910c852b3d6",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 27.3,
+          "t_apuracao_s": 3.9,
+          "t_boletim_ate_ancorado_s": 2.5,
+          "t_ancorado_desde_inicio_s": 39.2
+        },
+        {
+          "secao": "012",
+          "maquina": ".113",
+          "fase": "ancorado",
+          "cedulas_emitidas": 24,
+          "cedulas_no_boletim": 24,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21265,
+          "hash_boletim": "3dbc41fb2798b9beee0c79f8017e1b88ec52bade77d11b720631a7b030abc72e",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 27.1,
+          "t_apuracao_s": 4.2,
+          "t_boletim_ate_ancorado_s": 3.2,
+          "t_ancorado_desde_inicio_s": 39.2
+        }
+      ],
+      "maquinas_paradas": [
+        ".102",
+        ".108",
+        ".110"
+      ],
+      "queda_s": 60,
+      "ancoragem_afetadas_s": [
+        70.7,
+        70.7,
+        75.4
+      ],
+      "ancoragem_nao_afetadas_s": [
+        7.0,
+        6.1,
+        3.7,
+        3.0,
+        6.3,
+        7.3,
+        2.4,
+        2.5,
+        3.2
+      ]
+    },
+    {
+      "execucao": 3,
+      "eleicao_id": "c461e926bf18c79f55fc66bec587b45a332e0a4ec6c4a043d375c089739d493c",
+      "nome": "Ensaio ao vivo — 22/11/2026 17:30:53",
+      "inicio": "2026-11-22T17:30:53",
+      "duracao_total_s": 114.3,
+      "sucesso": true,
+      "nos_no_ar_inicio": 12,
+      "nos_no_ar_fim": 12,
+      "altura_inicio": 21297,
+      "bloco_criacao": 21298,
+      "bloco_encerramento": 21339,
+      "secoes_total": 12,
+      "secoes_ancoradas": 12,
+      "boletins_conferem_na_cadeia": 12,
+      "cedulas_total": 279,
+      "duplicadas_rejeitadas": 7,
+      "invalidas_rejeitadas": 6,
+      "t_primeira_ancoragem_s": 41.5,
+      "t_ultima_ancoragem_s": 109.7,
+      "eventos_rede": {
+        "nos_sairam_do_ar": 3,
+        "quorum_perdido": 0,
+        "pausas_sem_bloco": 0,
+        "ancoragens_reenviadas": 0
+      },
+      "erros": [],
+      "resultados": {
+        "presidente": {
+          "nome": "Presidente",
+          "votos": {
+            "67": 113,
+            "99": 127,
+            "branco": 22,
+            "nulo": 17
+          }
+        },
+        "senador": {
+          "nome": "Senador",
+          "votos": {
+            "66": 81,
+            "78": 87,
+            "96": 81,
+            "branco": 20,
+            "nulo": 10
+          }
+        },
+        "deputado": {
+          "nome": "Deputado",
+          "votos": {
+            "80": 127,
+            "82": 117,
+            "branco": 16,
+            "nulo": 19
+          }
+        }
+      },
+      "legenda": {
+        "presidente": {
+          "67": "Minnie (DY)",
+          "99": "Cascão (TM)"
+        },
+        "senador": {
+          "66": "Mickey (DY)",
+          "78": "Donald (DY)",
+          "96": "Cebolinha (TM)"
+        },
+        "deputado": {
+          "80": "Franjinha (TM)",
+          "82": "Pateta (DY)"
+        }
+      },
+      "conferencia_cadeia": {
+        "lido_no": ".113",
+        "existe": true,
+        "encerrada": true,
+        "secoes_na_cadeia": 12,
+        "hash_mural": "bd97919ed76439aa886450aa8a043db296f34ff469c8b0d9b103b4a7f98c8bbf"
+      },
+      "secoes": [
+        {
+          "secao": "001",
+          "maquina": ".101",
+          "fase": "ancorado",
+          "cedulas_emitidas": 20,
+          "cedulas_no_boletim": 20,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21318,
+          "hash_boletim": "9094e8c60ab033e35c72f7f86e620cc721971fc63f2eff48c3254e00d76ef66c",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 35.6,
+          "t_apuracao_s": 3.5,
+          "t_boletim_ate_ancorado_s": 5.9,
+          "t_ancorado_desde_inicio_s": 49.5
+        },
+        {
+          "secao": "002",
+          "maquina": ".102",
+          "fase": "ancorado",
+          "cedulas_emitidas": 19,
+          "cedulas_no_boletim": 19,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21317,
+          "hash_boletim": "218b71bee017adf7c82adcebc2083ab9afc7956f350050af3bd2b9fba4fdb395",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 32.8,
+          "t_apuracao_s": 3.8,
+          "t_boletim_ate_ancorado_s": 2.9,
+          "t_ancorado_desde_inicio_s": 45.5
+        },
+        {
+          "secao": "003",
+          "maquina": ".103",
+          "fase": "ancorado",
+          "cedulas_emitidas": 19,
+          "cedulas_no_boletim": 19,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21338,
+          "hash_boletim": "ca51cc4a39329701ee7a7d8044b3fe91658d4abb71f35bd2c177d99002842a6e",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 29.2,
+          "t_apuracao_s": 3.6,
+          "t_boletim_ate_ancorado_s": 74.4,
+          "t_ancorado_desde_inicio_s": 109.7
+        },
+        {
+          "secao": "004",
+          "maquina": ".104",
+          "fase": "ancorado",
+          "cedulas_emitidas": 23,
+          "cedulas_no_boletim": 23,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21315,
+          "hash_boletim": "404b6346ff4c6e9887e57e0db6ad58c163f02e49a110f3cf1d7dd5bb18e989c6",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 27.0,
+          "t_apuracao_s": 4.1,
+          "t_boletim_ate_ancorado_s": 6.5,
+          "t_ancorado_desde_inicio_s": 41.5
+        },
+        {
+          "secao": "005",
+          "maquina": ".105",
+          "fase": "ancorado",
+          "cedulas_emitidas": 28,
+          "cedulas_no_boletim": 28,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21316,
+          "hash_boletim": "ae059d99efef5605cf5efdae727e44b67ac2f115470d9aa70fe608d8e1abeba0",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 29.2,
+          "t_apuracao_s": 5.6,
+          "t_boletim_ate_ancorado_s": 4.4,
+          "t_ancorado_desde_inicio_s": 43.5
+        },
+        {
+          "secao": "006",
+          "maquina": ".106",
+          "fase": "ancorado",
+          "cedulas_emitidas": 27,
+          "cedulas_no_boletim": 27,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21316,
+          "hash_boletim": "1d6cf589f09e8de9a93509b973a2cd30f127393b8a72f164d999f9f44767ddde",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 28.9,
+          "t_apuracao_s": 4.9,
+          "t_boletim_ate_ancorado_s": 4.0,
+          "t_ancorado_desde_inicio_s": 43.5
+        },
+        {
+          "secao": "007",
+          "maquina": ".108",
+          "fase": "ancorado",
+          "cedulas_emitidas": 24,
+          "cedulas_no_boletim": 24,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21337,
+          "hash_boletim": "b1b35f9fc90b831551be84802a077daf873e33a9f45cf236460054cbb9129cc1",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 31.5,
+          "t_apuracao_s": 4.2,
+          "t_boletim_ate_ancorado_s": 66.1,
+          "t_ancorado_desde_inicio_s": 107.7
+        },
+        {
+          "secao": "008",
+          "maquina": ".109",
+          "fase": "ancorado",
+          "cedulas_emitidas": 21,
+          "cedulas_no_boletim": 21,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21317,
+          "hash_boletim": "8200496d5a6887124f90946d70a986ca62a5edd907fe4d6b17597bb93ce7722a",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 31.7,
+          "t_apuracao_s": 4.1,
+          "t_boletim_ate_ancorado_s": 3.3,
+          "t_ancorado_desde_inicio_s": 45.5
+        },
+        {
+          "secao": "009",
+          "maquina": ".110",
+          "fase": "ancorado",
+          "cedulas_emitidas": 25,
+          "cedulas_no_boletim": 25,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21316,
+          "hash_boletim": "0d5d62db4cfca711144f4b86897823d9c2e0febac9751f4e4558e33cf8f1dfd9",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 28.6,
+          "t_apuracao_s": 4.2,
+          "t_boletim_ate_ancorado_s": 3.3,
+          "t_ancorado_desde_inicio_s": 43.5
+        },
+        {
+          "secao": "010",
+          "maquina": ".111",
+          "fase": "ancorado",
+          "cedulas_emitidas": 24,
+          "cedulas_no_boletim": 24,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21315,
+          "hash_boletim": "23f88ac81683e276231c99b5b2b5c1c5a09f967d76b3fb4d0a8fba1d677b963b",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 29.7,
+          "t_apuracao_s": 4.3,
+          "t_boletim_ate_ancorado_s": 2.7,
+          "t_ancorado_desde_inicio_s": 41.5
+        },
+        {
+          "secao": "011",
+          "maquina": ".112",
+          "fase": "ancorado",
+          "cedulas_emitidas": 25,
+          "cedulas_no_boletim": 25,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21317,
+          "hash_boletim": "33caa7369d9731ef8d2f5d1167306fe7d974f639d0d30fe2bb36b85791547345",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 32.2,
+          "t_apuracao_s": 5.0,
+          "t_boletim_ate_ancorado_s": 3.4,
+          "t_ancorado_desde_inicio_s": 45.5
+        },
+        {
+          "secao": "012",
+          "maquina": ".113",
+          "fase": "ancorado",
+          "cedulas_emitidas": 24,
+          "cedulas_no_boletim": 24,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21338,
+          "hash_boletim": "67f0d44d779cd705c74f6cfd60aeb28098a689073815b81b41590b8a3eb543a4",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 26.0,
+          "t_apuracao_s": 4.3,
+          "t_boletim_ate_ancorado_s": 73.5,
+          "t_ancorado_desde_inicio_s": 109.7
+        }
+      ],
+      "maquinas_paradas": [
+        ".103",
+        ".108",
+        ".113"
+      ],
+      "queda_s": 60,
+      "ancoragem_afetadas_s": [
+        74.4,
+        66.1,
+        73.5
+      ],
+      "ancoragem_nao_afetadas_s": [
+        5.9,
+        2.9,
+        6.5,
+        4.4,
+        4.0,
+        3.3,
+        3.3,
+        2.7,
+        3.4
+      ]
+    },
+    {
+      "execucao": 4,
+      "eleicao_id": "7fd3f203b0e305496986694ed1f4726921a0f96fe248a8aa1e42971fc4075f7c",
+      "nome": "Ensaio ao vivo — 22/11/2026 17:33:04",
+      "inicio": "2026-11-22T17:33:04",
+      "duracao_total_s": 109.4,
+      "sucesso": true,
+      "nos_no_ar_inicio": 12,
+      "nos_no_ar_fim": 12,
+      "altura_inicio": 21348,
+      "bloco_criacao": 21349,
+      "bloco_encerramento": 21387,
+      "secoes_total": 12,
+      "secoes_ancoradas": 12,
+      "boletins_conferem_na_cadeia": 12,
+      "cedulas_total": 264,
+      "duplicadas_rejeitadas": 3,
+      "invalidas_rejeitadas": 1,
+      "t_primeira_ancoragem_s": 37.0,
+      "t_ultima_ancoragem_s": 107.2,
+      "eventos_rede": {
+        "nos_sairam_do_ar": 3,
+        "quorum_perdido": 0,
+        "pausas_sem_bloco": 2,
+        "ancoragens_reenviadas": 0
+      },
+      "erros": [],
+      "resultados": {
+        "presidente": {
+          "nome": "Presidente",
+          "votos": {
+            "67": 107,
+            "99": 123,
+            "branco": 13,
+            "nulo": 21
+          }
+        },
+        "senador": {
+          "nome": "Senador",
+          "votos": {
+            "66": 68,
+            "78": 85,
+            "96": 95,
+            "branco": 8,
+            "nulo": 8
+          }
+        },
+        "deputado": {
+          "nome": "Deputado",
+          "votos": {
+            "80": 105,
+            "82": 127,
+            "branco": 20,
+            "nulo": 12
+          }
+        }
+      },
+      "legenda": {
+        "presidente": {
+          "67": "Minnie (DY)",
+          "99": "Cascão (TM)"
+        },
+        "senador": {
+          "66": "Mickey (DY)",
+          "78": "Donald (DY)",
+          "96": "Cebolinha (TM)"
+        },
+        "deputado": {
+          "80": "Franjinha (TM)",
+          "82": "Pateta (DY)"
+        }
+      },
+      "conferencia_cadeia": {
+        "lido_no": ".113",
+        "existe": true,
+        "encerrada": true,
+        "secoes_na_cadeia": 12,
+        "hash_mural": "0a05057bd01d3597eb1bc44f494818a0456e0f7b3395ade9701bc8a0182287e2"
+      },
+      "secoes": [
+        {
+          "secao": "001",
+          "maquina": ".101",
+          "fase": "ancorado",
+          "cedulas_emitidas": 24,
+          "cedulas_no_boletim": 24,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21368,
+          "hash_boletim": "d91282f1726ad47b9588136245006e91b2d3172614c83815f775f246608e04f0",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 30.1,
+          "t_apuracao_s": 4.2,
+          "t_boletim_ate_ancorado_s": 16.1,
+          "t_ancorado_desde_inicio_s": 53.1
+        },
+        {
+          "secao": "002",
+          "maquina": ".102",
+          "fase": "ancorado",
+          "cedulas_emitidas": 19,
+          "cedulas_no_boletim": 19,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21368,
+          "hash_boletim": "187fe255c4b3b25850c8ce2e061be3d2b8345ce71a53e3dcc2dc7d3ab228b132",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 26.6,
+          "t_apuracao_s": 3.2,
+          "t_boletim_ate_ancorado_s": 16.4,
+          "t_ancorado_desde_inicio_s": 53.1
+        },
+        {
+          "secao": "003",
+          "maquina": ".103",
+          "fase": "ancorado",
+          "cedulas_emitidas": 18,
+          "cedulas_no_boletim": 18,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21386,
+          "hash_boletim": "ea1f2f6db25d5a3326dca7bfcc74f10b3fbdf0205e28d122a7b15d997dd92b46",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 30.9,
+          "t_apuracao_s": 3.3,
+          "t_boletim_ate_ancorado_s": 69.3,
+          "t_ancorado_desde_inicio_s": 107.2
+        },
+        {
+          "secao": "004",
+          "maquina": ".104",
+          "fase": "ancorado",
+          "cedulas_emitidas": 19,
+          "cedulas_no_boletim": 19,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21385,
+          "hash_boletim": "14765838ea13b66f18498fcfaec728788819b0a6c38bb9458b320c0e069f1970",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 28.4,
+          "t_apuracao_s": 3.7,
+          "t_boletim_ate_ancorado_s": 69.4,
+          "t_ancorado_desde_inicio_s": 105.2
+        },
+        {
+          "secao": "005",
+          "maquina": ".105",
+          "fase": "ancorado",
+          "cedulas_emitidas": 20,
+          "cedulas_no_boletim": 20,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21368,
+          "hash_boletim": "e691ccf0d9631ddff6bb20e0feeb989ab2e5bd7281198e9bc53acab40b19d54a",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 32.3,
+          "t_apuracao_s": 3.1,
+          "t_boletim_ate_ancorado_s": 13.3,
+          "t_ancorado_desde_inicio_s": 53.1
+        },
+        {
+          "secao": "006",
+          "maquina": ".106",
+          "fase": "ancorado",
+          "cedulas_emitidas": 26,
+          "cedulas_no_boletim": 26,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21368,
+          "hash_boletim": "808b81a90302190cbc68b358de4ca578a35c8ccf3ace4aabbc4ee17cf979a668",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 32.1,
+          "t_apuracao_s": 4.8,
+          "t_boletim_ate_ancorado_s": 11.6,
+          "t_ancorado_desde_inicio_s": 53.1
+        },
+        {
+          "secao": "007",
+          "maquina": ".108",
+          "fase": "ancorado",
+          "cedulas_emitidas": 18,
+          "cedulas_no_boletim": 18,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21386,
+          "hash_boletim": "aecb7c49fd905270e4a3a5fb8d5b5961a0273a3f9e8d2bf959c773deed25cfdd",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 27.3,
+          "t_apuracao_s": 3.0,
+          "t_boletim_ate_ancorado_s": 74.4,
+          "t_ancorado_desde_inicio_s": 107.2
+        },
+        {
+          "secao": "008",
+          "maquina": ".109",
+          "fase": "ancorado",
+          "cedulas_emitidas": 20,
+          "cedulas_no_boletim": 20,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21367,
+          "hash_boletim": "a1487bdedc8c67a7174a0e9a939a425a92064cc3a82ac977368d190003d12a39",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 29.8,
+          "t_apuracao_s": 3.4,
+          "t_boletim_ate_ancorado_s": 1.1,
+          "t_ancorado_desde_inicio_s": 37.0
+        },
+        {
+          "secao": "009",
+          "maquina": ".110",
+          "fase": "ancorado",
+          "cedulas_emitidas": 25,
+          "cedulas_no_boletim": 25,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21368,
+          "hash_boletim": "123d635105959d6f6462151be2a7d467641283fa708c31209c62124bdc64b95d",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 29.4,
+          "t_apuracao_s": 3.9,
+          "t_boletim_ate_ancorado_s": 12.9,
+          "t_ancorado_desde_inicio_s": 53.1
+        },
+        {
+          "secao": "010",
+          "maquina": ".111",
+          "fase": "ancorado",
+          "cedulas_emitidas": 26,
+          "cedulas_no_boletim": 26,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21368,
+          "hash_boletim": "f7abf66de6075bca43cd6984240239fa8e87def69d64f6490eed3e783eb815f9",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 29.6,
+          "t_apuracao_s": 4.2,
+          "t_boletim_ate_ancorado_s": 15.9,
+          "t_ancorado_desde_inicio_s": 53.1
+        },
+        {
+          "secao": "011",
+          "maquina": ".112",
+          "fase": "ancorado",
+          "cedulas_emitidas": 24,
+          "cedulas_no_boletim": 24,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21368,
+          "hash_boletim": "2f9221c15433bc9a3ce82ff5cef709242afc239351dc4084024af697340488c4",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 30.5,
+          "t_apuracao_s": 3.8,
+          "t_boletim_ate_ancorado_s": 12.6,
+          "t_ancorado_desde_inicio_s": 53.1
+        },
+        {
+          "secao": "012",
+          "maquina": ".113",
+          "fase": "ancorado",
+          "cedulas_emitidas": 25,
+          "cedulas_no_boletim": 25,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21367,
+          "hash_boletim": "e4f1bd0cde46ed1055fbc61c64b1de7bc09867d1dcf412e41b00548814604ff9",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 28.0,
+          "t_apuracao_s": 4.5,
+          "t_boletim_ate_ancorado_s": 2.0,
+          "t_ancorado_desde_inicio_s": 37.0
+        }
+      ],
+      "maquinas_paradas": [
+        ".103",
+        ".104",
+        ".108"
+      ],
+      "queda_s": 60,
+      "ancoragem_afetadas_s": [
+        69.3,
+        69.4,
+        74.4
+      ],
+      "ancoragem_nao_afetadas_s": [
+        16.1,
+        16.4,
+        13.3,
+        11.6,
+        1.1,
+        12.9,
+        15.9,
+        12.6,
+        2.0
+      ]
+    },
+    {
+      "execucao": 5,
+      "eleicao_id": "7ffa1c5e0ab79b120194cccb3cd5a5d954fee208642afa1156bd7fcd73a4debd",
+      "nome": "Ensaio ao vivo — 22/11/2026 17:35:10",
+      "inicio": "2026-11-22T17:35:10",
+      "duracao_total_s": 114.7,
+      "sucesso": true,
+      "nos_no_ar_inicio": 12,
+      "nos_no_ar_fim": 12,
+      "altura_inicio": 21395,
+      "bloco_criacao": 21396,
+      "bloco_encerramento": 21438,
+      "secoes_total": 12,
+      "secoes_ancoradas": 12,
+      "boletins_conferem_na_cadeia": 12,
+      "cedulas_total": 277,
+      "duplicadas_rejeitadas": 10,
+      "invalidas_rejeitadas": 2,
+      "t_primeira_ancoragem_s": 35.7,
+      "t_ultima_ancoragem_s": 112.0,
+      "eventos_rede": {
+        "nos_sairam_do_ar": 3,
+        "quorum_perdido": 0,
+        "pausas_sem_bloco": 0,
+        "ancoragens_reenviadas": 0
+      },
+      "erros": [],
+      "resultados": {
+        "presidente": {
+          "nome": "Presidente",
+          "votos": {
+            "67": 132,
+            "99": 114,
+            "branco": 18,
+            "nulo": 13
+          }
+        },
+        "senador": {
+          "nome": "Senador",
+          "votos": {
+            "66": 91,
+            "78": 76,
+            "96": 92,
+            "branco": 8,
+            "nulo": 10
+          }
+        },
+        "deputado": {
+          "nome": "Deputado",
+          "votos": {
+            "80": 98,
+            "82": 155,
+            "branco": 8,
+            "nulo": 16
+          }
+        }
+      },
+      "legenda": {
+        "presidente": {
+          "67": "Minnie (DY)",
+          "99": "Cascão (TM)"
+        },
+        "senador": {
+          "66": "Mickey (DY)",
+          "78": "Donald (DY)",
+          "96": "Cebolinha (TM)"
+        },
+        "deputado": {
+          "80": "Franjinha (TM)",
+          "82": "Pateta (DY)"
+        }
+      },
+      "conferencia_cadeia": {
+        "lido_no": ".113",
+        "existe": true,
+        "encerrada": true,
+        "secoes_na_cadeia": 12,
+        "hash_mural": "a348d57b442e44e056ae13631110ffee12aaac5e9d92bb6cebc7b1b3c43411cf"
+      },
+      "secoes": [
+        {
+          "secao": "001",
+          "maquina": ".101",
+          "fase": "ancorado",
+          "cedulas_emitidas": 21,
+          "cedulas_no_boletim": 21,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21416,
+          "hash_boletim": "119ada03c36aa52441d1f2f106604004e60bf65ef71a7e9b9f9ce259c298b261",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 31.8,
+          "t_apuracao_s": 4.0,
+          "t_boletim_ate_ancorado_s": 3.1,
+          "t_ancorado_desde_inicio_s": 45.7
+        },
+        {
+          "secao": "002",
+          "maquina": ".102",
+          "fase": "ancorado",
+          "cedulas_emitidas": 19,
+          "cedulas_no_boletim": 19,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21437,
+          "hash_boletim": "12e7a630e3a4c40e10061bfedf95fbfeef36cfc570da8f3d84733876a8a0b3dc",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 25.9,
+          "t_apuracao_s": 4.0,
+          "t_boletim_ate_ancorado_s": 75.8,
+          "t_ancorado_desde_inicio_s": 112.0
+        },
+        {
+          "secao": "003",
+          "maquina": ".103",
+          "fase": "ancorado",
+          "cedulas_emitidas": 28,
+          "cedulas_no_boletim": 28,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 1,
+          "bloco": 21416,
+          "hash_boletim": "f61b6e29779bfec17b5e97e36f2fb6da2f6ac526d28614d1854bb66285902ec6",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 32.6,
+          "t_apuracao_s": 5.3,
+          "t_boletim_ate_ancorado_s": 4.1,
+          "t_ancorado_desde_inicio_s": 45.7
+        },
+        {
+          "secao": "004",
+          "maquina": ".104",
+          "fase": "ancorado",
+          "cedulas_emitidas": 28,
+          "cedulas_no_boletim": 28,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21417,
+          "hash_boletim": "393e3aed1d3ff93ae839934c637d57a4ab13501a49d5c64272276cf4a7a1acd1",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 34.6,
+          "t_apuracao_s": 5.5,
+          "t_boletim_ate_ancorado_s": 6.7,
+          "t_ancorado_desde_inicio_s": 51.7
+        },
+        {
+          "secao": "005",
+          "maquina": ".105",
+          "fase": "ancorado",
+          "cedulas_emitidas": 21,
+          "cedulas_no_boletim": 21,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21416,
+          "hash_boletim": "0cd909325625d574e1f76fa003b20b50433161e55da78378ebb55fd9e3368665",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 31.8,
+          "t_apuracao_s": 3.7,
+          "t_boletim_ate_ancorado_s": 5.9,
+          "t_ancorado_desde_inicio_s": 45.7
+        },
+        {
+          "secao": "006",
+          "maquina": ".106",
+          "fase": "ancorado",
+          "cedulas_emitidas": 21,
+          "cedulas_no_boletim": 21,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21416,
+          "hash_boletim": "8b9e752a6e545ab52f63cda04927d4ca96b44054bf3c764c003629b118b9454e",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 32.7,
+          "t_apuracao_s": 3.9,
+          "t_boletim_ate_ancorado_s": 3.9,
+          "t_ancorado_desde_inicio_s": 45.7
+        },
+        {
+          "secao": "007",
+          "maquina": ".108",
+          "fase": "ancorado",
+          "cedulas_emitidas": 25,
+          "cedulas_no_boletim": 25,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21416,
+          "hash_boletim": "d7aaba02409381fb1314b6b1c7b57a9b18f8910d68ff0d8f756f822087a8a155",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 28.9,
+          "t_apuracao_s": 4.2,
+          "t_boletim_ate_ancorado_s": 6.2,
+          "t_ancorado_desde_inicio_s": 45.7
+        },
+        {
+          "secao": "008",
+          "maquina": ".109",
+          "fase": "ancorado",
+          "cedulas_emitidas": 20,
+          "cedulas_no_boletim": 20,
+          "duplicadas_rejeitadas": 0,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21413,
+          "hash_boletim": "2bc50d8098210a50e5fc76c283b04a3fd023da39486208cd10f66739f1b104eb",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 27.0,
+          "t_apuracao_s": 3.4,
+          "t_boletim_ate_ancorado_s": 1.3,
+          "t_ancorado_desde_inicio_s": 35.7
+        },
+        {
+          "secao": "009",
+          "maquina": ".110",
+          "fase": "ancorado",
+          "cedulas_emitidas": 24,
+          "cedulas_no_boletim": 24,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21436,
+          "hash_boletim": "7bfd506cfc208bd33002a3eac1106432ae56291d8dac7e74faf22a2a9ff65dee",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 30.1,
+          "t_apuracao_s": 4.5,
+          "t_boletim_ate_ancorado_s": 70.6,
+          "t_ancorado_desde_inicio_s": 110.0
+        },
+        {
+          "secao": "010",
+          "maquina": ".111",
+          "fase": "ancorado",
+          "cedulas_emitidas": 25,
+          "cedulas_no_boletim": 25,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21416,
+          "hash_boletim": "33a00b3c599d532b9e539ab8effc883f7142d30bd36f9a894cedac31886934f9",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 30.8,
+          "t_apuracao_s": 4.2,
+          "t_boletim_ate_ancorado_s": 5.3,
+          "t_ancorado_desde_inicio_s": 45.7
+        },
+        {
+          "secao": "011",
+          "maquina": ".112",
+          "fase": "ancorado",
+          "cedulas_emitidas": 21,
+          "cedulas_no_boletim": 21,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21436,
+          "hash_boletim": "29e3e8ca4efae92068895aef5be9b96f7a439924ea20a4489e5f5f6c6785319c",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 31.0,
+          "t_apuracao_s": 4.0,
+          "t_boletim_ate_ancorado_s": 67.6,
+          "t_ancorado_desde_inicio_s": 110.0
+        },
+        {
+          "secao": "012",
+          "maquina": ".113",
+          "fase": "ancorado",
+          "cedulas_emitidas": 24,
+          "cedulas_no_boletim": 24,
+          "duplicadas_rejeitadas": 1,
+          "invalidas_rejeitadas": 0,
+          "bloco": 21415,
+          "hash_boletim": "c59222e3ece77515f0903e294581d3ce16022460d7283fe75326f23b6c9bdcfa",
+          "confere_na_cadeia": true,
+          "t_votacao_s": 31.8,
+          "t_apuracao_s": 4.1,
+          "t_boletim_ate_ancorado_s": 1.6,
+          "t_ancorado_desde_inicio_s": 39.7
+        }
+      ],
+      "maquinas_paradas": [
+        ".102",
+        ".110",
+        ".112"
+      ],
+      "queda_s": 60,
+      "ancoragem_afetadas_s": [
+        75.8,
+        70.6,
+        67.6
+      ],
+      "ancoragem_nao_afetadas_s": [
+        3.1,
+        4.1,
+        6.7,
+        5.9,
+        3.9,
+        6.2,
+        1.3,
+        5.3,
+        1.6
+      ]
+    }
+  ]
+}

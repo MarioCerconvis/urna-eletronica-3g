@@ -22,17 +22,26 @@ e concluiu que nenhum atende simultaneamente privacidade e robustez/escala. [FON
 4. Avalia a camada de blockchain numa simulação local (4 validadores) e num **cluster real de 12 máquinas** do
    laboratório. [MEDIDO]
 
-**Resultados principais.** [MEDIDO]
-* Cédula com 3 cargos: 106 bytes de carga, 147 caracteres no QR (versão 8, correção M); assinatura em ~0,17 ms.
-* Leitura óptica de 40 QR distintos (com rotação de 7° e desfoque): 40/40 com o detector ArUco do OpenCV; o detector
-  clássico falhou em 3/40.
-* Cluster de 12 validadores: 1 bloco a cada 2 s com todos no ar; com 3 fora, 23 blocos em 121 s; com 4 fora (limite
-  teórico), a rede continua, mas aos solavancos (16 blocos em 182 s, pausas de 30–45 s); com 5 fora, para; ao
-  religar um nó, voltou a produzir em 131 s. Cada nó usou 290–375 MB de RAM.
-* Ensaio de eleição no cluster: 12 seções, 137 cédulas, rejeição de cédulas relidas e forjadas, 12 boletins
-  ancorados entre os blocos 1072 e 1079 e eleição encerrada no bloco 1080.
-* Três defeitos de integração só apareceram na simulação/implantação real (instrução PUSH0 incompatível com a
-  versão da EVM da rede, preço de gás fixo em zero, endereço de bootnode por nome de host).
+**Resultados principais.** [MEDIDO — bateria E1–E12, 22/11/2026]
+* Cédula com 3 votos: 106 bytes, QR de 147 caracteres na **versão 8** — a mesma versão do QR do protótipo, mas com
+  correção de erro M (em vez de L) e autenticada. Emitir uma cédula: 0,12 ms; ler e verificar: 0,20 ms.
+* Leitura óptica: **6 000/6 000** QR lidos com o detector ArUco do OpenCV em 6 condições degradadas (webcam com
+  ruído e JPEG, rotação de até 25°, impressão desbotada…); o detector clássico ficou entre 82,6% e 99,7%.
+* Apuração: ~0,3 ms de CPU por cédula; 45 s de máquina por seção de 400 mesmo gravando num HD mecânico com
+  confirmação física — menos de 1% do tempo da contagem pública.
+* Rede de 12 validadores: 1 499/1 499 blocos a exatamente 2 s em operação normal; produziu em todas as 25
+  repetições com até 4 nós fora (vazão de 30 → 25 → 20 → 18 → 14 blocos/min para 0–4 fora) e parou com 5.
+  **A pausa máxima foi 14 s exatamente quando dois nós desligados eram vizinhos no rodízio do proponente (15/15).**
+* Depois de perder o quórum, a recuperação é **quantizada em degraus de ≈ 38, 70, 135, 263 e 518 s** (temporizador de
+  rodada dobrando a partir de 4 s): 1 min sem quórum chegou a custar 8,6 min sem blocos.
+* **10/10 ensaios de eleição** (12 seções cada): 2 750 cédulas, 120/120 boletins ancorados e idênticos aos registrados
+  na cadeia, 56 releituras e 31 cédulas forjadas rejeitadas; do boletim à ancoragem 2,5 s em média. Com 3 nós caindo
+  60 s durante a apuração, 5/5 ensaios concluíram; as seções afetadas esperaram o próprio nó (~72 s).
+* Capacidade: rajadas de 1 200 registros a 28 tx/s foram absorvidas sem fila (todas no bloco seguinte); 27 tx/s é
+  limite inferior. Registrar um boletim custa ~126 600 de gás. Cada nó usou em média 389 MiB de RAM.
+* Defeitos encontrados só ao executar em rede real (PUSH0 × EVM London, preço de gás fixo, bootnode por nome, perda de
+  eventos no coletor) e erros de método detectados e refeitos (corte de imagem no E3, janela com cluster desligado no
+  E5, medição de latência no E9).
 
 **Limitações.** Eleitores simulados no ensaio; validadores sob um único operador; sem verificação fim a fim; sem
 teste com impressoras e leitores reais nas máquinas do cluster; permissionamento de nós não ativado.

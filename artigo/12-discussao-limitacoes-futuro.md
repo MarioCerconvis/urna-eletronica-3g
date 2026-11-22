@@ -11,11 +11,23 @@
 * **A blockchain como âncora, não como urna**: um registro por seção elimina os problemas de privacidade, resultados
   parciais e escala apontados em 2022. O custo é que a cadeia não prova o conteúdo de cada voto — essa prova continua
   no papel e no ledger, que é o que o princípio da independência do software pede.
-* **Tolerância a falhas na prática**: o QBFT se comportou como a teoria prevê (para com mais de ⌊(n−1)/3⌋ fora),
-  mas no limite a vazão cai muito e a recuperação após parada é lenta (até 131 s) por causa do *backoff*
-  exponencial. Para ancorar dezenas de boletins isso é suficiente; para uso operacional, convém operar com folga
-  de quórum e reduzir `requesttimeoutseconds`.
-* **Máquinas modestas bastam**: um nó Besu usou ≈ 0,3–0,4 GB de RAM em máquinas de 3,4 GB.
+* **Tolerância a falhas na prática** (E7, E8): o QBFT se comportou como a teoria prevê — produziu em todas as 25
+  repetições com até 4 de 12 fora e parou com 5 —, mas com dois efeitos que a teoria do quórum não mostra:
+  1. **A vizinhança no rodízio pesa mais que o número de falhas.** A pausa máxima foi 14 s em todos (e só nos) casos
+     com dois validadores desligados consecutivos na ordem de proposição, e 6 s nos demais (15/15). Distribuir as
+     máquinas de cada parte de forma intercalada na ordem dos validadores reduz o impacto de falhas correlacionadas
+     (ex.: um bloco do laboratório sem energia).
+  2. **A recuperação depois de perder o quórum é quantizada e pode ser longa.** Os tempos caíram em degraus de
+     ≈ 38, 70, 135, 263 e 518 s — o temporizador de rodada dobrando a partir de 4 s. Um minuto sem quórum custou
+     até 8,6 min sem blocos depois que o quórum voltou. Operar com folga de quórum e ajustar o temporizador são
+     requisitos operacionais.
+* **A ancoragem não é gargalo** (E6, E9): 2,5 s em média do boletim à confirmação, e a rede absorveu rajadas de
+  1 200 registros (ver `11` §11.12) — muito acima das dezenas de seções de uma eleição universitária.
+* **A apuração não é gargalo computacional** (E4): ~0,3 ms de CPU por cédula; mesmo gravando no HD mecânico com
+  confirmação física, 45 s por seção de 400 — menos de 1% do tempo da contagem pública manual.
+* **A leitura óptica é robusta com o detector certo** (E3): 6 000/6 000 com o detector ArUco em condições degradadas,
+  contra 82,6–99,7% do detector clássico — a escolha do detector importa mais que a resolução da câmera.
+* **Máquinas modestas bastam** (E12): um nó Besu usou em média 389 MiB (máx. 692 MiB) em máquinas de 3,4 GB.
 * **Observabilidade como transparência**: o painel ao vivo torna visíveis consenso, quedas e ancoragens para leigos;
   pode servir em audiências públicas de apuração e em ensino.
 
@@ -27,8 +39,11 @@
 * **Validadores sob um único operador**: os resultados de tolerância valem para falhas por desligamento
   (*crash*), não para comportamento bizantino nem conluio.
 * **Rede local de laboratório** (baixa latência); resultados podem piorar em redes geograficamente distribuídas.
-* **Tamanho de amostra pequeno** nas medições de recuperação (uma execução por condição) — o padrão é consistente,
-  mas sem intervalo de confiança.
+* **Amostras moderadas** nos testes de rede: 5 repetições por condição (3 para paradas de 120 s). Suficiente para
+  revelar os padrões (degraus, efeito de vizinhança), não para estimar com precisão a frequência de cada degrau.
+* **Falhas por desligamento**, não bizantinas, e injetadas por `docker stop` (encerramento limpo do processo).
+* **Orquestração dentro da rede do cluster** (máquina D) para E6–E11: latências de rede menores que as de partes
+  geograficamente distribuídas.
 * **Impressão e leitura física** não foram testadas nas máquinas do cluster; a leitura óptica foi medida com imagens
   geradas por software (com rotação e desfoque), não com papel térmico real.
 
@@ -60,7 +75,8 @@
 * Preservar os artefatos do ensaio e oferecer verificação pela interface (QR, boletim, conferência com a cadeia).
 * Ensaio com pessoas e impressoras/leitores reais; medir tempo de votação e de apuração por cédula (comparar com os
   ≈ 15 s/cédula de 2016).
-* Reduzir `requesttimeoutseconds` e medir o efeito na recuperação; testar comportamento bizantino.
+* Reduzir `requesttimeoutseconds` (ex.: 1–2 s) e medir o efeito nos degraus de recuperação; testar comportamento
+  bizantino; intercalar validadores de partes distintas na ordem de rodízio e medir sob falhas correlacionadas.
 * Verificação E2E com *commitments* ou cifra homomórfica (Rivest 2002; Open Vote Network).
 * Chaves em hardware; acessibilidade.
 

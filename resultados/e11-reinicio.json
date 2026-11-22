@@ -1,0 +1,221 @@
+{
+  "experimento": "e11-reinicio",
+  "gerado_em": "2026-11-22T19:10:13",
+  "ambiente": {
+    "cpu": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
+    "python": "3.12.3",
+    "so": "Linux-6.8.0-149-generic-x86_64-with-glibc2.39",
+    "commit": "f2f7040"
+  },
+  "metodo": "5 reinícios por modo; tempos contados a partir do último start",
+  "por_modo": {
+    "escalonado": {
+      "todos_respondem_s": {
+        "n": 5,
+        "media": 8.0,
+        "mediana": 7.9,
+        "desvio": 0.4,
+        "min": 7.5,
+        "p95": 8.5,
+        "p99": 8.5,
+        "max": 8.5,
+        "ic95_media": [
+          7.7,
+          8.4
+        ]
+      },
+      "primeiro_bloco_s": {
+        "n": 5,
+        "media": 12.7,
+        "mediana": 10.7,
+        "desvio": 3.9,
+        "min": 9.7,
+        "p95": 18.0,
+        "p99": 18.8,
+        "max": 19.0,
+        "ic95_media": [
+          9.3,
+          16.2
+        ]
+      },
+      "malha_completa_s": {
+        "n": 5,
+        "media": 62.8,
+        "mediana": 63.1,
+        "desvio": 3.3,
+        "min": 57.3,
+        "p95": 65.7,
+        "p99": 65.9,
+        "max": 65.9,
+        "ic95_media": [
+          59.9,
+          65.8
+        ]
+      },
+      "espalhamento_starts_s": {
+        "n": 5,
+        "media": 11.7,
+        "mediana": 11.9,
+        "desvio": 0.5,
+        "min": 11.0,
+        "p95": 12.1,
+        "p99": 12.1,
+        "max": 12.1,
+        "ic95_media": [
+          11.2,
+          12.1
+        ]
+      }
+    },
+    "simultaneo": {
+      "todos_respondem_s": {
+        "n": 5,
+        "media": 11.0,
+        "mediana": 11.0,
+        "desvio": 0.1,
+        "min": 10.9,
+        "p95": 11.1,
+        "p99": 11.1,
+        "max": 11.1,
+        "ic95_media": [
+          10.9,
+          11.1
+        ]
+      },
+      "primeiro_bloco_s": {
+        "n": 5,
+        "media": 13.2,
+        "mediana": 13.2,
+        "desvio": 0.1,
+        "min": 13.1,
+        "p95": 13.3,
+        "p99": 13.3,
+        "max": 13.3,
+        "ic95_media": [
+          13.1,
+          13.3
+        ]
+      },
+      "malha_completa_s": {
+        "n": 5,
+        "media": 68.2,
+        "mediana": 68.2,
+        "desvio": 0.2,
+        "min": 67.9,
+        "p95": 68.3,
+        "p99": 68.3,
+        "max": 68.3,
+        "ic95_media": [
+          68.0,
+          68.3
+        ]
+      },
+      "espalhamento_starts_s": {
+        "n": 5,
+        "media": 1.3,
+        "mediana": 1.3,
+        "desvio": 0.1,
+        "min": 1.2,
+        "p95": 1.3,
+        "p99": 1.3,
+        "max": 1.3,
+        "ic95_media": [
+          1.2,
+          1.3
+        ]
+      }
+    }
+  },
+  "execucoes": [
+    {
+      "modo": "escalonado",
+      "rep": 1,
+      "espalhamento_starts_s": 12.1,
+      "altura_antes": null,
+      "todos_respondem_s": 7.5,
+      "primeiro_bloco_s": 9.7,
+      "malha_completa_s": 64.9
+    },
+    {
+      "modo": "escalonado",
+      "rep": 2,
+      "espalhamento_starts_s": 11.9,
+      "altura_antes": null,
+      "todos_respondem_s": 8.5,
+      "primeiro_bloco_s": 10.7,
+      "malha_completa_s": 57.3
+    },
+    {
+      "modo": "escalonado",
+      "rep": 3,
+      "espalhamento_starts_s": 11.2,
+      "altura_antes": null,
+      "todos_respondem_s": 7.8,
+      "primeiro_bloco_s": 14.2,
+      "malha_completa_s": 63.0
+    },
+    {
+      "modo": "escalonado",
+      "rep": 4,
+      "espalhamento_starts_s": 12.1,
+      "altura_antes": null,
+      "todos_respondem_s": 7.9,
+      "primeiro_bloco_s": 10.1,
+      "malha_completa_s": 63.1
+    },
+    {
+      "modo": "escalonado",
+      "rep": 5,
+      "espalhamento_starts_s": 11.0,
+      "altura_antes": null,
+      "todos_respondem_s": 8.4,
+      "primeiro_bloco_s": 19.0,
+      "malha_completa_s": 65.9
+    },
+    {
+      "modo": "simultaneo",
+      "rep": 1,
+      "espalhamento_starts_s": 1.3,
+      "altura_antes": null,
+      "todos_respondem_s": 11.1,
+      "primeiro_bloco_s": 13.2,
+      "malha_completa_s": 68.3
+    },
+    {
+      "modo": "simultaneo",
+      "rep": 2,
+      "espalhamento_starts_s": 1.3,
+      "altura_antes": null,
+      "todos_respondem_s": 11.0,
+      "primeiro_bloco_s": 13.2,
+      "malha_completa_s": 68.1
+    },
+    {
+      "modo": "simultaneo",
+      "rep": 3,
+      "espalhamento_starts_s": 1.2,
+      "altura_antes": null,
+      "todos_respondem_s": 10.9,
+      "primeiro_bloco_s": 13.1,
+      "malha_completa_s": 67.9
+    },
+    {
+      "modo": "simultaneo",
+      "rep": 4,
+      "espalhamento_starts_s": 1.3,
+      "altura_antes": null,
+      "todos_respondem_s": 11.0,
+      "primeiro_bloco_s": 13.2,
+      "malha_completa_s": 68.2
+    },
+    {
+      "modo": "simultaneo",
+      "rep": 5,
+      "espalhamento_starts_s": 1.2,
+      "altura_antes": null,
+      "todos_respondem_s": 11.1,
+      "primeiro_bloco_s": 13.3,
+      "malha_completa_s": 68.3
+    }
+  ]
+}

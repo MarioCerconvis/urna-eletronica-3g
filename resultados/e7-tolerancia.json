@@ -1,0 +1,517 @@
+{
+  "experimento": "e7-tolerancia",
+  "gerado_em": "2026-11-22T17:11:06",
+  "ambiente": {
+    "cpu": "Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz",
+    "python": "3.12.3",
+    "so": "Linux-6.8.0-149-generic-x86_64-with-glibc2.39",
+    "commit": "f2f7040"
+  },
+  "metodo": "5 repetições por k, janela 120 s, nós sorteados (semente 77), rede saudável antes de cada repetição",
+  "validadores": 12,
+  "quorum": 8,
+  "por_k": {
+    "0": {
+      "blocos_por_min": {
+        "n": 5,
+        "media": 29.96,
+        "mediana": 29.96,
+        "desvio": 0.01,
+        "min": 29.95,
+        "p95": 29.96,
+        "p99": 29.96,
+        "max": 29.96,
+        "ic95_media": [
+          29.95,
+          29.96
+        ]
+      },
+      "maior_intervalo_s": {
+        "n": 5,
+        "media": 2,
+        "mediana": 2.0,
+        "desvio": 0.0,
+        "min": 2,
+        "p95": 2.0,
+        "p99": 2.0,
+        "max": 2,
+        "ic95_media": [
+          2.0,
+          2.0
+        ]
+      },
+      "produziu_em_todas": true
+    },
+    "1": {
+      "blocos_por_min": {
+        "n": 5,
+        "media": 25.37,
+        "mediana": 24.98,
+        "desvio": 0.54,
+        "min": 24.97,
+        "p95": 25.96,
+        "p99": 25.96,
+        "max": 25.96,
+        "ic95_media": [
+          24.9,
+          25.84
+        ]
+      },
+      "maior_intervalo_s": {
+        "n": 5,
+        "media": 6,
+        "mediana": 6.0,
+        "desvio": 0.0,
+        "min": 6,
+        "p95": 6.0,
+        "p99": 6.0,
+        "max": 6,
+        "ic95_media": [
+          6.0,
+          6.0
+        ]
+      },
+      "produziu_em_todas": true
+    },
+    "2": {
+      "blocos_por_min": {
+        "n": 5,
+        "media": 20.39,
+        "mediana": 20.98,
+        "desvio": 1.81,
+        "min": 17.99,
+        "p95": 21.99,
+        "p99": 21.99,
+        "max": 21.99,
+        "ic95_media": [
+          18.8,
+          21.98
+        ]
+      },
+      "maior_intervalo_s": {
+        "n": 5,
+        "media": 9.2,
+        "mediana": 6.0,
+        "desvio": 4.4,
+        "min": 6,
+        "p95": 14.0,
+        "p99": 14.0,
+        "max": 14,
+        "ic95_media": [
+          5.4,
+          13.0
+        ]
+      },
+      "produziu_em_todas": true
+    },
+    "3": {
+      "blocos_por_min": {
+        "n": 5,
+        "media": 17.99,
+        "mediana": 17.99,
+        "desvio": 0.0,
+        "min": 17.99,
+        "p95": 17.99,
+        "p99": 17.99,
+        "max": 17.99,
+        "ic95_media": [
+          17.99,
+          17.99
+        ]
+      },
+      "maior_intervalo_s": {
+        "n": 5,
+        "media": 6,
+        "mediana": 6.0,
+        "desvio": 0.0,
+        "min": 6,
+        "p95": 6.0,
+        "p99": 6.0,
+        "max": 6,
+        "ic95_media": [
+          6.0,
+          6.0
+        ]
+      },
+      "produziu_em_todas": true
+    },
+    "4": {
+      "blocos_por_min": {
+        "n": 5,
+        "media": 14.19,
+        "mediana": 14.99,
+        "desvio": 1.44,
+        "min": 11.99,
+        "p95": 15.39,
+        "p99": 15.47,
+        "max": 15.49,
+        "ic95_media": [
+          12.93,
+          15.45
+        ]
+      },
+      "maior_intervalo_s": {
+        "n": 5,
+        "media": 9.2,
+        "mediana": 6.0,
+        "desvio": 4.4,
+        "min": 6,
+        "p95": 14.0,
+        "p99": 14.0,
+        "max": 14,
+        "ic95_media": [
+          5.4,
+          13.0
+        ]
+      },
+      "produziu_em_todas": true
+    }
+  },
+  "execucoes": [
+    {
+      "k_fora": 0,
+      "rep": 1,
+      "fora": [],
+      "blocos": 60,
+      "janela_s": 120.2,
+      "blocos_por_min": 29.96,
+      "maior_intervalo_s": 2,
+      "intervalo_medio_s": 2.0,
+      "tempo_ate_saudavel_s": 6.3
+    },
+    {
+      "k_fora": 0,
+      "rep": 2,
+      "fora": [],
+      "blocos": 60,
+      "janela_s": 120.2,
+      "blocos_por_min": 29.96,
+      "maior_intervalo_s": 2,
+      "intervalo_medio_s": 2.0,
+      "tempo_ate_saudavel_s": 6.3
+    },
+    {
+      "k_fora": 0,
+      "rep": 3,
+      "fora": [],
+      "blocos": 60,
+      "janela_s": 120.2,
+      "blocos_por_min": 29.96,
+      "maior_intervalo_s": 2,
+      "intervalo_medio_s": 2.0,
+      "tempo_ate_saudavel_s": 6.4
+    },
+    {
+      "k_fora": 0,
+      "rep": 4,
+      "fora": [],
+      "blocos": 60,
+      "janela_s": 120.2,
+      "blocos_por_min": 29.95,
+      "maior_intervalo_s": 2,
+      "intervalo_medio_s": 2.0,
+      "tempo_ate_saudavel_s": 6.5
+    },
+    {
+      "k_fora": 0,
+      "rep": 5,
+      "fora": [],
+      "blocos": 60,
+      "janela_s": 120.2,
+      "blocos_por_min": 29.95,
+      "maior_intervalo_s": 2,
+      "intervalo_medio_s": 2.0,
+      "tempo_ate_saudavel_s": 6.5
+    },
+    {
+      "k_fora": 1,
+      "rep": 1,
+      "fora": [
+        ".105"
+      ],
+      "blocos": 50,
+      "janela_s": 120.1,
+      "blocos_por_min": 24.97,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 2.4,
+      "tempo_ate_saudavel_s": 18.9
+    },
+    {
+      "k_fora": 1,
+      "rep": 2,
+      "fora": [
+        ".106"
+      ],
+      "blocos": 52,
+      "janela_s": 120.2,
+      "blocos_por_min": 25.96,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 2.31,
+      "tempo_ate_saudavel_s": 16.1
+    },
+    {
+      "k_fora": 1,
+      "rep": 3,
+      "fora": [
+        ".104"
+      ],
+      "blocos": 52,
+      "janela_s": 120.2,
+      "blocos_por_min": 25.96,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 2.38,
+      "tempo_ate_saudavel_s": 19.2
+    },
+    {
+      "k_fora": 1,
+      "rep": 4,
+      "fora": [
+        ".104"
+      ],
+      "blocos": 50,
+      "janela_s": 120.1,
+      "blocos_por_min": 24.98,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 2.4,
+      "tempo_ate_saudavel_s": 18.9
+    },
+    {
+      "k_fora": 1,
+      "rep": 5,
+      "fora": [
+        ".104"
+      ],
+      "blocos": 50,
+      "janela_s": 120.1,
+      "blocos_por_min": 24.98,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 2.4,
+      "tempo_ate_saudavel_s": 18.9
+    },
+    {
+      "k_fora": 2,
+      "rep": 1,
+      "fora": [
+        ".102",
+        ".105"
+      ],
+      "blocos": 44,
+      "janela_s": 120.1,
+      "blocos_por_min": 21.99,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 2.73,
+      "tempo_ate_saudavel_s": 19.1
+    },
+    {
+      "k_fora": 2,
+      "rep": 2,
+      "fora": [
+        ".109",
+        ".110"
+      ],
+      "blocos": 36,
+      "janela_s": 120.1,
+      "blocos_por_min": 17.99,
+      "maior_intervalo_s": 14,
+      "intervalo_medio_s": 3.33,
+      "tempo_ate_saudavel_s": 22.5
+    },
+    {
+      "k_fora": 2,
+      "rep": 3,
+      "fora": [
+        ".111",
+        ".104"
+      ],
+      "blocos": 42,
+      "janela_s": 120.1,
+      "blocos_por_min": 20.98,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 2.86,
+      "tempo_ate_saudavel_s": 25.6
+    },
+    {
+      "k_fora": 2,
+      "rep": 4,
+      "fora": [
+        ".103",
+        ".110"
+      ],
+      "blocos": 44,
+      "janela_s": 120.1,
+      "blocos_por_min": 21.98,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 2.82,
+      "tempo_ate_saudavel_s": 19.4
+    },
+    {
+      "k_fora": 2,
+      "rep": 5,
+      "fora": [
+        ".112",
+        ".113"
+      ],
+      "blocos": 38,
+      "janela_s": 120.1,
+      "blocos_por_min": 18.99,
+      "maior_intervalo_s": 14,
+      "intervalo_medio_s": 2.95,
+      "tempo_ate_saudavel_s": 22.4
+    },
+    {
+      "k_fora": 3,
+      "rep": 1,
+      "fora": [
+        ".110",
+        ".101",
+        ".105"
+      ],
+      "blocos": 36,
+      "janela_s": 120.1,
+      "blocos_por_min": 17.99,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 3.33,
+      "tempo_ate_saudavel_s": 22.9
+    },
+    {
+      "k_fora": 3,
+      "rep": 2,
+      "fora": [
+        ".101",
+        ".109",
+        ".103"
+      ],
+      "blocos": 36,
+      "janela_s": 120.1,
+      "blocos_por_min": 17.99,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 3.33,
+      "tempo_ate_saudavel_s": 22.5
+    },
+    {
+      "k_fora": 3,
+      "rep": 3,
+      "fora": [
+        ".104",
+        ".110",
+        ".108"
+      ],
+      "blocos": 36,
+      "janela_s": 120.1,
+      "blocos_por_min": 17.99,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 3.33,
+      "tempo_ate_saudavel_s": 23.1
+    },
+    {
+      "k_fora": 3,
+      "rep": 4,
+      "fora": [
+        ".103",
+        ".106",
+        ".112"
+      ],
+      "blocos": 36,
+      "janela_s": 120.1,
+      "blocos_por_min": 17.99,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 3.33,
+      "tempo_ate_saudavel_s": 19.5
+    },
+    {
+      "k_fora": 3,
+      "rep": 5,
+      "fora": [
+        ".102",
+        ".113",
+        ".110"
+      ],
+      "blocos": 36,
+      "janela_s": 120.1,
+      "blocos_por_min": 17.99,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 3.33,
+      "tempo_ate_saudavel_s": 16.5
+    },
+    {
+      "k_fora": 4,
+      "rep": 1,
+      "fora": [
+        ".105",
+        ".110",
+        ".109",
+        ".104"
+      ],
+      "blocos": 24,
+      "janela_s": 120.1,
+      "blocos_por_min": 11.99,
+      "maior_intervalo_s": 14,
+      "intervalo_medio_s": 5.0,
+      "tempo_ate_saudavel_s": 16.6
+    },
+    {
+      "k_fora": 4,
+      "rep": 2,
+      "fora": [
+        ".104",
+        ".113",
+        ".102",
+        ".111"
+      ],
+      "blocos": 30,
+      "janela_s": 120.1,
+      "blocos_por_min": 14.99,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 4.0,
+      "tempo_ate_saudavel_s": 16.6
+    },
+    {
+      "k_fora": 4,
+      "rep": 3,
+      "fora": [
+        ".104",
+        ".110",
+        ".109",
+        ".112"
+      ],
+      "blocos": 27,
+      "janela_s": 120.1,
+      "blocos_por_min": 13.49,
+      "maior_intervalo_s": 14,
+      "intervalo_medio_s": 4.37,
+      "tempo_ate_saudavel_s": 19.7
+    },
+    {
+      "k_fora": 4,
+      "rep": 4,
+      "fora": [
+        ".102",
+        ".113",
+        ".104",
+        ".106"
+      ],
+      "blocos": 31,
+      "janela_s": 120.1,
+      "blocos_por_min": 15.49,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 3.94,
+      "tempo_ate_saudavel_s": 19.7
+    },
+    {
+      "k_fora": 4,
+      "rep": 5,
+      "fora": [
+        ".102",
+        ".113",
+        ".111",
+        ".109"
+      ],
+      "blocos": 30,
+      "janela_s": 120.1,
+      "blocos_por_min": 14.99,
+      "maior_intervalo_s": 6,
+      "intervalo_medio_s": 4.0,
+      "tempo_ate_saudavel_s": 19.7
+    }
+  ]
+}

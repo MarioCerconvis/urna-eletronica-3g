@@ -9,6 +9,14 @@ from collections import defaultdict
 from comum import RESULTADOS, resumo
 
 
+def _ips() -> list[str]:
+    import os
+    from pathlib import Path
+
+    cfg = Path(os.environ.get("URNA3G_PAINEL_CFG", Path.home() / "Desktop/UFABC/cluster-rede-12/painel.json"))
+    return json.loads(cfg.read_text())["ips"] if cfg.is_file() else []
+
+
 def carregar(nome: str) -> dict | None:
     p = RESULTADOS / f"{nome}.json"
     return json.loads(p.read_text()) if p.is_file() else None
@@ -110,7 +118,7 @@ def secao_e6(L: list[str]) -> None:
         return
     a = d["agregado"]
     L += ["## E6 — Ensaios nominais (12 seções cada)", "",
-          f"Relatório detalhado: `resultados/e6-ensaios-nominais.md`.", "",
+          "Relatório detalhado: `resultados/e6-ensaios-nominais.md`.", "",
           "| Indicador | Valor |", "|---|---|",
           f"| Execuções com sucesso | {a['sucessos']} de {len(d['execucoes'])} |",
           f"| Seções ancoradas / boletins que conferem na cadeia | {a['secoes_ancoradas']} / {a['boletins_conferem']} de {a['secoes_total']} |",
@@ -136,6 +144,19 @@ def secao_e7(L: list[str]) -> None:
         b, m = r["blocos_por_min"], r["maior_intervalo_s"]
         L.append(f"| {k} | {12 - int(k)} | {f(b['media'],1)} ± {f(b['desvio'],1)} ({f(b['min'],1)}–{f(b['max'],1)}) | "
                  f"{f(m.get('media'),1)}; {f(m.get('max'),0)} | {'sim' if r['produziu_em_todas'] else 'NÃO'} |")
+    ordem = [f".{ip.rsplit('.', 1)[1]}" for ip in _ips()]
+    pos = {m: i for i, m in enumerate(ordem)}
+
+    def vizinhos(fora: list[str]) -> bool:
+        idx = {pos[m] for m in fora if m in pos}
+        return any(((i + 1) % len(ordem)) in idx for i in idx)
+
+    L += ["", "Por repetição (ordem de rodízio do proponente = " + " → ".join(ordem) + "):", "",
+          "| Nós fora | Rep. | Quais | Vizinhos no rodízio | Blocos/min | Maior pausa (s) |", "|---|---|---|---|---|---|"]
+    for e in d["execucoes"]:
+        if e["k_fora"] >= 2:
+            L.append(f"| {e['k_fora']} | {e['rep']} | {', '.join(e['fora'])} | {'sim' if vizinhos(e['fora']) else 'não'} | "
+                     f"{f(e['blocos_por_min'],1)} | {e['maior_intervalo_s']} |")
     L.append("")
 
 
@@ -148,7 +169,10 @@ def secao_e8(L: list[str]) -> None:
     for dur, r in d["por_duracao"].items():
         p = r["proximo_bloco_s"]
         L.append(f"| {dur} | {p['n']} | {f(p['media'],1)} ± {f(p['desvio'],1)} ({f(p['min'],1)}–{f(p['max'],1)}) | {f(r['rpc_religado_s'].get('media'),1)} |")
-    L.append("")
+    L += ["", "Valores individuais (s): " + "; ".join(
+        f"{dur} s → " + " · ".join(f(e['proximo_bloco_s'], 1) for e in d['execucoes'] if str(e['parada_s']) == dur)
+        for dur in d["por_duracao"]) + ".",
+          "Os tempos formam degraus (≈ 38, 70, 135, 263, 518 s) com diferenças de 4 s × 2ʳ: o temporizador de rodada do QBFT.", ""]
 
 
 def secao_e9(L: list[str]) -> None:
@@ -162,12 +186,13 @@ def secao_e9(L: list[str]) -> None:
           f"| Criar eleição (12 apuradores) | {f(g['criar_eleicao_12_apuradores']['media'],0)} |",
           f"| Registrar boletim | média {f(g['registrar_boletim']['media'],0)} (mín {f(g['registrar_boletim']['min'],0)}, máx {f(g['registrar_boletim']['max'],0)}; n = {g['registrar_boletim']['n']}) |",
           f"| Encerrar | {f(g['encerrar']['media'],0)} |", "",
-          "| Repetição | Enviadas / incluídas | Envio (s) | Até a última inclusão (s) | Tx/s (fim a fim) | Tx/s (na cadeia) | Blocos | Tx por bloco (média; máx) | Latência de inclusão (s, mediana; p95) |",
-          "|---|---|---|---|---|---|---|---|---|"]
+          "| Repetição | Enviadas / incluídas | Taxa oferecida (tx/s) | Envio (s) | Vazão na cadeia (tx/s) | Blocos (vazios no meio) | Tx por bloco (média; máx) | Latência de inclusão (s: mediana; p95; máx) |",
+          "|---|---|---|---|---|---|---|---|"]
     for r in d["repeticoes"]:
-        L.append(f"| {r['rep']} | {r['transacoes_enviadas']} / {r['incluidas']} | {f(r['tempo_envio_s'],1)} | {f(r['tempo_total_ate_ultima_inclusao_s'],1)} | "
-                 f"{f(r['tx_por_s_fim_a_fim'],1)} | {f(r['tx_por_s_na_cadeia'],1)} | {r['blocos_usados']} | {f(r['tx_por_bloco']['media'],1)}; {f(r['tx_por_bloco']['max'],0)} | "
-                 f"{f(r['latencia_inclusao_s']['mediana'],2)}; {f(r['latencia_inclusao_s']['p95'],2)} |")
+        lat = r["latencia_inclusao_s"]
+        L.append(f"| {r['rep']} | {r['transacoes_enviadas']} / {r['incluidas']} | {f(r.get('taxa_oferecida_tx_s'),1)} | {f(r['tempo_envio_s'],1)} | "
+                 f"{f(r['tx_por_s_na_cadeia'],1)} | {r['blocos_usados']} ({r.get('blocos_vazios_no_intervalo', '—')}) | "
+                 f"{f(r['tx_por_bloco']['media'],1)}; {f(r['tx_por_bloco']['max'],0)} | {f(lat['mediana'],1)}; {f(lat['p95'],1)}; {f(lat['max'],1)} |")
     L.append("")
 
 

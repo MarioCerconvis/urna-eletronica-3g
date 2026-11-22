@@ -1,0 +1,37 @@
+=== 2026-11-22 16:06:54 início e3_leitura_qr.py
+limpo_4px_modulo                       QRCodeDetector       981/1000  IC95 [0.9705, 0.9878]  10.81 ms
+limpo_4px_modulo                       QRCodeDetectorAruco  1000/1000  IC95 [0.9962, 1.0]  6.67 ms
+resolucao_minima_2px_modulo            QRCodeDetector       996/1000  IC95 [0.9898, 0.9984]  9.11 ms
+resolucao_minima_2px_modulo            QRCodeDetectorAruco  1000/1000  IC95 [0.9962, 1.0]  4.4 ms
+rotacao_7graus_desfoque                QRCodeDetector       925/1000  IC95 [0.907, 0.9397]  11.63 ms
+rotacao_7graus_desfoque                QRCodeDetectorAruco  1000/1000  IC95 [0.9962, 1.0]  7.3 ms
+perspectiva_e_rotacao_ate_25graus      QRCodeDetector       600/1000  IC95 [0.5693, 0.6299]  11.33 ms
+perspectiva_e_rotacao_ate_25graus      QRCodeDetectorAruco  533/1000  IC95 [0.502, 0.5637]  6.84 ms
+webcam_640x480_ruido_jpeg70            QRCodeDetector       829/1000  IC95 [0.8044, 0.8511]  19.96 ms
+webcam_640x480_ruido_jpeg70            QRCodeDetectorAruco  1000/1000  IC95 [0.9962, 1.0]  16.33 ms
+termica_desbotada_35pct_contraste      QRCodeDetector       978/1000  IC95 [0.9669, 0.9854]  11.24 ms
+termica_desbotada_35pct_contraste      QRCodeDetectorAruco  1000/1000  IC95 [0.9962, 1.0]  6.99 ms
+-> /home/mario-cerconvis/Desktop/UFABC/urna-eletronica-3g/resultados/e3-leitura-qr.json
+=== 2026-11-22 16:10:52 fim e3_leitura_qr.py (código 0)
+=== 2026-11-22 16:10:52 início e4_apuracao.py
+hd_mecanico 400 cédulas × 10: 112.972 ms/cédula (p95 249.268), verificar 5.1 ms, boletim 168.7 ms, 45.19 s/seção
+ram_tmpfs 400 cédulas × 10: 0.282 ms/cédula (p95 0.315), verificar 1.6 ms, boletim 13.2 ms, 0.11 s/seção
+ram_tmpfs 5000 cédulas × 3: 0.292 ms/cédula (p95 0.366), verificar 20.4 ms, boletim 171.7 ms, 1.46 s/seção
+-> /home/mario-cerconvis/Desktop/UFABC/urna-eletronica-3g/resultados/e4-apuracao.json
+=== 2026-11-22 16:18:52 fim e4_apuracao.py (código 0)
+=== 2026-11-22 16:18:52 FILA CONCLUÍDA
+=== 2026-11-22 16:18:54 início e3 (corrigido)
+limpo_4px_modulo                       QRCodeDetector       980/1000  IC95 [0.9693, 0.987]  10.46 ms
+limpo_4px_modulo                       QRCodeDetectorAruco  1000/1000  IC95 [0.9962, 1.0]  6.35 ms
+resolucao_minima_2px_modulo            QRCodeDetector       997/1000  IC95 [0.9912, 0.999]  9.08 ms
+resolucao_minima_2px_modulo            QRCodeDetectorAruco  1000/1000  IC95 [0.9962, 1.0]  4.39 ms
+rotacao_7graus_desfoque                QRCodeDetector       908/1000  IC95 [0.8885, 0.9244]  11.68 ms
+rotacao_7graus_desfoque                QRCodeDetectorAruco  1000/1000  IC95 [0.9962, 1.0]  7.21 ms
+perspectiva_e_rotacao_ate_25graus      QRCodeDetector       935/1000  IC95 [0.918, 0.9487]  14.06 ms
+perspectiva_e_rotacao_ate_25graus      QRCodeDetectorAruco  1000/1000  IC95 [0.9962, 1.0]  11.61 ms
+webcam_640x480_ruido_jpeg70            QRCodeDetector       826/1000  IC95 [0.8013, 0.8482]  20.0 ms
+webcam_640x480_ruido_jpeg70            QRCodeDetectorAruco  1000/1000  IC95 [0.9962, 1.0]  15.1 ms
+termica_desbotada_35pct_contraste      QRCodeDetector       982/1000  IC95 [0.9717, 0.9886]  10.34 ms
+termica_desbotada_35pct_contraste      QRCodeDetectorAruco  1000/1000  IC95 [0.9962, 1.0]  6.22 ms
+-> /home/mario-cerconvis/Desktop/UFABC/urna-eletronica-3g/resultados/e3-leitura-qr.json
+=== 2026-11-22 16:22:42 fim e3 corrigido (código 0)

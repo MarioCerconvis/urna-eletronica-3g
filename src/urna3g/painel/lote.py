@@ -244,6 +244,7 @@ async def rodar_lote(cfg: PainelCfg, n: int, eleitores: int, duracao: float, sai
     finally:
         for t in tarefas:
             t.cancel()
+        await asyncio.gather(*tarefas, return_exceptions=True)  # deixa os subprocessos encerrarem antes do laço fechar
         if getattr(p, "tunel", None):
             p.tunel.encerrar()
         await p.http.aclose()

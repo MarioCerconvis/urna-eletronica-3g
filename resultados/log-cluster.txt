@@ -1,0 +1,117 @@
+=== 2026-11-22 16:28:12 fila transferida para o computador principal (cluster)
+=== 2026-11-22 16:28:12 início e7_tolerancia.py
+retomando: 8 repetições já concluídas
+{"k_fora": 1, "rep": 4, "fora": [".104"], "blocos": 50, "janela_s": 120.1, "blocos_por_min": 24.98, "maior_intervalo_s": 6, "intervalo_medio_s": 2.4, "tempo_ate_saudavel_s": 18.9}
+{"k_fora": 1, "rep": 5, "fora": [".104"], "blocos": 50, "janela_s": 120.1, "blocos_por_min": 24.98, "maior_intervalo_s": 6, "intervalo_medio_s": 2.4, "tempo_ate_saudavel_s": 18.9}
+{"k_fora": 2, "rep": 1, "fora": [".102", ".105"], "blocos": 44, "janela_s": 120.1, "blocos_por_min": 21.99, "maior_intervalo_s": 6, "intervalo_medio_s": 2.73, "tempo_ate_saudavel_s": 19.1}
+{"k_fora": 2, "rep": 2, "fora": [".109", ".110"], "blocos": 36, "janela_s": 120.1, "blocos_por_min": 17.99, "maior_intervalo_s": 14, "intervalo_medio_s": 3.33, "tempo_ate_saudavel_s": 22.5}
+{"k_fora": 2, "rep": 3, "fora": [".111", ".104"], "blocos": 42, "janela_s": 120.1, "blocos_por_min": 20.98, "maior_intervalo_s": 6, "intervalo_medio_s": 2.86, "tempo_ate_saudavel_s": 25.6}
+{"k_fora": 2, "rep": 4, "fora": [".103", ".110"], "blocos": 44, "janela_s": 120.1, "blocos_por_min": 21.98, "maior_intervalo_s": 6, "intervalo_medio_s": 2.82, "tempo_ate_saudavel_s": 19.4}
+{"k_fora": 2, "rep": 5, "fora": [".112", ".113"], "blocos": 38, "janela_s": 120.1, "blocos_por_min": 18.99, "maior_intervalo_s": 14, "intervalo_medio_s": 2.95, "tempo_ate_saudavel_s": 22.4}
+{"k_fora": 3, "rep": 1, "fora": [".110", ".101", ".105"], "blocos": 36, "janela_s": 120.1, "blocos_por_min": 17.99, "maior_intervalo_s": 6, "intervalo_medio_s": 3.33, "tempo_ate_saudavel_s": 22.9}
+{"k_fora": 3, "rep": 2, "fora": [".101", ".109", ".103"], "blocos": 36, "janela_s": 120.1, "blocos_por_min": 17.99, "maior_intervalo_s": 6, "intervalo_medio_s": 3.33, "tempo_ate_saudavel_s": 22.5}
+{"k_fora": 3, "rep": 3, "fora": [".104", ".110", ".108"], "blocos": 36, "janela_s": 120.1, "blocos_por_min": 17.99, "maior_intervalo_s": 6, "intervalo_medio_s": 3.33, "tempo_ate_saudavel_s": 23.1}
+{"k_fora": 3, "rep": 4, "fora": [".103", ".106", ".112"], "blocos": 36, "janela_s": 120.1, "blocos_por_min": 17.99, "maior_intervalo_s": 6, "intervalo_medio_s": 3.33, "tempo_ate_saudavel_s": 19.5}
+{"k_fora": 3, "rep": 5, "fora": [".102", ".113", ".110"], "blocos": 36, "janela_s": 120.1, "blocos_por_min": 17.99, "maior_intervalo_s": 6, "intervalo_medio_s": 3.33, "tempo_ate_saudavel_s": 16.5}
+{"k_fora": 4, "rep": 1, "fora": [".105", ".110", ".109", ".104"], "blocos": 24, "janela_s": 120.1, "blocos_por_min": 11.99, "maior_intervalo_s": 14, "intervalo_medio_s": 5.0, "tempo_ate_saudavel_s": 16.6}
+{"k_fora": 4, "rep": 2, "fora": [".104", ".113", ".102", ".111"], "blocos": 30, "janela_s": 120.1, "blocos_por_min": 14.99, "maior_intervalo_s": 6, "intervalo_medio_s": 4.0, "tempo_ate_saudavel_s": 16.6}
+{"k_fora": 4, "rep": 3, "fora": [".104", ".110", ".109", ".112"], "blocos": 27, "janela_s": 120.1, "blocos_por_min": 13.49, "maior_intervalo_s": 14, "intervalo_medio_s": 4.37, "tempo_ate_saudavel_s": 19.7}
+{"k_fora": 4, "rep": 4, "fora": [".102", ".113", ".104", ".106"], "blocos": 31, "janela_s": 120.1, "blocos_por_min": 15.49, "maior_intervalo_s": 6, "intervalo_medio_s": 3.94, "tempo_ate_saudavel_s": 19.7}
+{"k_fora": 4, "rep": 5, "fora": [".102", ".113", ".111", ".109"], "blocos": 30, "janela_s": 120.1, "blocos_por_min": 14.99, "maior_intervalo_s": 6, "intervalo_medio_s": 4.0, "tempo_ate_saudavel_s": 19.7}
+-> /home/laob/urna3g/resultados/e7-tolerancia.json
+=== 2026-11-22 17:11:06 fim e7_tolerancia.py (código 0)
+=== 2026-11-22 17:11:06 início e6
+rede pronta: 12/12 nós, bloco 20737
+[17:11:08] execução 1/10…
+   ok: 267 cédulas, 12/12 ancoradas, 12 conferem, 47.9 s
+[17:12:06] execução 2/10…
+   ok: 281 cédulas, 12/12 ancoradas, 12 conferem, 47.6 s
+[17:13:04] execução 3/10…
+   ok: 288 cédulas, 12/12 ancoradas, 12 conferem, 52.6 s
+[17:14:07] execução 4/10…
+   ok: 267 cédulas, 12/12 ancoradas, 12 conferem, 51.7 s
+[17:15:09] execução 5/10…
+   ok: 267 cédulas, 12/12 ancoradas, 12 conferem, 49.6 s
+[17:16:09] execução 6/10…
+   ok: 274 cédulas, 12/12 ancoradas, 12 conferem, 50.6 s
+[17:17:10] execução 7/10…
+   ok: 282 cédulas, 12/12 ancoradas, 12 conferem, 47.6 s
+[17:18:08] execução 8/10…
+   ok: 278 cédulas, 12/12 ancoradas, 12 conferem, 47.7 s
+[17:19:06] execução 9/10…
+   ok: 262 cédulas, 12/12 ancoradas, 12 conferem, 48.6 s
+[17:20:05] execução 10/10…
+   ok: 284 cédulas, 12/12 ancoradas, 12 conferem, 49.7 s
+
+concluído: 10/10 execuções com sucesso
+relatório: resultados/e6-ensaios-nominais.md  ·  dados: resultados/e6-ensaios-nominais.json
+Exception ignored in: <function BaseSubprocessTransport.__del__ at 0x78b67e359a80>
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/asyncio/base_subprocess.py", line 126, in __del__
+    self.close()
+  File "/usr/lib/python3.12/asyncio/base_subprocess.py", line 104, in close
+    proto.pipe.close()
+  File "/usr/lib/python3.12/asyncio/unix_events.py", line 568, in close
+    self._close(None)
+  File "/usr/lib/python3.12/asyncio/unix_events.py", line 592, in _close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 795, in call_soon
+    self._check_closed()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 541, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+=== 2026-11-22 17:20:55 fim e6 (código 0)
+=== 2026-11-22 17:20:55 início e9_capacidade.py
+{"rep": 1, "transacoes_enviadas": 1200, "incluidas": 1200, "nao_incluidas": 0, "tempo_envio_s": 88.9, "tempo_total_ate_ultima_inclusao_s": 98.2, "tx_por_s_fim_a_fim": 12.2, "blocos_usados": 45, "tx_por_bloco": {"n": 45, "media": 26.7, "mediana": 27.0, "desvio": 3.4, "min": 17, "p95": 29.8, "p99": 37.6, "max": 38, "ic95_media": [25.7, 27.7]}, "tx_por_s_na_cadeia": 13.3, "latencia_inclusao_s": {"n": 1200, "media": 48.31, "mediana": 48.34, "desvio": 25.59, "min": 1.9, "p95": 88.38, "p99": 93.56, "max": 96.49, "ic95_media": [46.86, 49.75]}, "altura_inicio": 21036, "erros_envio": {}, "secoes_registradas_no_contrato": 1200}
+{"rep": 2, "transacoes_enviadas": 1200, "incluidas": 1200, "nao_incluidas": 0, "tempo_envio_s": 87.1, "tempo_total_ate_ultima_inclusao_s": 96.7, "tx_por_s_fim_a_fim": 12.4, "blocos_usados": 44, "tx_por_bloco": {"n": 44, "media": 27.3, "mediana": 27.0, "desvio": 4.0, "min": 18, "p95": 32.7, "p99": 40.8, "max": 46, "ic95_media": [26.1, 28.5]}, "tx_por_s_na_cadeia": 13.6, "latencia_inclusao_s": {"n": 1200, "media": 47.79, "mediana": 48.47, "desvio": 25.35, "min": 1.99, "p95": 86.6, "p99": 91.4, "max": 94.73, "ic95_media": [46.35, 49.22]}, "altura_inicio": 21090, "erros_envio": {}, "secoes_registradas_no_contrato": 1200}
+{"rep": 3, "transacoes_enviadas": 1200, "incluidas": 1200, "nao_incluidas": 0, "tempo_envio_s": 88.6, "tempo_total_ate_ultima_inclusao_s": 96.6, "tx_por_s_fim_a_fim": 12.4, "blocos_usados": 45, "tx_por_bloco": {"n": 45, "media": 26.7, "mediana": 27.0, "desvio": 3.4, "min": 15, "p95": 28.8, "p99": 37.2, "max": 42, "ic95_media": [25.7, 27.6]}, "tx_por_s_na_cadeia": 13.3, "latencia_inclusao_s": {"n": 1200, "media": 47.35, "mediana": 47.92, "desvio": 25.62, "min": 1.49, "p95": 87.29, "p99": 91.45, "max": 94.69, "ic95_media": [45.9, 48.8]}, "altura_inicio": 21144, "erros_envio": {}, "secoes_registradas_no_contrato": 1200}
+-> /home/laob/urna3g/resultados/e9-capacidade.json
+=== 2026-11-22 17:26:27 fim e9_capacidade.py (código 0)
+=== 2026-11-22 17:26:27 início e10_ensaio_com_falhas.py
+{"execucao": 1, "sucesso": true, "duracao_total_s": 116.4, "secoes_ancoradas": 12, "boletins_conferem_na_cadeia": 12, "maquinas_paradas": [".104", ".111", ".112"], "ancoragem_afetadas_s": [70.6, 70.8, 75.2]}
+{"execucao": 2, "sucesso": true, "duracao_total_s": 115.5, "secoes_ancoradas": 12, "boletins_conferem_na_cadeia": 12, "maquinas_paradas": [".102", ".108", ".110"], "ancoragem_afetadas_s": [70.7, 70.7, 75.4]}
+{"execucao": 3, "sucesso": true, "duracao_total_s": 114.3, "secoes_ancoradas": 12, "boletins_conferem_na_cadeia": 12, "maquinas_paradas": [".103", ".108", ".113"], "ancoragem_afetadas_s": [74.4, 66.1, 73.5]}
+{"execucao": 4, "sucesso": true, "duracao_total_s": 109.4, "secoes_ancoradas": 12, "boletins_conferem_na_cadeia": 12, "maquinas_paradas": [".103", ".104", ".108"], "ancoragem_afetadas_s": [69.3, 69.4, 74.4]}
+{"execucao": 5, "sucesso": true, "duracao_total_s": 114.7, "secoes_ancoradas": 12, "boletins_conferem_na_cadeia": 12, "maquinas_paradas": [".102", ".110", ".112"], "ancoragem_afetadas_s": [75.8, 70.6, 67.6]}
+-> /home/laob/urna3g/resultados/e10-ensaio-com-falhas.json
+=== 2026-11-22 17:37:21 fim e10_ensaio_com_falhas.py (código 0)
+=== 2026-11-22 17:37:21 início e8_recuperacao.py
+{"parada_s": 10, "rep": 1, "fora": [".108", ".104", ".106", ".103", ".101"], "religado": ".108", "rpc_religado_s": 8.9, "proximo_bloco_s": 71.1, "ate_saudavel_s": 19.9}
+{"parada_s": 10, "rep": 2, "fora": [".110", ".101", ".106", ".109", ".103"], "religado": ".110", "rpc_religado_s": 8.5, "proximo_bloco_s": 70.9, "ate_saudavel_s": 19.7}
+{"parada_s": 10, "rep": 3, "fora": [".104", ".102", ".103", ".111", ".109"], "religado": ".104", "rpc_religado_s": 9.0, "proximo_bloco_s": 38.5, "ate_saudavel_s": 16.6}
+{"parada_s": 10, "rep": 4, "fora": [".108", ".106", ".113", ".103", ".105"], "religado": ".108", "rpc_religado_s": 8.9, "proximo_bloco_s": 38.8, "ate_saudavel_s": 16.6}
+{"parada_s": 10, "rep": 5, "fora": [".103", ".102", ".109", ".106", ".101"], "religado": ".103", "rpc_religado_s": 8.6, "proximo_bloco_s": 38.4, "ate_saudavel_s": 16.7}
+{"parada_s": 30, "rep": 1, "fora": [".103", ".104", ".109", ".112", ".110"], "religado": ".103", "rpc_religado_s": 9.2, "proximo_bloco_s": 134.8, "ate_saudavel_s": 16.7}
+{"parada_s": 30, "rep": 2, "fora": [".103", ".101", ".104", ".110", ".109"], "religado": ".103", "rpc_religado_s": 8.8, "proximo_bloco_s": 70.2, "ate_saudavel_s": 16.6}
+{"parada_s": 30, "rep": 3, "fora": [".110", ".101", ".109", ".108", ".113"], "religado": ".110", "rpc_religado_s": 9.1, "proximo_bloco_s": 71.5, "ate_saudavel_s": 19.8}
+{"parada_s": 30, "rep": 4, "fora": [".109", ".110", ".102", ".113", ".103"], "religado": ".109", "rpc_religado_s": 8.8, "proximo_bloco_s": 70.4, "ate_saudavel_s": 16.5}
+{"parada_s": 30, "rep": 5, "fora": [".108", ".101", ".103", ".111", ".113"], "religado": ".108", "rpc_religado_s": 9.1, "proximo_bloco_s": 70.6, "ate_saudavel_s": 22.7}
+{"parada_s": 60, "rep": 1, "fora": [".105", ".112", ".101", ".103", ".102"], "religado": ".105", "rpc_religado_s": 9.1, "proximo_bloco_s": 135.2, "ate_saudavel_s": 16.8}
+{"parada_s": 60, "rep": 2, "fora": [".110", ".113", ".102", ".108", ".105"], "religado": ".110", "rpc_religado_s": 8.9, "proximo_bloco_s": 135.0, "ate_saudavel_s": 16.5}
+{"parada_s": 60, "rep": 3, "fora": [".106", ".104", ".108", ".113", ".101"], "religado": ".106", "rpc_religado_s": 8.9, "proximo_bloco_s": 518.7, "ate_saudavel_s": 20.0}
+{"parada_s": 60, "rep": 4, "fora": [".109", ".106", ".111", ".112", ".108"], "religado": ".109", "rpc_religado_s": 8.9, "proximo_bloco_s": 518.8, "ate_saudavel_s": 16.5}
+{"parada_s": 60, "rep": 5, "fora": [".103", ".106", ".105", ".108", ".112"], "religado": ".103", "rpc_religado_s": 8.9, "proximo_bloco_s": 134.7, "ate_saudavel_s": 19.8}
+{"parada_s": 120, "rep": 1, "fora": [".108", ".109", ".101", ".105", ".113"], "religado": ".108", "rpc_religado_s": 8.9, "proximo_bloco_s": 518.0, "ate_saudavel_s": 16.5}
+{"parada_s": 120, "rep": 2, "fora": [".104", ".108", ".106", ".101", ".110"], "religado": ".104", "rpc_religado_s": 8.9, "proximo_bloco_s": 263.5, "ate_saudavel_s": 16.5}
+{"parada_s": 120, "rep": 3, "fora": [".106", ".104", ".110", ".109", ".105"], "religado": ".106", "rpc_religado_s": 9.0, "proximo_bloco_s": 518.5, "ate_saudavel_s": 16.6}
+-> /home/laob/urna3g/resultados/e8-recuperacao.json
+=== 2026-11-22 18:55:45 fim e8_recuperacao.py (código 0)
+=== 2026-11-22 18:55:45 início e11_reinicio.py
+{"modo": "escalonado", "rep": 1, "espalhamento_starts_s": 12.1, "altura_antes": null, "todos_respondem_s": 7.5, "primeiro_bloco_s": 9.7, "malha_completa_s": 64.9}
+{"modo": "escalonado", "rep": 2, "espalhamento_starts_s": 11.9, "altura_antes": null, "todos_respondem_s": 8.5, "primeiro_bloco_s": 10.7, "malha_completa_s": 57.3}
+{"modo": "escalonado", "rep": 3, "espalhamento_starts_s": 11.2, "altura_antes": null, "todos_respondem_s": 7.8, "primeiro_bloco_s": 14.2, "malha_completa_s": 63.0}
+{"modo": "escalonado", "rep": 4, "espalhamento_starts_s": 12.1, "altura_antes": null, "todos_respondem_s": 7.9, "primeiro_bloco_s": 10.1, "malha_completa_s": 63.1}
+{"modo": "escalonado", "rep": 5, "espalhamento_starts_s": 11.0, "altura_antes": null, "todos_respondem_s": 8.4, "primeiro_bloco_s": 19.0, "malha_completa_s": 65.9}
+{"modo": "simultaneo", "rep": 1, "espalhamento_starts_s": 1.3, "altura_antes": null, "todos_respondem_s": 11.1, "primeiro_bloco_s": 13.2, "malha_completa_s": 68.3}
+{"modo": "simultaneo", "rep": 2, "espalhamento_starts_s": 1.3, "altura_antes": null, "todos_respondem_s": 11.0, "primeiro_bloco_s": 13.2, "malha_completa_s": 68.1}
+{"modo": "simultaneo", "rep": 3, "espalhamento_starts_s": 1.2, "altura_antes": null, "todos_respondem_s": 10.9, "primeiro_bloco_s": 13.1, "malha_completa_s": 67.9}
+{"modo": "simultaneo", "rep": 4, "espalhamento_starts_s": 1.3, "altura_antes": null, "todos_respondem_s": 11.0, "primeiro_bloco_s": 13.2, "malha_completa_s": 68.2}
+{"modo": "simultaneo", "rep": 5, "espalhamento_starts_s": 1.2, "altura_antes": null, "todos_respondem_s": 11.1, "primeiro_bloco_s": 13.3, "malha_completa_s": 68.3}
+-> /home/laob/urna3g/resultados/e11-reinicio.json
+=== 2026-11-22 19:10:13 fim e11_reinicio.py (código 0)
+=== 2026-11-22 19:10:13 FILA CONCLUÍDA
+{"rep": 1, "transacoes_enviadas": 1200, "incluidas": 1200, "nao_incluidas": 0, "tempo_envio_s": 42.6, "taxa_oferecida_tx_s": 28.2, "tempo_ate_ultimo_bloco_s": 43.7, "tx_por_s_fim_a_fim": 27.4, "blocos_usados": 22, "blocos_vazios_no_intervalo": 0, "tx_por_bloco": {"n": 22, "media": 54.5, "mediana": 56.0, "desvio": 8.1, "min": 30, "p95": 62.8, "p99": 68.5, "max": 70, "ic95_media": [51.1, 57.9]}, "tx_por_s_na_cadeia": 27.3, "latencia_inclusao_s": {"n": 1200, "media": 0.99, "mediana": 1.0, "desvio": 0.57, "min": -0.08, "p95": 1.88, "p99": 1.97, "max": 2.01, "ic95_media": [0.96, 1.03]}, "altura_inicio": 22723, "erros_envio": {}, "secoes_registradas_no_contrato": 1200}
+{"rep": 2, "transacoes_enviadas": 1200, "incluidas": 1200, "nao_incluidas": 0, "tempo_envio_s": 42.3, "taxa_oferecida_tx_s": 28.4, "tempo_ate_ultimo_bloco_s": 43.8, "tx_por_s_fim_a_fim": 27.4, "blocos_usados": 22, "blocos_vazios_no_intervalo": 0, "tx_por_bloco": {"n": 22, "media": 54.5, "mediana": 56.5, "desvio": 10.1, "min": 15, "p95": 62.0, "p99": 65.9, "max": 67, "ic95_media": [50.3, 58.8]}, "tx_por_s_na_cadeia": 27.3, "latencia_inclusao_s": {"n": 1200, "media": 0.99, "mediana": 1.0, "desvio": 0.58, "min": -0.03, "p95": 1.88, "p99": 1.96, "max": 2.06, "ic95_media": [0.96, 1.02]}, "altura_inicio": 22755, "erros_envio": {}, "secoes_registradas_no_contrato": 1200}
+{"rep": 3, "transacoes_enviadas": 1200, "incluidas": 1200, "nao_incluidas": 0, "tempo_envio_s": 42.2, "taxa_oferecida_tx_s": 28.5, "tempo_ate_ultimo_bloco_s": 43.8, "tx_por_s_fim_a_fim": 27.4, "blocos_usados": 22, "blocos_vazios_no_intervalo": 0, "tx_por_bloco": {"n": 22, "media": 54.5, "mediana": 57.0, "desvio": 10.9, "min": 12, "p95": 62.0, "p99": 63.6, "max": 64, "ic95_media": [50.0, 59.1]}, "tx_por_s_na_cadeia": 27.3, "latencia_inclusao_s": {"n": 1200, "media": 0.97, "mediana": 0.96, "desvio": 0.58, "min": -0.14, "p95": 1.9, "p99": 1.97, "max": 1.99, "ic95_media": [0.94, 1.01]}, "altura_inicio": 22787, "erros_envio": {}, "secoes_registradas_no_contrato": 1200}
+-> /home/laob/urna3g/resultados/e9-capacidade.json
+FIM-E9

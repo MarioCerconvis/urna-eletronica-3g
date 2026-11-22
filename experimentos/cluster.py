@@ -7,6 +7,7 @@ Portas locais 19300+K (separadas das do painel, 19100+K).
 from __future__ import annotations
 
 import json
+import os
 import random
 import subprocess
 import threading
@@ -15,8 +16,6 @@ from pathlib import Path
 from typing import Any
 
 import httpx
-
-import os
 
 CFG_PATH = Path(os.environ.get("URNA3G_PAINEL_CFG", Path.home() / "Desktop/UFABC/cluster-rede-12/painel.json"))
 CFG = json.loads(CFG_PATH.read_text())
@@ -38,7 +37,7 @@ def url(k: int) -> str:  # k = 1..N
 
 
 class Tunel:
-    def __enter__(self) -> "Tunel":
+    def __enter__(self) -> Tunel:
         if DIRETO:
             self.p = None
             return self

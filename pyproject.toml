@@ -58,6 +58,9 @@ ignore = ["S101", "S603", "S607"]
 "src/urna3g/painel/ensaio.py" = ["S311"]
 "src/urna3g/painel/coletor.py" = ["S110", "S112"]  # laços de sondagem: nó inacessível é estado, não erro  # aleatoriedade só simula o ritmo dos eleitores
 "src/urna3g/painel/lote.py" = ["E501"]  # linhas de tabelas do relatório
+# scripts de pesquisa: tabelas longas; RSA-1024/SHA-1 só para reproduzir o protótipo de 2016; sorteios não criptográficos;
+# threads/closures terminam dentro da mesma iteração; laços de sondagem toleram nó inacessível
+"experimentos/*" = ["E501", "S311", "S303", "S505", "S112", "S110", "S108", "B023"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

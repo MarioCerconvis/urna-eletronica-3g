@@ -36,12 +36,16 @@ boletim entra no mural e na blockchain.
 **Fig. 5 — Topologia do cluster**: 12 nós em malha completa (66 conexões) + computador principal como ponte. Captura do
 painel ao vivo (`urna3g painel`) recomendada.
 
-**Fig. 6 — Altura de bloco ao longo do tempo com validadores fora** (gráfico de linha; dados em
-`anexos/dados-falhas-cluster.csv`): uma série para "4 fora" (escada com patamares de 30–45 s) e outra para "3 fora";
-linha de referência da vazão normal (0,5 bloco/s). Um único eixo y (altura relativa ao início).
+**Fig. 6 — Vazão × nº de validadores fora** (E7; `anexos/dados/e7-tolerancia.json`): barras de blocos/min (média,
+com os 5 pontos individuais sobrepostos) para k = 0…4, linha tracejada em 30/min e marca do limite teórico (k = 4);
+k = 5 anotado como "parada". Destacar com marcador diferente as repetições com validadores vizinhos no rodízio.
 
-**Fig. 7 — Tempo de recuperação × duração da parada** (rede local): pontos (10 s → 34 s), (~30 s → 66 s), (60 s → 131 s);
-anotar o *backoff* exponencial do QBFT.
+**Fig. 7 — Recuperação após perda de quórum** (E8; `anexos/dados/e8-recuperacao.json`): gráfico de pontos, eixo x =
+duração da parada (10, 30, 60, 120 s), eixo y = tempo até o próximo bloco (escala log₂); linhas horizontais nos
+degraus ≈ 38, 70, 135, 263, 518 s anotadas com "4 s × 2ʳ". Mostra que a recuperação é quantizada.
+
+**Fig. 7b — Latência de ancoragem** (E6 e E10): distribuição (histograma ou *box plot*) do tempo do boletim à
+ancoragem — nominal (n = 120, ~2,5 s), seções não afetadas por queda (n = 45) e seções afetadas (n = 15, ~72 s).
 
 **Fig. 8 — Captura do painel ao vivo durante um ensaio**: grafo com as seções em fases diferentes e a linha do tempo.
 
@@ -98,6 +102,6 @@ verdadeiro quanto ao conteúdo, mas sem garantia de origem (QR forjável). A nov
 
 **Tab. D — Protótipo 2016 × esta versão** — ver `07-criptografia-e-formatos.md` §7.6.
 
-**Tab. E — Resultados de tolerância a falhas** — ver `11-resultados.md` §11.3 e §11.4.
+**Tab. E — Bateria E1–E12** — tabelas prontas em `11-resultados.md` §11.1–11.12 e em `anexos/RELATORIO-EXPERIMENTOS.md`.
 
-**Tab. F — Defeitos revelados pelos experimentos** — ver `11-resultados.md` §11.5.
+**Tab. F — Defeitos revelados pelos experimentos (sistema e método)** — ver `11-resultados.md` §11.14.

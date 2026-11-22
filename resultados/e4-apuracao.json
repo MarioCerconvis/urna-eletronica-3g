@@ -1,0 +1,202 @@
+{
+  "experimento": "e4-apuracao",
+  "gerado_em": "2026-11-22T16:18:52",
+  "ambiente": {
+    "cpu": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+    "python": "3.12.3",
+    "so": "Linux-7.0.0-43-generic-x86_64-with-glibc2.39",
+    "commit": "f2f7040"
+  },
+  "metodo": "ledger com synchronous=FULL (fsync por cédula); emissão das cédulas fora da medição; HD mecânico vs RAM",
+  "resultados": {
+    "hd_mecanico": {
+      "montagem": "/dev/sdb2 ext4",
+      "secoes_de_400": {
+        "repeticoes": 10,
+        "cedulas_medidas": 4000,
+        "processar_cedula_ms": {
+          "n": 4000,
+          "media": 112.972,
+          "mediana": 98.489,
+          "desvio": 83.886,
+          "min": 23.963,
+          "p95": 249.268,
+          "p99": 331.987,
+          "max": 844.819,
+          "ic95_media": [
+            110.373,
+            115.572
+          ]
+        },
+        "verificar_ledger_ms": {
+          "n": 10,
+          "media": 5.1,
+          "mediana": 4.3,
+          "desvio": 2.7,
+          "min": 1.7,
+          "p95": 8.3,
+          "p99": 8.4,
+          "max": 8.4,
+          "ic95_media": [
+            3.5,
+            6.8
+          ]
+        },
+        "gerar_boletim_ms": {
+          "n": 10,
+          "media": 168.7,
+          "mediana": 113.7,
+          "desvio": 134.7,
+          "min": 59.9,
+          "p95": 418.5,
+          "p99": 437.2,
+          "max": 441.9,
+          "ic95_media": [
+            85.2,
+            252.2
+          ]
+        },
+        "tamanho_ledger_kb": {
+          "n": 10,
+          "media": 175.6,
+          "mediana": 176.0,
+          "desvio": 1.3,
+          "min": 172.0,
+          "p95": 176.0,
+          "p99": 176.0,
+          "max": 176.0,
+          "ic95_media": [
+            174.8,
+            176.4
+          ]
+        },
+        "tempo_computacional_por_secao_s": 45.19
+      }
+    },
+    "ram_tmpfs": {
+      "montagem": "tmpfs  tmpfs",
+      "secoes_de_400": {
+        "repeticoes": 10,
+        "cedulas_medidas": 4000,
+        "processar_cedula_ms": {
+          "n": 4000,
+          "media": 0.282,
+          "mediana": 0.275,
+          "desvio": 0.03,
+          "min": 0.262,
+          "p95": 0.315,
+          "p99": 0.459,
+          "max": 0.664,
+          "ic95_media": [
+            0.281,
+            0.283
+          ]
+        },
+        "verificar_ledger_ms": {
+          "n": 10,
+          "media": 1.6,
+          "mediana": 1.6,
+          "desvio": 0.0,
+          "min": 1.6,
+          "p95": 1.7,
+          "p99": 1.7,
+          "max": 1.7,
+          "ic95_media": [
+            1.6,
+            1.6
+          ]
+        },
+        "gerar_boletim_ms": {
+          "n": 10,
+          "media": 13.2,
+          "mediana": 13.2,
+          "desvio": 0.0,
+          "min": 13.1,
+          "p95": 13.2,
+          "p99": 13.3,
+          "max": 13.3,
+          "ic95_media": [
+            13.2,
+            13.2
+          ]
+        },
+        "tamanho_ledger_kb": {
+          "n": 10,
+          "media": 174.4,
+          "mediana": 176.0,
+          "desvio": 2.1,
+          "min": 172.0,
+          "p95": 176.0,
+          "p99": 176.0,
+          "max": 176.0,
+          "ic95_media": [
+            173.1,
+            175.7
+          ]
+        },
+        "tempo_computacional_por_secao_s": 0.11
+      },
+      "secoes_de_5000": {
+        "repeticoes": 3,
+        "cedulas_medidas": 15000,
+        "processar_cedula_ms": {
+          "n": 15000,
+          "media": 0.292,
+          "mediana": 0.277,
+          "desvio": 0.047,
+          "min": 0.265,
+          "p95": 0.366,
+          "p99": 0.53,
+          "max": 0.945,
+          "ic95_media": [
+            0.291,
+            0.293
+          ]
+        },
+        "verificar_ledger_ms": {
+          "n": 3,
+          "media": 20.4,
+          "mediana": 20.3,
+          "desvio": 0.6,
+          "min": 19.9,
+          "p95": 21.0,
+          "p99": 21.1,
+          "max": 21.1,
+          "ic95_media": [
+            19.8,
+            21.1
+          ]
+        },
+        "gerar_boletim_ms": {
+          "n": 3,
+          "media": 171.7,
+          "mediana": 173.9,
+          "desvio": 4.1,
+          "min": 167.0,
+          "p95": 174.2,
+          "p99": 174.2,
+          "max": 174.2,
+          "ic95_media": [
+            167.1,
+            176.4
+          ]
+        },
+        "tamanho_ledger_kb": {
+          "n": 3,
+          "media": 1740.0,
+          "mediana": 1740.0,
+          "desvio": 4.0,
+          "min": 1736.0,
+          "p95": 1743.6,
+          "p99": 1743.9,
+          "max": 1744.0,
+          "ic95_media": [
+            1735.5,
+            1744.5
+          ]
+        },
+        "tempo_computacional_por_secao_s": 1.46
+      }
+    }
+  }
+}

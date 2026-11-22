@@ -1,0 +1,132 @@
+{
+  "experimento": "e1-tamanho-cedula",
+  "gerado_em": "2026-11-22T15:52:48",
+  "ambiente": {
+    "cpu": "Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz",
+    "python": "3.12.3",
+    "so": "Linux-7.0.0-43-generic-x86_64-with-glibc2.39",
+    "commit": "f2f7040"
+  },
+  "metodo": "uma medição por configuração (determinístico); votos brancos têm o mesmo tamanho que qualquer outro (int32)",
+  "nova_versao": [
+    {
+      "votos": 1,
+      "secao_bytes": 3,
+      "bytes_binarios": 98,
+      "caracteres_qr": 136,
+      "versao_qr_M": 8,
+      "modulos_lado": 49
+    },
+    {
+      "votos": 1,
+      "secao_bytes": 16,
+      "bytes_binarios": 111,
+      "caracteres_qr": 153,
+      "versao_qr_M": 9,
+      "modulos_lado": 53
+    },
+    {
+      "votos": 2,
+      "secao_bytes": 3,
+      "bytes_binarios": 102,
+      "caracteres_qr": 141,
+      "versao_qr_M": 8,
+      "modulos_lado": 49
+    },
+    {
+      "votos": 2,
+      "secao_bytes": 16,
+      "bytes_binarios": 115,
+      "caracteres_qr": 159,
+      "versao_qr_M": 9,
+      "modulos_lado": 53
+    },
+    {
+      "votos": 3,
+      "secao_bytes": 3,
+      "bytes_binarios": 106,
+      "caracteres_qr": 147,
+      "versao_qr_M": 8,
+      "modulos_lado": 49
+    },
+    {
+      "votos": 3,
+      "secao_bytes": 16,
+      "bytes_binarios": 119,
+      "caracteres_qr": 164,
+      "versao_qr_M": 9,
+      "modulos_lado": 53
+    },
+    {
+      "votos": 5,
+      "secao_bytes": 3,
+      "bytes_binarios": 114,
+      "caracteres_qr": 157,
+      "versao_qr_M": 8,
+      "modulos_lado": 49
+    },
+    {
+      "votos": 5,
+      "secao_bytes": 16,
+      "bytes_binarios": 127,
+      "caracteres_qr": 175,
+      "versao_qr_M": 9,
+      "modulos_lado": 53
+    },
+    {
+      "votos": 10,
+      "secao_bytes": 3,
+      "bytes_binarios": 134,
+      "caracteres_qr": 184,
+      "versao_qr_M": 9,
+      "modulos_lado": 53
+    },
+    {
+      "votos": 10,
+      "secao_bytes": 16,
+      "bytes_binarios": 147,
+      "caracteres_qr": 201,
+      "versao_qr_M": 10,
+      "modulos_lado": 57
+    },
+    {
+      "votos": 20,
+      "secao_bytes": 3,
+      "bytes_binarios": 174,
+      "caracteres_qr": 237,
+      "versao_qr_M": 10,
+      "modulos_lado": 57
+    },
+    {
+      "votos": 20,
+      "secao_bytes": 16,
+      "bytes_binarios": 187,
+      "caracteres_qr": 255,
+      "versao_qr_M": 11,
+      "modulos_lado": 61
+    },
+    {
+      "votos": 40,
+      "secao_bytes": 3,
+      "bytes_binarios": 254,
+      "caracteres_qr": 344,
+      "versao_qr_M": 12,
+      "modulos_lado": 65
+    },
+    {
+      "votos": 40,
+      "secao_bytes": 16,
+      "bytes_binarios": 267,
+      "caracteres_qr": 361,
+      "versao_qr_M": 13,
+      "modulos_lado": 69
+    }
+  ],
+  "prototipo_2016": {
+    "bytes_cifrados": 128,
+    "caracteres_qr": 175,
+    "versao_qr_L": 8,
+    "versao_qr_M": 9,
+    "observacao": "texto do QR = base64 do RSA-1024-OAEP; o protótipo usava correção L"
+  }
+}
