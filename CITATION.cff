@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+message: "If you use this software or its data, please cite the article and this replication package."
+title: "Urna3G: replication package for \"Anchoring, Not Voting, On-Chain\""
+type: software
+version: 1.0.0
+license: MIT
+repository-code: "https://github.com/MarioCerconvis/urna-eletronica-3g"
+keywords: &keywords
+  - electronic voting
+  - voter-verifiable paper ballot
+  - software independence
+  - digital signatures
+  - permissioned blockchain
+  - Hyperledger Besu
+  - QBFT consensus
+  - blockchain anchoring
+authors: &authors
+  - family-names: Hassegawa
+    given-names: Gustavo Jun Miyamoto
+    orcid: "https://orcid.org/0009-0005-5472-851X"
+    affiliation: "Federal University of ABC (UFABC)"
+  - family-names: Cerconvis
+    given-names: Mario Guerrero
+    orcid: "https://orcid.org/0009-0009-1838-8836"
+    affiliation: "Federal University of ABC (UFABC)"
+  - family-names: Colombo
+    given-names: Victor Vieira
+    orcid: "https://orcid.org/0009-0005-0762-6545"
+    affiliation: "Federal University of ABC (UFABC)"
+  - family-names: Dourado
+    given-names: Diego Marques
+    orcid: "https://orcid.org/0000-0002-2125-841X"
+    affiliation: "Federal University of São Carlos (UFSCar)"
+  - family-names: Monteiro
+    given-names: Luís Fernando Corrêa
+    orcid: "https://orcid.org/0000-0002-8537-0785"
+    affiliation: "Rio de Janeiro State University (UERJ)"
+  - family-names: Carmo
+    given-names: João Paulo
+    orcid: "https://orcid.org/0000-0001-7955-7503"
+    affiliation: "University of São Paulo (USP)"
+  - family-names: Gazziro
+    given-names: Mario
+    orcid: "https://orcid.org/0000-0002-8961-5196"
+    affiliation: "Federal University of ABC (UFABC)"
+preferred-citation:
+  type: article
+  title: "Anchoring, Not Voting, On-Chain: A Third-Generation Paper Ballot System Evaluated on a 12-Node Permissioned Blockchain"
+  authors: *authors
+  journal: "Future Internet"
+  year: 2026
+  status: submitted
+  keywords: *keywords

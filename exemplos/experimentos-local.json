@@ -1,0 +1,5 @@
+{
+  "nome": "Rede local de validadores em contêineres nesta máquina (replicação sem cluster)",
+  "modo": "local",
+  "rede_dir": "../deploy/blockchain/besu/rede"
+}

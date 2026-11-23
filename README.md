@@ -105,7 +105,15 @@ exemplos/          eleição de demonstração
 docs/  deploy/     documentação e implantação
 ```
 
+## Replicação dos experimentos do artigo
+
+`replication/REPLICATION.md` (em inglês) descreve como refazer a avaliação em quatro níveis: medições offline, rede
+local de 4 validadores, todos os experimentos do cluster num único computador com 12 contêineres Besu e o cluster
+físico. `replication/DATA_DICTIONARY.md` traduz os campos de `resultados/`, e `replication/build_package.sh` monta o
+pacote para o Zenodo a partir do commit atual.
+
 ## Licença e autoria
 
-Trabalho do LAOB/UFABC (Prof. Mario Gazziro e colaboradores). O repositório original não declara licença;
-a definição fica a cargo dos autores antes de uma publicação ampla.
+Trabalho do LAOB/UFABC (Prof. Mario Gazziro e colaboradores). O código desta branch é distribuído sob a licença MIT
+(`LICENSE`); como citar está em `CITATION.cff`. O código original de 2016/2017 (branch `legacy-2017`) não declara
+licença.

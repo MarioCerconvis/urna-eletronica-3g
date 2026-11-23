@@ -1,0 +1,71 @@
+{
+  "title": "Urna3G: replication package for \"Anchoring, Not Voting, On-Chain: A Third-Generation Paper Ballot System Evaluated on a 12-Node Permissioned Blockchain\"",
+  "upload_type": "software",
+  "version": "1.0.0",
+  "description": "<p>Replication package for the article <em>Anchoring, Not Voting, On-Chain: A Third-Generation Paper Ballot System Evaluated on a 12-Node Permissioned Blockchain</em> (manuscript submitted to <em>Future Internet</em>, MDPI).</p><p>Urna3G prints each ballot with a human-readable record and an Ed25519-signed QR code, records the public tally of each polling station in a hash-chained ledger closed by a signed report, and anchors only the hash of each report in a permissioned Hyperledger Besu network with QBFT consensus.</p><p>The package contains: the source code of the system and its automated tests; the <code>RegistroEleitoral</code> anchoring contract (Solidity source and compiled artifact); scripts that generate and operate the QBFT network on one computer (Docker) or on a physical cluster; the measurement scripts E1–E13; the raw data of the measurement battery of 22–23 November 2026 and of the single runs of 13–14 November 2026 reported in the article; the genesis files and validator addresses of the networks used (no private keys); exact software versions; a step-by-step replication guide (<code>REPLICATION.md</code>) and a data dictionary (<code>DATA_DICTIONARY.md</code>).</p><p>The cluster experiments can be reproduced without a cluster, on a single computer running 12 Besu containers.</p>",
+  "creators": [
+    {
+      "name": "Hassegawa, Gustavo Jun Miyamoto",
+      "affiliation": "Federal University of ABC (UFABC)",
+      "orcid": "0009-0005-5472-851X"
+    },
+    {
+      "name": "Cerconvis, Mario Guerrero",
+      "affiliation": "Federal University of ABC (UFABC)",
+      "orcid": "0009-0009-1838-8836"
+    },
+    {
+      "name": "Colombo, Victor Vieira",
+      "affiliation": "Federal University of ABC (UFABC)",
+      "orcid": "0009-0005-0762-6545"
+    },
+    {
+      "name": "Dourado, Diego Marques",
+      "affiliation": "Federal University of São Carlos (UFSCar)",
+      "orcid": "0000-0002-2125-841X"
+    },
+    {
+      "name": "Monteiro, Luís Fernando Corrêa",
+      "affiliation": "Rio de Janeiro State University (UERJ)",
+      "orcid": "0000-0002-8537-0785"
+    },
+    {
+      "name": "Carmo, João Paulo",
+      "affiliation": "University of São Paulo (USP)",
+      "orcid": "0000-0001-7955-7503"
+    },
+    {
+      "name": "Gazziro, Mario",
+      "affiliation": "Federal University of ABC (UFABC)",
+      "orcid": "0000-0002-8961-5196"
+    }
+  ],
+  "keywords": [
+    "electronic voting",
+    "voter-verifiable paper ballot",
+    "software independence",
+    "digital signatures",
+    "permissioned blockchain",
+    "Hyperledger Besu",
+    "QBFT consensus",
+    "Byzantine fault tolerance",
+    "blockchain anchoring",
+    "election auditability"
+  ],
+  "license": "MIT",
+  "access_right": "open",
+  "language": "eng",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/MarioCerconvis/urna-eletronica-3g",
+      "relation": "isDerivedFrom",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://github.com/mariogazziro/urna_eletronica",
+      "relation": "references",
+      "resource_type": "software"
+    }
+  ],
+  "notes": "Most of the code base, the tests and the measurement scripts were written with generative AI (Claude models, Anthropic, through Claude Code) and reviewed by the authors, who ran every measurement. When the article is published, add its DOI as a related identifier with relation 'isSupplementTo'."
+}

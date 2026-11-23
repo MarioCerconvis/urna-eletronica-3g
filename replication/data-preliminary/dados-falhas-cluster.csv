@@ -1,0 +1,43 @@
+cenario,t_segundos,altura_bloco,observacao
+4_fora_8_de_12,0,96,inicio da janela (4 validadores parados)
+4_fora_8_de_12,15,96,
+4_fora_8_de_12,30,96,
+4_fora_8_de_12,45,101,
+4_fora_8_de_12,60,104,
+4_fora_8_de_12,75,104,
+4_fora_8_de_12,90,104,
+4_fora_8_de_12,105,104,
+4_fora_8_de_12,120,109,
+4_fora_8_de_12,135,112,
+4_fora_8_de_12,150,112,
+4_fora_8_de_12,165,112,
+4_fora_8_de_12,180,112,fim: 16 blocos em 182 s
+3_fora_9_de_12,0,112,inicio (1 validador religado)
+3_fora_9_de_12,15,118,
+3_fora_9_de_12,30,120,
+3_fora_9_de_12,45,120,
+3_fora_9_de_12,60,126,
+3_fora_9_de_12,75,129,
+3_fora_9_de_12,90,129,
+3_fora_9_de_12,105,135,
+3_fora_9_de_12,121,135,fim: 23 blocos em 121 s
+1_fora_3_de_4_local,0,23,rede local 4 validadores; amostras a cada 3 s
+1_fora_3_de_4_local,3,25,
+1_fora_3_de_4_local,6,26,
+1_fora_3_de_4_local,9,26,
+1_fora_3_de_4_local,12,27,
+1_fora_3_de_4_local,15,29,
+1_fora_3_de_4_local,18,29,
+1_fora_3_de_4_local,21,30,
+1_fora_3_de_4_local,24,31,
+1_fora_3_de_4_local,27,32,
+1_fora_3_de_4_local,30,33,
+1_fora_3_de_4_local,33,34,
+1_fora_3_de_4_local,36,35,
+1_fora_3_de_4_local,39,35,
+1_fora_3_de_4_local,42,37,
+1_fora_3_de_4_local,45,38,
+1_fora_3_de_4_local,48,38,
+1_fora_3_de_4_local,51,39,
+1_fora_3_de_4_local,54,41,
+1_fora_3_de_4_local,57,41,fim: 18 blocos em 57 s

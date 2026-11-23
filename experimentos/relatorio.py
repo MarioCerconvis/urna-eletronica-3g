@@ -160,6 +160,31 @@ def secao_e7(L: list[str]) -> None:
     L.append("")
 
 
+def _secao_tolerancia_fixa(L: list[str], nome: str, titulo: str, n_val: int) -> None:
+    d = carregar(nome)
+    if not d or "por_k" not in d:
+        return
+    L += [f"## {titulo}", "", d["metodo"], "",
+          "| Nós fora | No ar | Quais | Blocos em 120 s por repetição | Média ± desvio | Intervalos entre blocos observados (s) |",
+          "|---|---|---|---|---|---|"]
+    for k, r in d["por_k"].items():
+        reps = [e for e in d["execucoes"] if str(e["k_fora"]) == k]
+        inter = sorted({i for e in reps for i in e.get("intervalos_s", [])})
+        b = r["blocos"]
+        L.append(f"| {k} | {n_val - int(k)} | {', '.join(r['fora']) or 'nenhum'} | {', '.join(str(e['blocos']) for e in reps)} | "
+                 f"{f(b['media'], 1)} ± {f(b['desvio'], 1)} | {', '.join(str(i) for i in inter) or '— (sem blocos)'} |")
+    L.append("")
+
+
+def secao_e7b(L: list[str]) -> None:
+    _secao_tolerancia_fixa(L, "e7b-tolerancia-consecutivos",
+                           "E7b — Vazão com validadores CONSECUTIVOS no rodízio fora (12 validadores, quórum 8)", 12)
+
+
+def secao_e7l(L: list[str]) -> None:
+    _secao_tolerancia_fixa(L, "e7l-tolerancia-local", "E7L — Vazão da rede local de 4 validadores (quórum 3)", 4)
+
+
 def secao_e8(L: list[str]) -> None:
     d = carregar("e8-recuperacao")
     if not d or "por_duracao" not in d:
@@ -247,11 +272,32 @@ def secao_e12(L: list[str]) -> None:
           "(percentual de um núcleo, como reporta o Docker).", ""]
 
 
+def secao_e13(L: list[str]) -> None:
+    d = carregar("e13-custo-ancoragem")
+    if not d or "por_funcao" not in d:
+        return
+    L += ["## E13 — Gás e latência de inclusão de cada transação de ancoragem (uma por vez)", "", d["metodo"], "",
+          "| Transação | n | Gás (média ± desvio; mín–máx) | Latência de inclusão (s): média ± desvio (mediana; p95; máx) |",
+          "|---|---|---|---|"]
+    rot = {"implantar": "Implantar contrato", "criarEleicao": "criarEleicao (12 apuradores)",
+           "registrarBoletim": "registrarBoletim (todas)", "encerrar": "encerrar"}
+    linhas = [(rot[k], v) for k, v in d["por_funcao"].items()]
+    linhas.insert(3, ("  primeiro boletim de cada eleição", d["registrar_primeira_secao"]))
+    linhas.insert(4, ("  demais boletins", d["registrar_demais_secoes"]))
+    for nome, v in linhas:
+        g, lat = v["gas"], v["latencia_recibo_s"]
+        L.append(f"| {nome} | {g['n']} | {f(g['media'], 0)} ± {f(g['desvio'], 0)}; {f(g['min'], 0)}–{f(g['max'], 0)} | "
+                 f"{f(lat['media'], 2)} ± {f(lat['desvio'], 2)} ({f(lat['mediana'], 2)}; {f(lat['p95'], 2)}; {f(lat['max'], 2)}) |")
+    L += ["", "Com blocos a cada 2 s e envio em fase aleatória, a espera pelo bloco seguinte é uniforme entre 0 e 2 s "
+          "(média 1 s, desvio 0,58 s): todas as transações entraram no primeiro bloco depois do envio.", ""]
+
+
 def main() -> None:
     L = ["# Relatório consolidado dos experimentos", "",
          "Gerado por `experimentos/relatorio.py` a partir de `resultados/*.json`. Cada seção indica método e tamanho de amostra. "
          "Os scripts de cada experimento estão em `experimentos/` e podem ser reexecutados.", ""]
-    for fn in (secao_e1, secao_e2, secao_e3, secao_e4, secao_e5, secao_e6, secao_e7, secao_e8, secao_e9, secao_e10, secao_e11, secao_e12):
+    for fn in (secao_e1, secao_e2, secao_e3, secao_e4, secao_e5, secao_e6, secao_e7, secao_e7b, secao_e7l, secao_e8,
+               secao_e9, secao_e10, secao_e11, secao_e12, secao_e13):
         try:
             fn(L)
         except Exception as e:  # noqa: BLE001

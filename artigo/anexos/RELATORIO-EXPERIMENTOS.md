@@ -115,6 +115,25 @@ Por repetição (ordem de rodízio do proponente = .101 → .102 → .103 → .1
 | 4 | 4 | .102, .113, .104, .106 | não | 15,5 | 6 |
 | 4 | 5 | .102, .113, .111, .109 | não | 15,0 | 6 |
 
+## E7b — Vazão com validadores CONSECUTIVOS no rodízio fora (12 validadores, quórum 8)
+
+5 repetições por conjunto, janela 120 s, nós consecutivos na ordem de rodízio (3 fora = .111–.113; 4 fora = .110–.113), rede saudável antes de cada repetição
+
+| Nós fora | No ar | Quais | Blocos em 120 s por repetição | Média ± desvio | Intervalos entre blocos observados (s) |
+|---|---|---|---|---|---|
+| 3 | 9 | .111, .112, .113 | 21, 24, 19, 22, 21 | 21,4 ± 1,8 | 2, 30 |
+| 4 | 8 | .110, .111, .112, .113 | 8, 8, 8, 8, 10 | 8,4 ± 0,9 | 2, 62 |
+
+## E7L — Vazão da rede local de 4 validadores (quórum 3)
+
+rede local de 4 validadores (Docker, um contêiner por nó); 5 repetições por cenário, janela 120 s; 1 fora = node4, 2 fora = node3 e node4; reinício completo da rede depois de cada janela sem quórum; rede saudável (4 nós sincronizados, 3 pares cada, produzindo) antes de cada repetição
+
+| Nós fora | No ar | Quais | Blocos em 120 s por repetição | Média ± desvio | Intervalos entre blocos observados (s) |
+|---|---|---|---|---|---|
+| 0 | 4 | nenhum | 60, 60, 60, 60, 60 | 60 ± 0,0 | 2 |
+| 1 | 3 | node4 | 36, 36, 36, 36, 36 | 36 ± 0,0 | 2, 6 |
+| 2 | 2 | node3, node4 | 0, 0, 0, 0, 0 | 0 ± 0,0 | — (sem blocos) |
+
 ## E8 — Recuperação após perda de quórum
 
 5 de 12 parados (sem quórum) por d segundos; religar 1; medir RPC do religado e o próximo bloco; nós sorteados (semente 88)
@@ -168,4 +187,19 @@ Amostras de `docker stats` a cada 60 s em todos os nós durante E6–E11: 1611 a
 
 * Memória por nó: média 389 MiB, p95 551 MiB, máximo 692 MiB (máquinas de 3,3–3,4 GB; heap da JVM limitado a 1 GB).
 * CPU por nó: média 13,4%, p95 48,0%, máximo 379,5% (percentual de um núcleo, como reporta o Docker).
+
+## E13 — Gás e latência de inclusão de cada transação de ancoragem (uma por vez)
+
+10 eleições; em cada uma: implantar (nó 1), criarEleicao com as 12 contas de validador, registrarBoletim das seções 001–012 cada uma pela conta e pelo nó da própria seção, encerrar (nó 1); uma transação por vez, após espera aleatória U(0, 2 s); latência = envio → recibo (consulta a cada 0,1 s)
+
+| Transação | n | Gás (média ± desvio; mín–máx) | Latência de inclusão (s): média ± desvio (mediana; p95; máx) |
+|---|---|---|---|
+| Implantar contrato | 10 | 834064 ± 0; 834064–834064 | 1,02 ± 0,61 (1,03; 1,84; 1,94) |
+| criarEleicao (12 apuradores) | 10 | 321812 ± 5; 321802–321814 | 0,86 ± 0,66 (0,87; 1,76; 2,05) |
+| registrarBoletim (todas) | 120 | 127951 ± 4746; 126507–143631 | 1,12 ± 0,58 (1,09; 1,99; 2,07) |
+|   primeiro boletim de cada eleição | 10 | 143627 ± 6; 143619–143631 | 1,10 ± 0,45 (1,03; 1,83; 1,83) |
+|   demais boletins | 110 | 126526 ± 7; 126507–126531 | 1,12 ± 0,59 (1,09; 2,02; 2,07) |
+| encerrar | 10 | 51441 ± 6; 51433–51445 | 1,22 ± 0,57 (1,30; 1,84; 1,84) |
+
+Com blocos a cada 2 s e envio em fase aleatória, a espera pelo bloco seguinte é uniforme entre 0 e 2 s (média 1 s, desvio 0,58 s): todas as transações entraram no primeiro bloco depois do envio.
 

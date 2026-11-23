@@ -31,7 +31,7 @@ async def falha(p: Painel, fora: list[str], registro: dict) -> None:
 
 
 async def main_async() -> None:
-    cfg = carregar(C.CFG_PATH, False)
+    cfg = carregar(None, True) if C.LOCAL else carregar(C.CFG_PATH, False)
     p = Painel(cfg)
     tarefas = await p.iniciar()
     am = C.Amostrador(RESULTADOS / "e12-recursos.jsonl")

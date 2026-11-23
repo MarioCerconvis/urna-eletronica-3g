@@ -1,0 +1,58 @@
+{
+  "config": {
+    "chainId": 20261113,
+    "londonBlock": 0,
+    "zeroBaseFee": true,
+    "qbft": {
+      "blockperiodseconds": 2,
+      "epochlength": 30000,
+      "requesttimeoutseconds": 4
+    }
+  },
+  "nonce": "0x0",
+  "timestamp": "0x6914a000",
+  "gasLimit": "0x1fffffffffffff",
+  "difficulty": "0x1",
+  "alloc": {
+    "0x0000000000000000000000000000000000000000": {
+      "balance": "0"
+    },
+    "08120e571969654e17b18baa484cbdd89e19ef3d": {
+      "balance": "0x56bc75e2d63100000"
+    },
+    "476b9be866f22d01d41624a443c342cd6ba1acde": {
+      "balance": "0x56bc75e2d63100000"
+    },
+    "4906b051994f697f1adc826d9954467b8e4bb8cb": {
+      "balance": "0x56bc75e2d63100000"
+    },
+    "6aecd392a7fe00f44b27a59c738a672aa00dcfa6": {
+      "balance": "0x56bc75e2d63100000"
+    },
+    "6ee9c5cdaad03d8c466a72364f65151b1ef3b40c": {
+      "balance": "0x56bc75e2d63100000"
+    },
+    "81e0136d12f707e64ec5e8c1cd795d19b81c23ba": {
+      "balance": "0x56bc75e2d63100000"
+    },
+    "8fea16f7c033181fc838f3ea92917e18eab8a32b": {
+      "balance": "0x56bc75e2d63100000"
+    },
+    "a6340b3890b3b8013e9db658ea8b0c07113fbe59": {
+      "balance": "0x56bc75e2d63100000"
+    },
+    "c37177fd2b2895468ecae0945f6f1006fe8ece51": {
+      "balance": "0x56bc75e2d63100000"
+    },
+    "cb9205b26dcf5f8f7049dbb1fbab5246c523b827": {
+      "balance": "0x56bc75e2d63100000"
+    },
+    "db42ac13ef01662dc7a1666eb5b8f7ee328d4a82": {
+      "balance": "0x56bc75e2d63100000"
+    },
+    "ee926c3a559cb9eb426aea77782cc47854e69795": {
+      "balance": "0x56bc75e2d63100000"
+    }
+  },
+  "extraData": "0xf90122a00000000000000000000000000000000000000000000000000000000000000000f8fc946ee9c5cdaad03d8c466a72364f65151b1ef3b40c948fea16f7c033181fc838f3ea92917e18eab8a32b9408120e571969654e17b18baa484cbdd89e19ef3d94db42ac13ef01662dc7a1666eb5b8f7ee328d4a829481e0136d12f707e64ec5e8c1cd795d19b81c23ba94a6340b3890b3b8013e9db658ea8b0c07113fbe5994ee926c3a559cb9eb426aea77782cc47854e6979594c37177fd2b2895468ecae0945f6f1006fe8ece51944906b051994f697f1adc826d9954467b8e4bb8cb94476b9be866f22d01d41624a443c342cd6ba1acde946aecd392a7fe00f44b27a59c738a672aa00dcfa694cb9205b26dcf5f8f7049dbb1fbab5246c523b827c080c0"
+}
